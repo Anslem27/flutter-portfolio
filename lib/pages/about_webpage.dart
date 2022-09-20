@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/pages/web_homepage.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:flutter_portfolio/widgets/reusable/about_bullet.dart';
+import 'package:flutter_portfolio/widgets/reusable/shot_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WebAboutPage extends StatefulWidget {
@@ -37,7 +39,9 @@ class _WebAboutPageState extends State<WebAboutPage> {
           const SizedBox(height: 30),
           _links(),
           const SizedBox(height: 20),
-          _bio()
+          _bio(),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.11),
+          const Footer()
         ],
       ),
     );
@@ -207,20 +211,23 @@ class _WebAboutPageState extends State<WebAboutPage> {
             fontSize: 24,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 8.0, top: 5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: boxSize - 50,
-                width: boxSize - 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              )
-            ],
+        const SizedBox(height: 20),
+        SizedBox(
+          height: boxSize - 30,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 8.0, top: 5),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              itemCount: Constants.shotImages.length,
+              itemBuilder: (_, index) {
+                return Padding(
+                  padding:
+                      EdgeInsets.only(right: 8.0, left: index == 0 ? 0 : 8),
+                  child: ShotCard(image: Constants.shotImages[index]),
+                );
+              },
+            ),
           ),
         ),
       ],

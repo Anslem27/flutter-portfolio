@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../widgets/reusable/chip_container.dart';
+
 class WebDashBoard extends StatefulWidget {
   const WebDashBoard({super.key});
 
@@ -48,12 +50,23 @@ class _WebDashBoardState extends State<WebDashBoard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
-                  "DashBoard",
-                  style: GoogleFonts.lora(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 45,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "DashBoard",
+                      style: GoogleFonts.lora(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 45,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    const ChipContainer(
+                      text: "Work in progress",
+                      color: Colors.greenAccent,
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 10),
                 Padding(

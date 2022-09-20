@@ -26,4 +26,10 @@ class Constants {
       "Anslem Seguya  is the self taught junior developer with a desire for frontend development. ";
   static var education =
       "Anslem Seguya is still a student at Kyamboggo University pursuing a bachelors degree in Information Technology and Computing";
+
+  //list of images for about page
+  static List<String> shotImages = [
+    "assets/images/1.jpg",
+    "assets/images/2.jpg",
+  ];
 }
