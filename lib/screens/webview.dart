@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../pages/about_webpage.dart';
+import '../pages/dashboard_webpage.dart';
 import '../pages/web_homepage.dart';
 
 class WebView extends StatefulWidget {
@@ -72,6 +74,6 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
 
 List<Widget> body = [
   const HomePageView(),
-  const Text("Here"),
-  const Text("There")
+  const WebDashBoard(),
+  const WebAboutPage()
 ];
