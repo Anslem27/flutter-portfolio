@@ -1,10 +1,13 @@
+// ignore_for_file: avoid_web_libraries_in_flutter
+
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/pages/web_homepage.dart';
 import 'package:flutter_portfolio/services/spotify_service.dart';
 import 'package:flutter_portfolio/widgets/loader.dart';
 import 'package:flutter_portfolio/widgets/reusable/chip_text.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'dart:js' as js;
+import '../services/github_service.dart';
 import '../services/reddit_service.dart';
 import '../widgets/reusable/chip_container.dart';
 import '../widgets/reusable/social_image_card.dart';
@@ -47,6 +50,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
   @override
   void initState() {
     _fetchTracksList();
+    fetchGitUser();
     fetchRedditInfo();
     super.initState();
   }
@@ -54,7 +58,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       child: Row(
         children: [
           SizedBox(width: MediaQuery.of(context).size.width / 5),
@@ -76,7 +80,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
           _topText(),
           const SizedBox(height: 20),
           _socialsSection(),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           _trackSection(),
           SizedBox(height: MediaQuery.of(context).size.height * 0.11),
           const Footer()
@@ -96,23 +100,12 @@ class _WebDashBoardState extends State<WebDashBoard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "DashBoard",
-                      style: GoogleFonts.lora(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 45,
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    const ChipContainer(
-                      text: "Work in progress",
-                      color: Colors.red,
-                    ),
-                  ],
+                Text(
+                  "DashBoard",
+                  style: GoogleFonts.lora(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 45,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Padding(
@@ -158,14 +151,23 @@ class _WebDashBoardState extends State<WebDashBoard> {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [redditSection()],
+          children: [
+            Flexible(
+              child: redditSection(),
+            ),
+            Flexible(
+              child: _githubSection(),
+            ),
+            Flexible(
+              child: _statusCounts(),
+            ),
+          ],
         )
       ],
     );
   }
 
   redditSection() {
-    //fetch directly from reddit API url
     return FutureBuilder(
         future: fetchRedditInfo(),
         builder: (_, snapshot) {
@@ -210,6 +212,110 @@ class _WebDashBoardState extends State<WebDashBoard> {
                       ),
                     ],
                   ),
+                ),
+              ],
+            );
+          } else {
+            return const SizedBox(height: 25, child: Loader());
+          }
+        });
+  }
+
+  _githubSection() {
+    return FutureBuilder(
+        future: fetchGitUser(),
+        builder: (_, snapshot) {
+          if (snapshot.hasData) {
+            //lateinitializererror with avatarUrl
+            //TODO: Update manualy
+            //var avatarUrl = snapshot.data!.avatarUrl;
+
+            var githubUserName = snapshot.data!.name;
+            var folowers = snapshot.data!.followers;
+            var following = snapshot.data!.following;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SocialImageCard(
+                    image:
+                        "https://avatars.githubusercontent.com/u/89728185?v=4"),
+                const SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Github username: $githubUserName",
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          "Followers : $folowers",
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white38,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Flexible(
+                        child: Text(
+                          "Following : $following",
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white38,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return const SizedBox(height: 25, child: Loader());
+          }
+        });
+  }
+
+  _statusCounts() {
+    //fetch directly from reddit API url
+    return FutureBuilder(
+        future: fetchGitUser(),
+        builder: (_, snapshot) {
+          if (snapshot.hasData) {
+            var publicRepos = snapshot.data!.publicRepos;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Public Repos: $publicRepos",
+                    style: GoogleFonts.lora(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                // const SizedBox(width: 4),
+                const ChipContainer(
+                  text: "More on the way",
+                  color: Colors.deepPurple,
                 ),
               ],
             );
@@ -287,7 +393,9 @@ class _WebDashBoardState extends State<WebDashBoard> {
                       ),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    js.context.callMethod('open', [songLinks[index]]);
+                  },
                 ),
                 const SizedBox(height: 8),
                 const Divider()

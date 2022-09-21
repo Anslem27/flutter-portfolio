@@ -25,9 +25,9 @@ Future<GithubUser> fetchGitUser() async {
   final response = await http.get(url);
 
   if (response.statusCode == 200) {
-    print(response.body);
     return GithubUser.fromJson(json.decode(response.body));
   } else {
     throw Exception('Failed to fetch repos');
   }
 }
+

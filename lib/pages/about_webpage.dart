@@ -19,7 +19,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       child: Row(
         children: [
           SizedBox(width: MediaQuery.of(context).size.width / 5),

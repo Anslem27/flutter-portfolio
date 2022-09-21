@@ -18,7 +18,7 @@ class Constants {
   static var twitterLink = "https://twitter.com/anslemAnsy";
 
   static var githubUserName = "Anslem27";
-  static var githubLink = "https://github.com/Anslem27";
+  static var githubLink = "https://github.com/$githubUserName";
 
   static var workDescription =
       "Currently still studying (Bachelor of Information Technology and Computing) at Kyamboggo University";

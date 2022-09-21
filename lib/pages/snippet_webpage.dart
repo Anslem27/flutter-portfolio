@@ -16,7 +16,7 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       child: Row(
         children: [
           SizedBox(width: MediaQuery.of(context).size.width / 5),
@@ -113,9 +113,31 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
             ),
             Flexible(
               child: SnippetConatiner(
+                logo: "assets/icons/reddit.png",
+                title: "Reddit Data",
+                description: "Fetch user data from reddit",
+                onTap: () {},
+              ),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Flexible(
+              child: SnippetConatiner(
                 logo: "assets/icons/github.png",
-                title: "Github Data",
-                description: "Fetch repos from github",
+                title: "Github Repos",
+                description: "Fetch github repos",
+                onTap: () {},
+              ),
+            ),
+            Flexible(
+              child: SnippetConatiner(
+                logo: "assets/icons/github.png",
+                title: "Github User Info",
+                description: "Fetch user data from github",
                 onTap: () {},
               ),
             ),
