@@ -9,12 +9,16 @@ class Constants {
 
   static var image = "images/me.jpg";
 
-  static var redditUserName = "U/Infamous-Date-355";
+  static var redditUserName = "Infamous-Date-355";
+  static var redditAvatarLink =
+      "https://reddit.infura-ipfs.io/ipfs/Qmcs56yHVxCw5evta1Gc3dyeEudKMQaY3t2bW6jAcdkvS5";
+  static var reditLink = "https://www.reddit.com/user/$redditUserName";
 
-//https://twitter.com/anslemAnsy
   static var twitterUserName = "@anslemAnsy";
+  static var twitterLink = "https://twitter.com/anslemAnsy";
 
   static var githubUserName = "Anslem27";
+  static var githubLink = "https://github.com/Anslem27";
 
   static var workDescription =
       "Currently still studying (Bachelor of Information Technology and Computing) at Kyamboggo University";

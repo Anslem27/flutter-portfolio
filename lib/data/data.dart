@@ -16,3 +16,9 @@ List<List<Color>> cardColors = [
   [Colors.yellow.shade200, Colors.redAccent, Colors.red.shade100],
   [Colors.deepPurple, Colors.purple.shade900, Colors.purple.shade200]
 ];
+
+List<String> featuredUrls = [
+  "https://github.com/Anslem27/Gem-Docs",
+  "https://github.com/Anslem27/Drink-Up",
+  "https://github.com/Anslem27/Space-Portfolio"
+];

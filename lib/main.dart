@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/pages/home_view.dart';
+import 'package:flutter_portfolio/pages/home.dart';
 import 'package:flutter_portfolio/theme/app_theme.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Portfolio',
+      title: 'My Portfolio',
       theme: AppTheme.darkTheme,
       home: const HomeView(),
     );

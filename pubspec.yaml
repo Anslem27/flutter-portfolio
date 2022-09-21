@@ -37,9 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
   http: ^0.13.5
-  url_launcher: ^6.1.5
   spotify: ^0.8.0
-  glassmorphism: ^3.0.0
+  # UI
+  loading_indicator: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -70,4 +70,3 @@ flutter:
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
-

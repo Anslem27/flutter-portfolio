@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../pages/about_webpage.dart';
 import '../pages/dashboard_webpage.dart';
+import '../pages/snippet_webpage.dart';
 import '../pages/web_homepage.dart';
 
 class WebView extends StatefulWidget {
@@ -15,7 +16,7 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0, bottom: 8),
         child: Column(
@@ -64,6 +65,9 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
             text: "DashBoard",
           ),
           Tab(
+            child: Text("Snippets"),
+          ),
+          Tab(
             child: Text("About"),
           )
         ],
@@ -75,5 +79,6 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
 List<Widget> body = [
   const HomePageView(),
   const WebDashBoard(),
+  const WebSnippetPage(),
   const WebAboutPage()
 ];

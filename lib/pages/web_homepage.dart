@@ -1,15 +1,18 @@
+// ignore_for_file: avoid_web_libraries_in_flutter
+
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/services/spotify_service.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:flutter_portfolio/widgets/reusable/chip_container.dart';
 import 'package:flutter_portfolio/widgets/reusable/chip_text.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'dart:js' as js;
 import '../animations/on_hover.dart';
 import '../data/data.dart';
-import '../models/git_model.dart';
-import '../services/repo_fetchservice.dart';
+import '../models/git_models.dart';
+import '../services/github_service.dart';
 import '../widgets/featured_card.dart';
+import '../widgets/loader.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
@@ -143,7 +146,10 @@ class _HomePageViewState extends State<HomePageView> {
                 title: creations[index],
                 description: creationDescription[index],
                 gradient: cardColors[index],
-                onTap: () {},
+                onTap: () {
+                  //call url method from featured url list
+                  js.context.callMethod('open', [featuredUrls[index]]);
+                },
               );
             },
           ),
@@ -176,10 +182,6 @@ class _HomePageViewState extends State<HomePageView> {
   }
 
   _currentWorks() {
-    double boxSize =
-        MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
-            ? MediaQuery.of(context).size.width / 2
-            : MediaQuery.of(context).size.height / 2.5;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -203,87 +205,83 @@ class _HomePageViewState extends State<HomePageView> {
           ],
         ),
         const SizedBox(height: 10),
-        SizedBox(
-          height: boxSize - 50,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 5),
-            child: FutureBuilder(
-              future: futureRepo,
-              builder: (_, snapshot) {
-                if (snapshot.hasData) {
-                  List<Repo> repo = <Repo>[];
-                  for (int i = 0; i < snapshot.data!.repo!.length; i++) {
-                    repo.add(
-                      Repo(
-                        name: snapshot.data!.repo![i].name,
-                        htmlUrl: snapshot.data!.repo![i].htmlUrl,
-                        stargazersCount:
-                            snapshot.data!.repo![i].stargazersCount,
-                        description: snapshot.data!.repo![i].description,
-                      ),
-                    );
-                  }
-                  return ListView(
-                    physics: const BouncingScrollPhysics(),
-                    children: repo
-                        .take(5)
-                        .map(
-                          (e) => Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ListTile(
-                                title: Text(
-                                  e.name.toString(),
-                                ),
-                                subtitle: Text(
-                                  e.description.toString() == "null"
-                                      ? "No description"
-                                      : e.description.toString(),
-                                ),
-                                trailing: OnHover(
-                                  builder: (isHovered) {
-                                    return OutlinedButton.icon(
-                                      style: OutlinedButton.styleFrom(
-                                        padding: const EdgeInsets.all(5),
-                                        backgroundColor: Colors.transparent,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        //launch url to repo
-                                      },
-                                      icon: const Icon(
-                                          Icons.open_in_browser_outlined,
-                                          color: Colors.white),
-                                      label: const Text(
-                                        "Read more",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                              const Divider()
-                            ],
-                          ),
-                        )
-                        .toList(),
+        Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: FutureBuilder(
+            future: futureRepo,
+            builder: (_, snapshot) {
+              if (snapshot.hasData) {
+                List<Repo> repo = <Repo>[];
+                for (int i = 0; i < snapshot.data!.repo!.length; i++) {
+                  repo.add(
+                    Repo(
+                      name: snapshot.data!.repo![i].name,
+                      htmlUrl: snapshot.data!.repo![i].htmlUrl,
+                      stargazersCount: snapshot.data!.repo![i].stargazersCount,
+                      description: snapshot.data!.repo![i].description,
+                    ),
                   );
-                } else if (snapshot.hasError) {
-                  return const Center(
-                    child: Text('Failed to fetch contents'),
-                  );
-                } else {
-                  //circular indicator
-                  //TODO: Add reasonable loading indicator
-                  return const Center(child: CircularProgressIndicator());
                 }
-              },
-            ),
+                return ListView(
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  children: repo
+                      .take(5)
+                      .map(
+                        (e) => Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ListTile(
+                              title: Text(
+                                e.name.toString(),
+                              ),
+                              subtitle: Text(
+                                e.description.toString() == "null"
+                                    ? "No description"
+                                    : e.description.toString(),
+                              ),
+                              onTap: () {},
+                              trailing: OnHover(
+                                builder: (isHovered) {
+                                  return OutlinedButton.icon(
+                                    style: OutlinedButton.styleFrom(
+                                      padding: const EdgeInsets.all(5),
+                                      backgroundColor: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      //launch url to repo
+                                    },
+                                    icon: const Icon(
+                                        Icons.open_in_browser_outlined,
+                                        color: Colors.white),
+                                    label: const Text(
+                                      "Read more",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            const Divider()
+                          ],
+                        ),
+                      )
+                      .toList(),
+                );
+              } else if (snapshot.hasError) {
+                return const Center(
+                  child: Text('Failed to fetch contents'),
+                );
+              } else {
+                //circular indicator
+                return const SizedBox(height: 25, child: Loader());
+              }
+            },
           ),
         ),
       ],

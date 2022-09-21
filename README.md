@@ -1,4 +1,4 @@
-# My Personal Portfolio website written in [Flutter](https://flutter.dev)
+# Anslem.io website written in [Flutter](https://flutter.dev)
 
 __Design inspired ♥ by [Leerob](https://github.com/leerob)__
 
@@ -23,6 +23,9 @@ __Used Fonts__
 - Roboto
 - Lora
 
+### To Add
+
+- Add Snippets tab (basically carryig reusable code snippets used to  make the website)
 Courtesy of [The google fonts package](https://pub.dev/packages/google_fonts)
 <!-- Creative Portfolio https://github.com/iRaul/creative-portfolios -->
 <!-- Loading gif https://youtu.be/gxdOJv_RiHg -->

@@ -75,6 +75,7 @@ class FeatureCard extends StatelessWidget {
                   OutlinedButton.icon(
                     style: OutlinedButton.styleFrom(
                       backgroundColor: Colors.transparent,
+                      
                     ),
                     onPressed: onTap,
                     icon: const Icon(Icons.remove_red_eye_outlined,

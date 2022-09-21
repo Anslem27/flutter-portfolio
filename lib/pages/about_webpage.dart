@@ -1,9 +1,12 @@
+// ignore_for_file: avoid_web_libraries_in_flutter
+
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/pages/web_homepage.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:flutter_portfolio/widgets/reusable/about_bullet.dart';
 import 'package:flutter_portfolio/widgets/reusable/shot_card.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:js' as js;
 
 class WebAboutPage extends StatefulWidget {
   const WebAboutPage({super.key});
@@ -90,19 +93,25 @@ class _WebAboutPageState extends State<WebAboutPage> {
           linkTo: "Twitter: ",
           textColor: const Color(0xff00acee),
           userName: Constants.twitterUserName,
-          onTap: () {},
+          onTap: () {
+            js.context.callMethod('open', [Constants.twitterLink]);
+          },
         ),
         AboutBullet(
           linkTo: "Reddit: ",
           textColor: const Color(0xffff5700),
           userName: Constants.redditUserName,
-          onTap: () {},
+          onTap: () {
+            js.context.callMethod('open', [Constants.reditLink]);
+          },
         ),
         AboutBullet(
           linkTo: "Github: ",
           textColor: const Color(0xff00acee),
           userName: Constants.githubUserName,
-          onTap: () {},
+          onTap: () {
+            js.context.callMethod('open', [Constants.githubLink]);
+          },
         ),
       ],
     );
