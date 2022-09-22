@@ -6,7 +6,7 @@ List<String> creations = ["Gem Music", "Drink Up", "Websites"];
 //your creation's descriptions
 List<String> creationDescription = [
   "A modern designed music player, writen in pure dart code with multiple capabilties.",
-  "One of my first flutter projects. Simply an app to keep track of water intake,never finished it fully though.",
+  "An app to keep track of water intake,never finished it fully though.",
   "A collection of websites to bring out the designer 😏 in me."
 ];
 

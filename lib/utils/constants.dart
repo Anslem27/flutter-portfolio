@@ -5,7 +5,7 @@ class Constants {
       "I am a self taught software developer, with a special thing for the frontend.";
 
   static var moreDescription =
-      "Helping developers build a faster web. Teaching about web development, serverless, and React / Next.js.";
+      "I have 1/5 years of experience in mobile app development, particularly using cross platform frameworks.";
 
   static var image = "images/me.jpg";
 

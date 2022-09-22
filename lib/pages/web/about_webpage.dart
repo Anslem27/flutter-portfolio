@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/pages/web_homepage.dart';
+import 'package:flutter_portfolio/pages/web/web_homepage.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:flutter_portfolio/widgets/reusable/about_bullet.dart';
 import 'package:flutter_portfolio/widgets/reusable/shot_card.dart';

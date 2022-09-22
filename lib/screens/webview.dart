@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../pages/about_webpage.dart';
-import '../pages/dashboard_webpage.dart';
-import '../pages/snippet_webpage.dart';
-import '../pages/web_homepage.dart';
+import '../pages/web/about_webpage.dart';
+import '../pages/web/dashboard_webpage.dart';
+import '../pages/web/snippet_webpage.dart';
+import '../pages/web/web_homepage.dart';
 
 class WebView extends StatefulWidget {
   const WebView({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/pages/web_homepage.dart';
+import 'package:flutter_portfolio/pages/web/web_homepage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../widgets/reusable/chip_container.dart';
-import '../widgets/reusable/snippet_container.dart';
+import '../../widgets/reusable/chip_container.dart';
+import '../../widgets/reusable/snippet_container.dart';
 
 class WebSnippetPage extends StatefulWidget {
   const WebSnippetPage({super.key});

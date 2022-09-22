@@ -6,13 +6,14 @@ import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:flutter_portfolio/widgets/reusable/chip_container.dart';
 import 'package:flutter_portfolio/widgets/reusable/chip_text.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'dart:js' as js;
-import '../animations/on_hover.dart';
-import '../data/data.dart';
-import '../models/git_models.dart';
-import '../services/github_service.dart';
-import '../widgets/featured_card.dart';
-import '../widgets/loader.dart';
+import '../../animations/on_hover.dart';
+import '../../data/data.dart';
+import '../../models/git_models.dart';
+import '../../services/github_service.dart';
+import '../../widgets/featured_card.dart';
+import '../../widgets/loader.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
@@ -116,7 +117,7 @@ class _HomePageViewState extends State<HomePageView> {
         CircleAvatar(
           radius: 55,
           backgroundImage: AssetImage(Constants.image),
-        )
+        ),
       ],
     );
   }
@@ -253,10 +254,10 @@ class _HomePageViewState extends State<HomePageView> {
                                       ),
                                     ),
                                     onPressed: () {
-                                      //launch url to repo
+                                      js.context
+                                          .callMethod('open', [e.htmlUrl]);
                                     },
-                                    icon: const Icon(
-                                        Icons.open_in_browser_outlined,
+                                    icon: const Icon(Iconsax.folder_open,
                                         color: Colors.white),
                                     label: const Text(
                                       "Read more",
@@ -570,27 +571,13 @@ class Footer extends StatelessWidget {
         ),
         SizedBox(width: MediaQuery.of(context).size.width / 6),
         Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Bio",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "More coming soon",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "Bio",
+              style:
+                  GoogleFonts.roboto(color: Colors.grey.shade800, fontSize: 16),
+            ),
           ),
         ),
         SizedBox(height: MediaQuery.of(context).size.height / 5),

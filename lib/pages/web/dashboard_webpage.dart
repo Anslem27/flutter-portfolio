@@ -1,16 +1,16 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/pages/web_homepage.dart';
+import 'package:flutter_portfolio/pages/web/web_homepage.dart';
 import 'package:flutter_portfolio/services/spotify_service.dart';
 import 'package:flutter_portfolio/widgets/loader.dart';
 import 'package:flutter_portfolio/widgets/reusable/chip_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
-import '../services/github_service.dart';
-import '../services/reddit_service.dart';
-import '../widgets/reusable/chip_container.dart';
-import '../widgets/reusable/social_image_card.dart';
+import '../../services/github_service.dart';
+import '../../services/reddit_service.dart';
+import '../../widgets/reusable/chip_container.dart';
+import '../../widgets/reusable/social_image_card.dart';
 
 class WebDashBoard extends StatefulWidget {
   const WebDashBoard({super.key});
