@@ -18,15 +18,17 @@ class WebAboutPage extends StatefulWidget {
 class _WebAboutPageState extends State<WebAboutPage> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const ClampingScrollPhysics(),
-      child: Row(
-        children: [
-          SizedBox(width: MediaQuery.of(context).size.width / 5),
-          //about column
-          _aboutbody(),
-          SizedBox(width: MediaQuery.of(context).size.width / 5),
-        ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Row(
+          children: [
+            SizedBox(width: MediaQuery.of(context).size.width / 5),
+            //about column
+            _aboutbody(),
+            SizedBox(width: MediaQuery.of(context).size.width / 5),
+          ],
+        ),
       ),
     );
   }

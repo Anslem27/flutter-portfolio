@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/pages/web/web_homepage.dart';
+import 'package:flutter_portfolio/widgets/responsive_layout.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../widgets/reusable/chip_container.dart';
@@ -15,15 +16,17 @@ class WebSnippetPage extends StatefulWidget {
 class _WebSnippetPageState extends State<WebSnippetPage> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const ClampingScrollPhysics(),
-      child: Row(
-        children: [
-          SizedBox(width: MediaQuery.of(context).size.width / 5),
-          //snippet column
-          _snippetbody(),
-          SizedBox(width: MediaQuery.of(context).size.width / 5),
-        ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Row(
+          children: [
+            SizedBox(width: MediaQuery.of(context).size.width / 5),
+            //snippet column
+            _snippetbody(),
+            SizedBox(width: MediaQuery.of(context).size.width / 5),
+          ],
+        ),
       ),
     );
   }
@@ -37,7 +40,7 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
           SizedBox(height: MediaQuery.of(context).size.height * 0.11),
           _topText(),
           const SizedBox(height: 20),
-          _snippetsSection(),
+          _snippetSection(),
           SizedBox(height: MediaQuery.of(context).size.height * 0.11),
           const Footer()
         ],
@@ -68,9 +71,11 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
                       ),
                     ),
                     const SizedBox(width: 4),
-                    const ChipContainer(
-                      text: "Work in progress",
-                      color: Colors.deepPurple,
+                    const Flexible(
+                      child: ChipContainer(
+                        text: "Beta",
+                        color: Colors.deepPurple,
+                      ),
                     ),
                   ],
                 ),
@@ -94,7 +99,57 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
     );
   }
 
-  _snippetsSection() {
+  _snippetSection() {
+    return ResponsiveWidget(
+        mobile: _mobileSnippetSection(), webview: _webSnippetsSection());
+  }
+
+  _mobileSnippetSection() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SnippetConatiner(
+          logo: "assets/icons/spotify.png",
+          title: "Spotify Data",
+          description: "Fetch playlist from spotify",
+          onTap: () {},
+        ),
+        SnippetConatiner(
+          logo: "assets/icons/reddit.png",
+          title: "Reddit Data",
+          description: "Fetch user data from reddit",
+          onTap: () {},
+        ),
+        SnippetConatiner(
+          logo: "assets/icons/github.png",
+          title: "Github Repos",
+          description: "Fetch github repos",
+          onTap: () {},
+        ),
+        SnippetConatiner(
+          logo: "assets/icons/github.png",
+          title: "Github User Info",
+          description: "Fetch user data from github",
+          onTap: () {},
+        ),
+        SnippetConatiner(
+          logo: "assets/icons/binary-code.png",
+          title: "Widgets",
+          description: "Reusable flutter widgets",
+          onTap: () {},
+        ),
+        SnippetConatiner(
+          logo: "assets/icons/touch.png",
+          title: "Responsive layout",
+          description: "Responsive interface for websie",
+          onTap: () {},
+        ),
+      ],
+    );
+  }
+
+  _webSnippetsSection() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,

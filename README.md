@@ -32,4 +32,5 @@ Courtesy of [The google fonts package](https://pub.dev/packages/google_fonts)
 <!-- Mobile side bar https://youtu.be/62UDV38i8P4 -->
 <!-- Firebase hosting https://youtu.be/xJo7Mqse960 -->
 ##### Build `flutter build web`
+
 __flutter run -d chrome --web-renderer canvaskit__ or html renderer
