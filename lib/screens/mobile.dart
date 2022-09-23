@@ -1,8 +1,11 @@
+import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../pages/mobile/mobile_homepage.dart';
-import '../pages/web/snippet_webpage.dart';
+import '../pages/web/about_webpage.dart';
+import '../widgets/reusable/drawer_item.dart';
 
 class MobileView extends StatefulWidget {
   const MobileView({super.key});
@@ -78,14 +81,36 @@ class _MobileViewState extends State<MobileView> {
               ),
               DrawerItem(
                 title: "DashBoard",
-                onTap: () {},
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const Switchpage(
+                      route: '/dashboard',
+                    ),
+                  ),
+                ),
               ),
               DrawerItem(
-                  title: "Snippets",
-                  onTap: () => Navigator.pushNamed(context, "/snippets")),
+                title: "Snippets",
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const Switchpage(
+                      route: '/snippets',
+                    ),
+                  ),
+                ),
+              ),
               DrawerItem(
                 title: "About",
-                onTap: () => Navigator.pushNamed(context, "/about")
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const Switchpage(
+                      route: '/about',
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
@@ -106,36 +131,33 @@ class _MobileViewState extends State<MobileView> {
   }
 }
 
-class DrawerItem extends StatelessWidget {
-  final Function()? onTap;
-  final String title;
-  const DrawerItem({
-    Key? key,
-    this.onTap,
-    required this.title,
-  }) : super(key: key);
+class Switchpage extends StatefulWidget {
+  final String route;
+  const Switchpage({super.key, required this.route});
+
+  @override
+  State<Switchpage> createState() => _SwitchpageState();
+}
+
+class _SwitchpageState extends State<Switchpage> {
+  @override
+  void initState() {
+    Timer(
+      const Duration(seconds: 2),
+      () async {
+        Navigator.pushReplacementNamed(context, widget.route);
+      },
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          ListTile(
-            title: Text(
-              title,
-              style: GoogleFonts.roboto(fontSize: 15),
-            ),
-            onTap: onTap,
-          ),
-          SizedBox(
-            height: 5,
-            child: Divider(
-              height: 0.5,
-              color: Colors.grey.shade800,
-            ),
-          )
-        ],
+    return Scaffold(
+      body: Center(
+        child: SizedBox(
+            height: MediaQuery.of(context).size.height / 4,
+            child: Image.asset("assets/images/smear_loader.gif")),
       ),
     );
   }

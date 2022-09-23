@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/pages/web/web_homepage.dart';
 import 'package:flutter_portfolio/services/spotify_service.dart';
 import 'package:flutter_portfolio/widgets/loader.dart';
+import 'package:flutter_portfolio/widgets/responsive_layout.dart';
 import 'package:flutter_portfolio/widgets/reusable/chip_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
@@ -29,7 +30,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
         .spotify
         .playlists
         //passing in my best playlist id
-        .getTracksByPlaylistId(SpotifyService().desiredPlaylist)
+        .getTracksByPlaylistId(SpotifyService().desiredPlaylistid)
         .all();
 
     //add returned stuff to lists
@@ -57,15 +58,17 @@ class _WebDashBoardState extends State<WebDashBoard> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const ClampingScrollPhysics(),
-      child: Row(
-        children: [
-          SizedBox(width: MediaQuery.of(context).size.width / 5),
-          //dasboard column
-          _dashboardbody(),
-          SizedBox(width: MediaQuery.of(context).size.width / 5),
-        ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Row(
+          children: [
+            SizedBox(width: MediaQuery.of(context).size.width / 5),
+            //dasboard column
+            _dashboardbody(),
+            SizedBox(width: MediaQuery.of(context).size.width / 5),
+          ],
+        ),
       ),
     );
   }
@@ -148,21 +151,93 @@ class _WebDashBoardState extends State<WebDashBoard> {
           ],
         ),
         const SizedBox(height: 15),
+        ResponsiveWidget(
+          mobile: _socialMobileView(),
+          webview: _webMobileView(),
+        ),
+      ],
+    );
+  }
+
+  _socialMobileView() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Flexible(
               child: redditSection(),
             ),
             Flexible(
-              child: _githubSection(),
-            ),
-            Flexible(
-              child: _statusCounts(),
+              child: _deviceSection(),
             ),
           ],
-        )
+        ),
+        _githubSection(),
+      ],
+    );
+  }
+
+  _webMobileView() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Flexible(
+          child: redditSection(),
+        ),
+        Flexible(
+          child: _githubSection(),
+        ),
+        Flexible(
+          child: _deviceSection(),
+        ),
+      ],
+    );
+  }
+
+  _deviceSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        const SocialImageCard(
+          image: "assets/images/op6_front.png",
+          boxFit: BoxFit.scaleDown,
+        ),
+        const SizedBox(height: 8),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text(
+            "Device: OnePlus 6",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              Flexible(
+                child: Text(
+                  "Os: Oxygen OS 11",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white38,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -202,12 +277,14 @@ class _WebDashBoardState extends State<WebDashBoard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        "Total Karma : $karma",
-                        style: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white38,
+                      Flexible(
+                        child: Text(
+                          "Total Karma : $karma",
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white38,
+                          ),
                         ),
                       ),
                     ],
@@ -232,6 +309,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
 
             var githubUserName = snapshot.data!.name;
             var folowers = snapshot.data!.followers;
+            var publicRepos = snapshot.data!.publicRepos;
             var following = snapshot.data!.following;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -255,67 +333,52 @@ class _WebDashBoardState extends State<WebDashBoard> {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
-                  child: Row(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Flexible(
-                        child: Text(
-                          "Followers : $folowers",
-                          style: const TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white38,
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              "Followers : $folowers",
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white38,
+                              ),
+                            ),
                           ),
-                        ),
+                          const SizedBox(width: 10),
+                          Flexible(
+                            child: Text(
+                              "Following : $following",
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white38,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 10),
-                      Flexible(
-                        child: Text(
-                          "Following : $following",
-                          style: const TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white38,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: Flexible(
+                          child: Text(
+                            "Public Repos : $publicRepos",
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white38,
+                            ),
                           ),
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
-            );
-          } else {
-            return const SizedBox(height: 25, child: Loader());
-          }
-        });
-  }
-
-  _statusCounts() {
-    //fetch directly from reddit API url
-    return FutureBuilder(
-        future: fetchGitUser(),
-        builder: (_, snapshot) {
-          if (snapshot.hasData) {
-            var publicRepos = snapshot.data!.publicRepos;
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Public Repos: $publicRepos",
-                    style: GoogleFonts.lora(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                // const SizedBox(width: 4),
-                const ChipContainer(
-                  text: "More on the way",
-                  color: Colors.deepPurple,
                 ),
               ],
             );

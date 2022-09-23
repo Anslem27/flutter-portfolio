@@ -4,8 +4,8 @@ class SpotifyService {
   static var credentials = SpotifyApiCredentials(
       '6ac6511f2ed1432e9917624fc7a67bef', 'd6331f83644e4d93b27f63bd97da3f3c');
   final spotify = SpotifyApi(credentials);
-  //playlist from which you want to fetch fav songs
-  final desiredPlaylist = "0GZxAonasF2U7QGyVBdZqM";
+  //playlist from which you want to fetch fav songs preferably a daily updated playlist
+  final desiredPlaylistid = "37i9dQZF1E34XhnfWYytlr";
 
   getUserPlaylists() async {
     var usersPlaylists = await spotify.playlists

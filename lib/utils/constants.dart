@@ -24,7 +24,7 @@ class Constants {
       "Currently still studying (Bachelor of Information Technology and Computing) at Kyamboggo University";
 
   static var aboutMe =
-      "Anslem Seguya  is the self taught developer with Junior experience,and with a rich understanding in particularly frontend development namely mobile apps in particular material design and web applications, using multiple tools and frameworks. These include flutter , and various javascript framework such as react,vue aong others. And not forgetting some intermediate experience with devops.";
+      "Anslem Seguya  is the self taught developer with Junior experience,and with a rich understanding in particularly frontend development namely mobile apps in particular material design and web applications, using multiple tools and frameworks. These include flutter , and various javascript framework such as react,vue among others. And not forgetting some intermediate experience with devops.";
 
   static var shortIntro =
       "Anslem Seguya  is the self taught junior developer with a desire for frontend development. ";

@@ -114,9 +114,12 @@ class _HomePageViewState extends State<HomePageView> {
           ),
         ),
         //developer image
-        CircleAvatar(
-          radius: 55,
-          backgroundImage: AssetImage(Constants.image),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CircleAvatar(
+            radius: 55,
+            backgroundImage: AssetImage(Constants.image),
+          ),
         ),
       ],
     );

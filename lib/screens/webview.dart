@@ -56,19 +56,20 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
   _tabBar() {
     return Expanded(
       child: TabBar(
-        indicator: BoxDecoration(borderRadius: BorderRadius.circular(50)),
+        enableFeedback: true,
+        indicator: BoxDecoration(borderRadius: BorderRadius.circular(14)),
         tabs: const [
           Tab(
-            child: Text("Home"),
+            text: "Home",
           ),
           Tab(
             text: "DashBoard",
           ),
           Tab(
-            child: Text("Snippets"),
+            text: "Snippets",
           ),
           Tab(
-            child: Text("About"),
+            text: "About",
           )
         ],
       ),

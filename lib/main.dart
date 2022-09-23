@@ -7,7 +7,8 @@ import 'package:flutter_portfolio/theme/app_theme.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding
+      .ensureInitialized(); // binds all functions before calling main app
   setPathUrlStrategy();
   runApp(const MyApp());
 }
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       routes: <String, WidgetBuilder>{
         '/dashboard': (_) => const WebDashBoard(),
         '/snippets': (_) => const WebSnippetPage(),
