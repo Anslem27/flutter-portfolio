@@ -1,4 +1,6 @@
 # Anslem.io website written in [Flutter](https://flutter.dev)
+__Very Uustable__
+Running using html renderer
 
 __Design inspired ♥ by [Leerob](https://github.com/leerob)__
 
