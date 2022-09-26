@@ -118,7 +118,7 @@ class _HomePageViewState extends State<HomePageView> {
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
             radius: 55,
-            backgroundImage: AssetImage(Constants.image),
+            backgroundImage: NetworkImage(Constants.image),
           ),
         ),
       ],

@@ -7,7 +7,8 @@ class Constants {
   static var moreDescription =
       "I have 1/5 years of experience in mobile app development, particularly using cross platform frameworks.";
 
-  static var image = "images/me.jpg";
+  static var image =
+      "https://raw.githubusercontent.com/Anslem27/Anslem27.github.io/main/assets/assets/images/me.jpg";
 
   static var redditUserName = "Infamous-Date-355";
   static var redditAvatarLink =

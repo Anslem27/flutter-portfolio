@@ -73,7 +73,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
           padding: const EdgeInsets.all(10.0),
           child: CircleAvatar(
             radius: 50,
-            backgroundImage: AssetImage(Constants.image),
+            backgroundImage: NetworkImage(Constants.image),
           ),
         ),
         Text(

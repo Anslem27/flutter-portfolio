@@ -100,8 +100,15 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
   }
 
   _snippetSection() {
-    return ResponsiveWidget(
-        mobile: _mobileSnippetSection(), webview: _webSnippetsSection());
+    return LayoutBuilder(
+      builder: (_, boxConstraints) {
+        if (boxConstraints.maxWidth < 600) {
+          return _mobileSnippetSection();
+        } else {
+          return _webSnippetsSection();
+        }
+      },
+    );
   }
 
   _mobileSnippetSection() {

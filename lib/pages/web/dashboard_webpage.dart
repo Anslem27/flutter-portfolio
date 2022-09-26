@@ -172,11 +172,10 @@ class _WebDashBoardState extends State<WebDashBoard> {
               child: redditSection(),
             ),
             Flexible(
-              child: _deviceSection(),
+              child: _githubSection(),
             ),
           ],
         ),
-        _githubSection(),
       ],
     );
   }
@@ -192,55 +191,55 @@ class _WebDashBoardState extends State<WebDashBoard> {
         Flexible(
           child: _githubSection(),
         ),
-        Flexible(
-          child: _deviceSection(),
-        ),
+        // Flexible(
+        //   child: _deviceSection(),
+        // ),
       ],
     );
   }
 
-  _deviceSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        const SocialImageCard(
-          image: "assets/images/op6_front.png",
-          boxFit: BoxFit.scaleDown,
-        ),
-        const SizedBox(height: 8),
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Text(
-            "Device: OnePlus 6",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
-              Flexible(
-                child: Text(
-                  "Os: Oxygen OS 11",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white38,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
+  // _deviceSection() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     mainAxisAlignment: MainAxisAlignment.start,
+  //     children: [
+  //       const SocialImageCard(
+  //         image: "assets/images/op6_front.png",
+  //         boxFit: BoxFit.scaleDown,
+  //       ),
+  //       const SizedBox(height: 8),
+  //       const Padding(
+  //         padding: EdgeInsets.all(8.0),
+  //         child: Text(
+  //           "Device: OnePlus 6",
+  //           style: TextStyle(
+  //             fontSize: 16,
+  //             fontWeight: FontWeight.w500,
+  //           ),
+  //         ),
+  //       ),
+  //       Padding(
+  //         padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+  //         child: Row(
+  //           crossAxisAlignment: CrossAxisAlignment.start,
+  //           mainAxisAlignment: MainAxisAlignment.start,
+  //           children: const [
+  //             Flexible(
+  //               child: Text(
+  //                 "Os: Oxygen OS 11",
+  //                 style: TextStyle(
+  //                   fontSize: 14,
+  //                   fontWeight: FontWeight.w500,
+  //                   color: Colors.white38,
+  //                 ),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   redditSection() {
     return FutureBuilder(
