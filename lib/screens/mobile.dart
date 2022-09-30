@@ -1,10 +1,6 @@
 import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../pages/mobile/mobile_homepage.dart';
-import '../pages/web/about_webpage.dart';
 import '../widgets/reusable/drawer_item.dart';
 
 class MobileView extends StatefulWidget {
@@ -48,8 +44,8 @@ class _MobileViewState extends State<MobileView> {
       ),
       body: Container(
         margin: EdgeInsets.only(
-          left: MediaQuery.of(context).size.width / 10,
-          right: MediaQuery.of(context).size.width / 10,
+          left: MediaQuery.of(context).size.width / 15,
+          right: MediaQuery.of(context).size.width / 15,
         ),
         child: _mobileBody(),
       ),

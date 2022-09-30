@@ -128,7 +128,7 @@ class MobileFeatureCard extends StatelessWidget {
             ),
           ),
           child: Container(
-            width: boxSize + 130,
+            width: boxSize + 160,
             height: boxSize - 105,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(8)),

@@ -11,12 +11,10 @@ __Clone repo [here](https://github.com/)__
 ```
 flutter pub get
 
-flutter run
-  [x]: Chrome (chrome)
-  [x]: Edge (edge)
-```
+flutter run -d chrome --web-renderer canvaskit
 
-### Note
+flutter build web --web-renderer canvaskit
+```
 
 __Used Fonts__
 
@@ -34,3 +32,7 @@ Courtesy of [The google fonts package](https://pub.dev/packages/google_fonts)
 ##### Build `flutter build web`
 
 __flutter run -d chrome --web-renderer canvaskit__ or html renderer
+
+__WebSite View Count__
+
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fanslem27.github.io&count_bg=%23BB1313&title_bg=%23000000&icon=flutter.svg&icon_color=%235785DD&title=Viewer+Count&edge_flat=false"/></a>

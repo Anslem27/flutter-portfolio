@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/pages/web/web_homepage.dart';
 import 'package:flutter_portfolio/services/spotify_service.dart';
 import 'package:flutter_portfolio/widgets/loader.dart';
 import 'package:flutter_portfolio/widgets/responsive_layout.dart';
@@ -10,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
 import '../../services/github_service.dart';
 import '../../services/reddit_service.dart';
+import '../../utils/footer.dart';
 import '../../widgets/reusable/chip_container.dart';
 import '../../widgets/reusable/social_image_card.dart';
 
@@ -61,13 +61,27 @@ class _WebDashBoardState extends State<WebDashBoard> {
     return Scaffold(
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
-        child: Row(
-          children: [
-            SizedBox(width: MediaQuery.of(context).size.width / 5),
-            //dasboard column
-            _dashboardbody(),
-            SizedBox(width: MediaQuery.of(context).size.width / 5),
-          ],
+        child: LayoutBuilder(
+          builder: (_, constraints) {
+            if (constraints.maxWidth < 600) {
+              return Container(
+                margin: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width / 10,
+                  right: MediaQuery.of(context).size.width / 10,
+                ),
+                child: _dashboardbody(),
+              );
+            } else {
+              return Row(
+                children: [
+                  SizedBox(width: MediaQuery.of(context).size.width / 5),
+                  //dasboard column
+                  _dashboardbody(),
+                  SizedBox(width: MediaQuery.of(context).size.width / 5),
+                ],
+              );
+            }
+          },
         ),
       ),
     );
@@ -316,7 +330,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
               children: [
                 const SocialImageCard(
                     image:
-                        "https://avatars.githubusercontent.com/u/89728185?v=4"),
+                        "https://raw.githubusercontent.com/Anslem27/Anslem27.github.io/main/assets/assets/images/git_image.jpg"),
                 const SizedBox(height: 8),
                 Padding(
                   padding: const EdgeInsets.all(8.0),

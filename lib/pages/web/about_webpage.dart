@@ -1,12 +1,13 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/pages/web/web_homepage.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:flutter_portfolio/widgets/reusable/about_bullet.dart';
 import 'package:flutter_portfolio/widgets/reusable/shot_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
+
+import '../../utils/footer.dart';
 
 class WebAboutPage extends StatefulWidget {
   const WebAboutPage({super.key});
@@ -21,12 +22,40 @@ class _WebAboutPageState extends State<WebAboutPage> {
     return Scaffold(
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
-        child: Row(
+        child: Stack(
           children: [
-            SizedBox(width: MediaQuery.of(context).size.width / 5),
-            //about column
-            _aboutbody(),
-            SizedBox(width: MediaQuery.of(context).size.width / 5),
+            Positioned(
+              left: MediaQuery.of(context).size.width / 2.55,
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width - 100,
+                height: MediaQuery.of(context).size.width - 100,
+                child: Image.asset(
+                  'assets/images/mascot.png',
+                ),
+              ),
+            ),
+            LayoutBuilder(
+              builder: (_, constraints) {
+                if (constraints.maxWidth < 600) {
+                  return Container(
+                    margin: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width / 10,
+                      right: MediaQuery.of(context).size.width / 10,
+                    ),
+                    child: _aboutbody(),
+                  );
+                } else {
+                  return Row(
+                    children: [
+                      SizedBox(width: MediaQuery.of(context).size.width / 5),
+                      //about column
+                      _aboutbody(),
+                      SizedBox(width: MediaQuery.of(context).size.width / 5),
+                    ],
+                  );
+                }
+              },
+            ),
           ],
         ),
       ),

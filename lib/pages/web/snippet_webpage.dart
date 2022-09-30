@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/pages/web/web_homepage.dart';
-import 'package:flutter_portfolio/widgets/responsive_layout.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../utils/footer.dart';
 import '../../widgets/reusable/chip_container.dart';
 import '../../widgets/reusable/snippet_container.dart';
 
@@ -18,16 +17,27 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
-        child: Row(
-          children: [
-            SizedBox(width: MediaQuery.of(context).size.width / 5),
-            //snippet column
-            _snippetbody(),
-            SizedBox(width: MediaQuery.of(context).size.width / 5),
-          ],
-        ),
-      ),
+          physics: const ClampingScrollPhysics(),
+          child: LayoutBuilder(builder: (_, constraints) {
+            if (constraints.maxWidth < 600) {
+              return Container(
+                margin: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width / 15,
+                  right: MediaQuery.of(context).size.width / 15,
+                ),
+                child: _snippetbody(),
+              );
+            } else {
+              return Row(
+                children: [
+                  SizedBox(width: MediaQuery.of(context).size.width / 5),
+                  //snippet column
+                  _snippetbody(),
+                  SizedBox(width: MediaQuery.of(context).size.width / 5),
+                ],
+              );
+            }
+          })),
     );
   }
 

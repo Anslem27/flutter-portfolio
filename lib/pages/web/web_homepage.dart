@@ -12,6 +12,7 @@ import '../../animations/on_hover.dart';
 import '../../data/data.dart';
 import '../../models/git_models.dart';
 import '../../services/github_service.dart';
+import '../../utils/footer.dart';
 import '../../widgets/featured_card.dart';
 import '../../widgets/loader.dart';
 
@@ -451,14 +452,7 @@ class _HomePageViewState extends State<HomePageView> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
-            onTap: () async {
-              // var url =
-              //     Uri.parse(SpotifyService().getSpotifyUri().toString());
-              // print(url);
-              // if (!await launchUrl(url)) {
-              //   throw 'Could not launch $url';
-              // }
-            },
+            onTap: () async {},
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -489,101 +483,6 @@ class _HomePageViewState extends State<HomePageView> {
             ),
           ),
         )
-      ],
-    );
-  }
-}
-
-//TODO: Change text color onhover on footer items, plus format code to reduce redundancy
-class Footer extends StatelessWidget {
-  const Footer({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Home",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "About",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Spotify Playlists",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(width: MediaQuery.of(context).size.width / 6),
-        Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Twitter",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Reddit",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Github",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(width: MediaQuery.of(context).size.width / 6),
-        Flexible(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "Bio",
-              style:
-                  GoogleFonts.roboto(color: Colors.grey.shade800, fontSize: 16),
-            ),
-          ),
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height / 5),
       ],
     );
   }
