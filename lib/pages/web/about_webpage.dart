@@ -37,12 +37,13 @@ class _WebAboutPageState extends State<WebAboutPage> {
             LayoutBuilder(
               builder: (_, constraints) {
                 if (constraints.maxWidth < 600) {
-                  return Container(
-                    margin: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width / 10,
-                      right: MediaQuery.of(context).size.width / 10,
-                    ),
-                    child: _aboutbody(),
+                  return Row(
+                    children: [
+                      SizedBox(width: MediaQuery.of(context).size.width / 20),
+                      //dasboard column
+                      _aboutbody(),
+                      SizedBox(width: MediaQuery.of(context).size.width / 20),
+                    ],
                   );
                 } else {
                   return Row(

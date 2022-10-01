@@ -64,12 +64,13 @@ class _WebDashBoardState extends State<WebDashBoard> {
         child: LayoutBuilder(
           builder: (_, constraints) {
             if (constraints.maxWidth < 600) {
-              return Container(
-                margin: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width / 10,
-                  right: MediaQuery.of(context).size.width / 10,
-                ),
-                child: _dashboardbody(),
+              return Row(
+                children: [
+                  SizedBox(width: MediaQuery.of(context).size.width / 20),
+                  //dasboard column
+                  _dashboardbody(),
+                  SizedBox(width: MediaQuery.of(context).size.width / 20),
+                ],
               );
             } else {
               return Row(
@@ -149,20 +150,9 @@ class _WebDashBoardState extends State<WebDashBoard> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
-            Text(
-              "Social",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(width: 4),
-            ChipText(
-              text: "© Copyright",
-              color: Colors.white70,
-            ),
-          ],
+        const Text(
+          "Social",
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 15),
         ResponsiveWidget(
@@ -328,16 +318,16 @@ class _WebDashBoardState extends State<WebDashBoard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const SocialImageCard(
-                    image:
-                        "https://raw.githubusercontent.com/Anslem27/Anslem27.github.io/main/assets/assets/images/git_image.jpg"),
-                const SizedBox(height: 8),
+                // const SocialImageCard(
+                //     image:
+                //         "https://raw.githubusercontent.com/Anslem27/Anslem27.github.io/main/assets/assets/images/git_image.jpg"),
+                // const SizedBox(height: 8),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Github username: $githubUserName",
+                    "Github: $githubUserName${27}",
                     style: const TextStyle(
-                      fontSize: 15,
+                      fontSize: 22,
                       fontWeight: FontWeight.w500,
                       color: Colors.grey,
                     ),
@@ -358,7 +348,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
                             child: Text(
                               "Followers : $folowers",
                               style: const TextStyle(
-                                fontSize: 13,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white38,
                               ),
@@ -369,7 +359,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
                             child: Text(
                               "Following : $following",
                               style: const TextStyle(
-                                fontSize: 13,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white38,
                               ),
@@ -454,9 +444,9 @@ class _WebDashBoardState extends State<WebDashBoard> {
               children: [
                 ListTile(
                   leading: Text(
-                    index.toString(),
+                    "${index + 1}",
                     style: const TextStyle(
-                      color: Colors.white38,
+                      color: Colors.white30,
                     ),
                   ),
                   title: Text(tracks[index]),

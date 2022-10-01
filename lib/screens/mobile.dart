@@ -37,15 +37,15 @@ class _MobileViewState extends State<MobileView> {
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width / 10,
+              width: MediaQuery.of(context).size.width / 20,
             )
           ],
         ),
       ),
       body: Container(
-        margin: EdgeInsets.only(
-          left: MediaQuery.of(context).size.width / 15,
-          right: MediaQuery.of(context).size.width / 15,
+        padding: EdgeInsets.only(
+          left: MediaQuery.of(context).size.width / 20,
+          right: MediaQuery.of(context).size.width / 20,
         ),
         child: _mobileBody(),
       ),

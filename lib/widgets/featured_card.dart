@@ -116,7 +116,7 @@ class MobileFeatureCard extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          height: boxSize - 100,
+           height: boxSize - 80,
           width: boxSize - 80,
           alignment: Alignment.center,
           decoration: BoxDecoration(
@@ -128,8 +128,8 @@ class MobileFeatureCard extends StatelessWidget {
             ),
           ),
           child: Container(
-            width: boxSize + 160,
-            height: boxSize - 105,
+            width: boxSize + 180,
+             height: boxSize - 85,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(8)),
               color: Colors.black,

@@ -3,13 +3,16 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SnippetConatiner extends StatelessWidget {
   final String logo, title, description;
+  final double height, width;
   final Function()? onTap;
   const SnippetConatiner(
       {super.key,
       required this.logo,
       required this.title,
       required this.description,
-      this.onTap});
+      this.onTap,
+      this.height = 30,
+      this.width = 30});
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +41,8 @@ class SnippetConatiner extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(
                       logo,
-                      height: 30,
-                      width: 30,
+                      height: height,
+                      width: width,
                     ),
                   ),
                   Padding(

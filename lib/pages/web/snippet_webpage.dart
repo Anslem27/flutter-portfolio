@@ -20,12 +20,13 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
           physics: const ClampingScrollPhysics(),
           child: LayoutBuilder(builder: (_, constraints) {
             if (constraints.maxWidth < 600) {
-              return Container(
-                margin: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width / 15,
-                  right: MediaQuery.of(context).size.width / 15,
-                ),
-                child: _snippetbody(),
+              return Row(
+                children: [
+                  SizedBox(width: MediaQuery.of(context).size.width / 20),
+                  //dasboard column
+                  _snippetbody(),
+                  SizedBox(width: MediaQuery.of(context).size.width / 20),
+                ],
               );
             } else {
               return Row(
@@ -151,13 +152,13 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
           onTap: () {},
         ),
         SnippetConatiner(
-          logo: "assets/icons/binary-code.png",
+          logo: "assets/icons/constr.png",
           title: "Widgets",
           description: "Reusable flutter widgets",
           onTap: () {},
         ),
         SnippetConatiner(
-          logo: "assets/icons/touch.png",
+          logo: "assets/icons/fluff.png",
           title: "Responsive layout",
           description: "Responsive interface for websie",
           onTap: () {},
@@ -221,7 +222,8 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
           children: [
             Flexible(
               child: SnippetConatiner(
-                logo: "assets/icons/binary-code.png",
+                logo: "assets/icons/constr.png",
+                height: 50,
                 title: "Widgets",
                 description: "Reusable flutter widgets",
                 onTap: () {},
@@ -229,7 +231,8 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
             ),
             Flexible(
               child: SnippetConatiner(
-                logo: "assets/icons/touch.png",
+                logo: "assets/icons/fluff.png",
+                height: 50,
                 title: "Responsive layout",
                 description: "Responsive interface for websie",
                 onTap: () {},

@@ -294,13 +294,13 @@ class _HomePageViewState extends State<HomePageView> {
   }
 
   _directMail() {
-    double boxSize =
-        MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
-            ? MediaQuery.of(context).size.width / 2
-            : MediaQuery.of(context).size.height / 2.5;
+    // double boxSize =
+    //     MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
+    //         ? MediaQuery.of(context).size.width / 2
+    //         : MediaQuery.of(context).size.height / 2.5;
     return Container(
       width: double.maxFinite - 50,
-      height: boxSize - 80,
+      //height: boxSize - 80,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: const Color.fromARGB(255, 21, 21, 21),
