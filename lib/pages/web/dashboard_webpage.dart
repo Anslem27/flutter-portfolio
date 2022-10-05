@@ -175,9 +175,9 @@ class _WebDashBoardState extends State<WebDashBoard> {
             Flexible(
               child: redditSection(),
             ),
-            Flexible(
-              child: _githubSection(),
-            ),
+            // Flexible(
+            //   child: _githubSection(),
+            // ),
           ],
         ),
       ],
@@ -192,9 +192,9 @@ class _WebDashBoardState extends State<WebDashBoard> {
         Flexible(
           child: redditSection(),
         ),
-        Flexible(
-          child: _githubSection(),
-        ),
+        // Flexible(
+        //   child: _githubSection(),
+        // ),
         // Flexible(
         //   child: _deviceSection(),
         // ),
