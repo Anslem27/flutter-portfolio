@@ -175,7 +175,10 @@ class _HomePageViewState extends State<HomePageView> {
             ),
             IconButton(
               splashRadius: 24,
-              onPressed: () {},
+              onPressed: () {
+                js.context.callMethod(
+                    'open', ["https://github.com/Anslem27?tab=repositories"]);
+              },
               icon: const Icon(
                 Icons.arrow_forward_outlined,
               ),

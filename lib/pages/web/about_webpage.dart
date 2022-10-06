@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
 
 import '../../utils/footer.dart';
+import '../../widgets/reusable/chip_container.dart';
 
 class WebAboutPage extends StatefulWidget {
   const WebAboutPage({super.key});
@@ -24,16 +25,16 @@ class _WebAboutPageState extends State<WebAboutPage> {
         physics: const ClampingScrollPhysics(),
         child: Stack(
           children: [
-            Positioned(
-              left: MediaQuery.of(context).size.width / 2.55,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width - 100,
-                height: MediaQuery.of(context).size.width - 100,
-                child: Image.asset(
-                  'assets/images/mascot.png',
-                ),
-              ),
-            ),
+            // Positioned(
+            //   left: MediaQuery.of(context).size.width / 2.55,
+            //   child: SizedBox(
+            //     width: MediaQuery.of(context).size.width - 100,
+            //     height: MediaQuery.of(context).size.width - 100,
+            //     child: Image.asset(
+            //       'assets/images/mascot.png',
+            //     ),
+            //   ),
+            // ),
             LayoutBuilder(
               builder: (_, constraints) {
                 if (constraints.maxWidth < 600) {
@@ -93,12 +94,25 @@ class _WebAboutPageState extends State<WebAboutPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
-                  "About Me",
-                  style: GoogleFonts.lora(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 45,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "About Me",
+                      style: GoogleFonts.lora(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 45,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    const Flexible(
+                      child: ChipContainer(
+                        text: "Bio",
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

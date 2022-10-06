@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/services/spotify_service.dart';
 import 'package:flutter_portfolio/widgets/loader.dart';
 import 'package:flutter_portfolio/widgets/responsive_layout.dart';
-import 'package:flutter_portfolio/widgets/reusable/chip_text.dart';
+// import 'package:flutter_portfolio/widgets/reusable/chip_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
 import '../../services/github_service.dart';
@@ -150,9 +150,22 @@ class _WebDashBoardState extends State<WebDashBoard> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const Text(
-          "Social",
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              "Social",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(width: 4),
+            Flexible(
+              child: ChipContainer(
+                text: "More on the way",
+                color: Colors.redAccent,
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 15),
         ResponsiveWidget(
