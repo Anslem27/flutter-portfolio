@@ -9,7 +9,7 @@ class ResponsiveWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (_, boxConstraints) {
-        if (boxConstraints.maxWidth < 600) {
+        if (boxConstraints.maxWidth < 800) {
           return mobile;
         } else {
           return webview;

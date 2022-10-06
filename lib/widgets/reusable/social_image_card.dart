@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class SocialImageCard extends StatelessWidget {
   final String image;
-  const SocialImageCard({super.key, required this.image});
+  final BoxFit? boxFit;
+  const SocialImageCard(
+      {super.key, required this.image, this.boxFit = BoxFit.cover});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class SocialImageCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         image: DecorationImage(
           image: NetworkImage(image),
-          fit: BoxFit.cover,
+          fit: boxFit,
         ),
       ),
     );

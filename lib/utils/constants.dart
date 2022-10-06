@@ -7,7 +7,8 @@ class Constants {
   static var moreDescription =
       "I have 1/5 years of experience in mobile app development, particularly using cross platform frameworks.";
 
-  static var image = "images/me.jpg";
+  static var image =
+      "https://raw.githubusercontent.com/Anslem27/Anslem27.github.io/main/assets/assets/images/me.jpg";
 
   static var redditUserName = "Infamous-Date-355";
   static var redditAvatarLink =
@@ -24,7 +25,7 @@ class Constants {
       "Currently still studying (Bachelor of Information Technology and Computing) at Kyamboggo University";
 
   static var aboutMe =
-      "Anslem Seguya  is the self taught developer with Junior experience,and with a rich understanding in particularly frontend development namely mobile apps in particular material design and web applications, using multiple tools and frameworks. These include flutter , and various javascript framework such as react,vue aong others. And not forgetting some intermediate experience with devops.";
+      "Anslem Seguya  is the self taught developer with Junior experience,and with a rich understanding in particularly frontend development namely mobile apps in particular material design and web applications, using multiple tools and frameworks. These include flutter , and various javascript framework such as react,vue among others. And not forgetting some intermediate experience with devops.";
 
   static var shortIntro =
       "Anslem Seguya  is the self taught junior developer with a desire for frontend development. ";

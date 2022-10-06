@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/pages/web/web_homepage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../utils/footer.dart';
 import '../../widgets/reusable/chip_container.dart';
 import '../../widgets/reusable/snippet_container.dart';
 
@@ -15,16 +15,30 @@ class WebSnippetPage extends StatefulWidget {
 class _WebSnippetPageState extends State<WebSnippetPage> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const ClampingScrollPhysics(),
-      child: Row(
-        children: [
-          SizedBox(width: MediaQuery.of(context).size.width / 5),
-          //snippet column
-          _snippetbody(),
-          SizedBox(width: MediaQuery.of(context).size.width / 5),
-        ],
-      ),
+    return Scaffold(
+      body: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: LayoutBuilder(builder: (_, constraints) {
+            if (constraints.maxWidth < 600) {
+              return Row(
+                children: [
+                  SizedBox(width: MediaQuery.of(context).size.width / 20),
+                  //dasboard column
+                  _snippetbody(),
+                  SizedBox(width: MediaQuery.of(context).size.width / 20),
+                ],
+              );
+            } else {
+              return Row(
+                children: [
+                  SizedBox(width: MediaQuery.of(context).size.width / 5),
+                  //snippet column
+                  _snippetbody(),
+                  SizedBox(width: MediaQuery.of(context).size.width / 5),
+                ],
+              );
+            }
+          })),
     );
   }
 
@@ -37,7 +51,7 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
           SizedBox(height: MediaQuery.of(context).size.height * 0.11),
           _topText(),
           const SizedBox(height: 20),
-          _snippetsSection(),
+          _snippetSection(),
           SizedBox(height: MediaQuery.of(context).size.height * 0.11),
           const Footer()
         ],
@@ -68,9 +82,11 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
                       ),
                     ),
                     const SizedBox(width: 4),
-                    const ChipContainer(
-                      text: "Work in progress",
-                      color: Colors.deepPurple,
+                    const Flexible(
+                      child: ChipContainer(
+                        text: "Beta",
+                        color: Colors.deepPurple,
+                      ),
                     ),
                   ],
                 ),
@@ -94,7 +110,64 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
     );
   }
 
-  _snippetsSection() {
+  _snippetSection() {
+    return LayoutBuilder(
+      builder: (_, boxConstraints) {
+        if (boxConstraints.maxWidth < 600) {
+          return _mobileSnippetSection();
+        } else {
+          return _webSnippetsSection();
+        }
+      },
+    );
+  }
+
+  _mobileSnippetSection() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SnippetConatiner(
+          logo: "assets/icons/spotify.png",
+          title: "Spotify Data",
+          description: "Fetch playlist from spotify",
+          onTap: () {},
+        ),
+        SnippetConatiner(
+          logo: "assets/icons/reddit.png",
+          title: "Reddit Data",
+          description: "Fetch user data from reddit",
+          onTap: () {},
+        ),
+        SnippetConatiner(
+          logo: "assets/icons/github.png",
+          title: "Github Repos",
+          description: "Fetch github repos",
+          onTap: () {},
+        ),
+        SnippetConatiner(
+          logo: "assets/icons/github.png",
+          title: "Github User Info",
+          description: "Fetch user data from github",
+          onTap: () {},
+        ),
+        SnippetConatiner(
+          logo: "assets/icons/constr.png",
+          title: "Widgets",
+          description: "Reusable flutter widgets",
+          onTap: () {},
+        ),
+        SnippetConatiner(
+          logo: "assets/icons/fluff.png",
+          title: "Responsive layout",
+          description: "Responsive interface for websie",
+          onTap: () {},
+        ),
+      ],
+    );
+  }
+
+  _webSnippetsSection() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -149,7 +222,8 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
           children: [
             Flexible(
               child: SnippetConatiner(
-                logo: "assets/icons/binary-code.png",
+                logo: "assets/icons/constr.png",
+                height: 50,
                 title: "Widgets",
                 description: "Reusable flutter widgets",
                 onTap: () {},
@@ -157,7 +231,8 @@ class _WebSnippetPageState extends State<WebSnippetPage> {
             ),
             Flexible(
               child: SnippetConatiner(
-                logo: "assets/icons/touch.png",
+                logo: "assets/icons/fluff.png",
+                height: 50,
                 title: "Responsive layout",
                 description: "Responsive interface for websie",
                 onTap: () {},

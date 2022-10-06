@@ -11,11 +11,11 @@ import '../../models/git_models.dart';
 import '../../services/github_service.dart';
 import '../../services/spotify_service.dart';
 import '../../utils/constants.dart';
+import '../../utils/footer.dart';
 import '../../widgets/featured_card.dart';
 import '../../widgets/loader.dart';
 import '../../widgets/reusable/chip_container.dart';
 import '../../widgets/reusable/chip_text.dart';
-import '../web/web_homepage.dart';
 
 class MobileHomePage extends StatefulWidget {
   const MobileHomePage({super.key});
@@ -73,7 +73,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
           padding: const EdgeInsets.all(10.0),
           child: CircleAvatar(
             radius: 50,
-            backgroundImage: AssetImage(Constants.image),
+            backgroundImage: NetworkImage(Constants.image),
           ),
         ),
         Text(

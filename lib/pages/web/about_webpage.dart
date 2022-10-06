@@ -1,12 +1,14 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/pages/web/web_homepage.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:flutter_portfolio/widgets/reusable/about_bullet.dart';
 import 'package:flutter_portfolio/widgets/reusable/shot_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
+
+import '../../utils/footer.dart';
+import '../../widgets/reusable/chip_container.dart';
 
 class WebAboutPage extends StatefulWidget {
   const WebAboutPage({super.key});
@@ -18,15 +20,46 @@ class WebAboutPage extends StatefulWidget {
 class _WebAboutPageState extends State<WebAboutPage> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const ClampingScrollPhysics(),
-      child: Row(
-        children: [
-          SizedBox(width: MediaQuery.of(context).size.width / 5),
-          //about column
-          _aboutbody(),
-          SizedBox(width: MediaQuery.of(context).size.width / 5),
-        ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Stack(
+          children: [
+            // Positioned(
+            //   left: MediaQuery.of(context).size.width / 2.55,
+            //   child: SizedBox(
+            //     width: MediaQuery.of(context).size.width - 100,
+            //     height: MediaQuery.of(context).size.width - 100,
+            //     child: Image.asset(
+            //       'assets/images/mascot.png',
+            //     ),
+            //   ),
+            // ),
+            LayoutBuilder(
+              builder: (_, constraints) {
+                if (constraints.maxWidth < 600) {
+                  return Row(
+                    children: [
+                      SizedBox(width: MediaQuery.of(context).size.width / 20),
+                      //dasboard column
+                      _aboutbody(),
+                      SizedBox(width: MediaQuery.of(context).size.width / 20),
+                    ],
+                  );
+                } else {
+                  return Row(
+                    children: [
+                      SizedBox(width: MediaQuery.of(context).size.width / 5),
+                      //about column
+                      _aboutbody(),
+                      SizedBox(width: MediaQuery.of(context).size.width / 5),
+                    ],
+                  );
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -61,12 +94,25 @@ class _WebAboutPageState extends State<WebAboutPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
-                  "About Me",
-                  style: GoogleFonts.lora(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 45,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "About Me",
+                      style: GoogleFonts.lora(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 45,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    const Flexible(
+                      child: ChipContainer(
+                        text: "Bio",
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

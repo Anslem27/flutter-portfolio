@@ -12,6 +12,7 @@ import '../../animations/on_hover.dart';
 import '../../data/data.dart';
 import '../../models/git_models.dart';
 import '../../services/github_service.dart';
+import '../../utils/footer.dart';
 import '../../widgets/featured_card.dart';
 import '../../widgets/loader.dart';
 
@@ -114,9 +115,12 @@ class _HomePageViewState extends State<HomePageView> {
           ),
         ),
         //developer image
-        CircleAvatar(
-          radius: 55,
-          backgroundImage: AssetImage(Constants.image),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CircleAvatar(
+            radius: 55,
+            backgroundImage: NetworkImage(Constants.image),
+          ),
         ),
       ],
     );
@@ -171,7 +175,10 @@ class _HomePageViewState extends State<HomePageView> {
             ),
             IconButton(
               splashRadius: 24,
-              onPressed: () {},
+              onPressed: () {
+                js.context.callMethod(
+                    'open', ["https://github.com/Anslem27?tab=repositories"]);
+              },
               icon: const Icon(
                 Icons.arrow_forward_outlined,
               ),
@@ -290,13 +297,13 @@ class _HomePageViewState extends State<HomePageView> {
   }
 
   _directMail() {
-    double boxSize =
-        MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
-            ? MediaQuery.of(context).size.width / 2
-            : MediaQuery.of(context).size.height / 2.5;
+    // double boxSize =
+    //     MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
+    //         ? MediaQuery.of(context).size.width / 2
+    //         : MediaQuery.of(context).size.height / 2.5;
     return Container(
       width: double.maxFinite - 50,
-      height: boxSize - 80,
+      //height: boxSize - 80,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: const Color.fromARGB(255, 21, 21, 21),
@@ -448,14 +455,7 @@ class _HomePageViewState extends State<HomePageView> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
-            onTap: () async {
-              // var url =
-              //     Uri.parse(SpotifyService().getSpotifyUri().toString());
-              // print(url);
-              // if (!await launchUrl(url)) {
-              //   throw 'Could not launch $url';
-              // }
-            },
+            onTap: () async {},
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -486,101 +486,6 @@ class _HomePageViewState extends State<HomePageView> {
             ),
           ),
         )
-      ],
-    );
-  }
-}
-
-//TODO: Change text color onhover on footer items, plus format code to reduce redundancy
-class Footer extends StatelessWidget {
-  const Footer({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Home",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "About",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Spotify Playlists",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(width: MediaQuery.of(context).size.width / 6),
-        Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Twitter",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Reddit",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Github",
-                  style: GoogleFonts.roboto(
-                      color: Colors.grey.shade800, fontSize: 16),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(width: MediaQuery.of(context).size.width / 6),
-        Flexible(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "Bio",
-              style:
-                  GoogleFonts.roboto(color: Colors.grey.shade800, fontSize: 16),
-            ),
-          ),
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height / 5),
       ],
     );
   }
