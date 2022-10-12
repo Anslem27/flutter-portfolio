@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/animations/wavy_button.dart';
 
 import '../pages/web/about_webpage.dart';
 import '../pages/web/dashboard_webpage.dart';
@@ -33,11 +34,11 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
                 SizedBox(width: MediaQuery.of(context).size.width / 5),
                 Card(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: IconButton(
-                    splashRadius: 24,
-                    onPressed: () {},
-                    icon: const Icon(Icons.light_mode_outlined),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: PlayButton(onPressed: () {}),
                   ),
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width / 4.8),

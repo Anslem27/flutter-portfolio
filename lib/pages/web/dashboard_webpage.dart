@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/services/spotify_service.dart';
+import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:flutter_portfolio/widgets/loader.dart';
 import 'package:flutter_portfolio/widgets/responsive_layout.dart';
 // import 'package:flutter_portfolio/widgets/reusable/chip_text.dart';
@@ -99,6 +100,8 @@ class _WebDashBoardState extends State<WebDashBoard> {
           const SizedBox(height: 20),
           _socialsSection(),
           const SizedBox(height: 30),
+          _skills(),
+          const SizedBox(height: 30),
           _trackSection(),
           SizedBox(height: MediaQuery.of(context).size.height * 0.11),
           const Footer()
@@ -129,7 +132,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Text(
-                    "This is a personal dashboard, built with pure dart. Design inspired by 'leerob', basically for keeping track on my different social platforms, such as my Spotify account, ie fetching my favourite playlist and songs. And planning to add more contents with time.",
+                    "This is a personal dashboard, built with Flutter. Design inspired by 'leerob', basically for keeping track on my different social platforms, such as my Spotify account, ie fetching my favourite playlist and songs. And preaty much anything else i can think about.",
                     textAlign: TextAlign.start,
                     style: GoogleFonts.lora(
                       color: Colors.white38,
@@ -481,6 +484,166 @@ class _WebDashBoardState extends State<WebDashBoard> {
               ],
             );
           },
+        ),
+      ],
+    );
+  }
+
+/* Describe more about your skills and proficiency here */
+
+  _skills() {
+    return LayoutBuilder(builder: (_, constraints) {
+      if (constraints.maxWidth < 600) {
+        return _mobileProficiency();
+      } else {
+        return _webProficiency();
+      }
+    });
+  }
+
+  _mobileProficiency() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Image.asset("assets/images/skill.gif", height: 340),
+        const Text(
+          "Proficiency",
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 20),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            "⚡ Mobile App frontEnd development, very interactive to say the very least. IOS & Android. As well as web Apps.",
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.start,
+            style: GoogleFonts.lora(
+              fontSize: 16,
+              color: Colors.white38,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            "⚡ Integration of third party services in apps, such as API's.",
+            textAlign: TextAlign.start,
+            style: GoogleFonts.lora(
+              fontSize: 16,
+              color: Colors.white38,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            "⚡ Quick learner, problem solver. The list is quite infinite. An one last thing am a redditor",
+            textAlign: TextAlign.start,
+            style: GoogleFonts.lora(
+              fontSize: 16,
+              color: Colors.white38,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  _webProficiency() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(child: Image.asset("assets/images/skill.gif", height: 340)),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Proficiency",
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(width: 4),
+                    Flexible(
+                      child: ChipContainer(
+                        text: "✔",
+                        color: Colors.greenAccent,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.only(left: 3.0, right: 3),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: List.generate(Constants.proficiencyIcons1.length,
+                        (index) {
+                      return Image.asset(
+                        Constants.proficiencyIcons1[index],
+                        height: 50,
+                      );
+                    }),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: List.generate(Constants.proficiencyIcons2.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: Image.asset(
+                        Constants.proficiencyIcons2[index],
+                        height: 50,
+                      ),
+                    );
+                  }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "⚡ Mobile App frontEnd development, very interactive to say the very least. IOS & Android. As well as web Apps.",
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.roboto(
+                      fontSize: 16,
+                      color: Colors.white38,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "⚡ Integration of third party services in apps, such as API's.",
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.roboto(
+                      fontSize: 16,
+                      color: Colors.white38,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "⚡ Quick learner, problem solver. The list is quite infinite. An one last thing am a redditor",
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.roboto(
+                      fontSize: 16,
+                      color: Colors.white38,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     );

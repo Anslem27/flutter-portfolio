@@ -37,4 +37,16 @@ class Constants {
     "assets/images/1.jpg",
     "assets/images/2.jpg",
   ];
+
+  static List<String> proficiencyIcons1 = [
+    // "assets/icons/ff.png",
+    "assets/icons/d.png",
+    "assets/icons/js.png"
+  ];
+
+  static List<String> proficiencyIcons2 = [
+    "assets/icons/v.png",
+    "assets/icons/cv.png",
+    "assets/icons/fg.png"
+  ];
 }

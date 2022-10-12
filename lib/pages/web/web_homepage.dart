@@ -33,20 +33,21 @@ class _HomePageViewState extends State<HomePageView> {
 
   @override
   Widget build(BuildContext context) {
+    final messageController = TextEditingController();
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
       child: Row(
         children: [
           SizedBox(width: MediaQuery.of(context).size.width / 5),
           //homepage column
-          _body(),
+          _body(context, messageController),
           SizedBox(width: MediaQuery.of(context).size.width / 5),
         ],
       ),
     );
   }
 
-  _body() {
+  _body(BuildContext context, TextEditingController messageController) {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,12 +60,95 @@ class _HomePageViewState extends State<HomePageView> {
           const SizedBox(height: 20),
           _currentWorks(),
           const SizedBox(height: 20),
-          _directMail(),
+          messageSection(messageController),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.09,
             child: const Divider(),
           ),
           _footerSection(),
+        ],
+      ),
+    );
+  }
+
+  messageSection(TextEditingController messageController) {
+    return Container(
+      width: double.maxFinite - 50,
+      //height: boxSize - 80,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: const Color.fromARGB(255, 21, 21, 21),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 8.0, right: 8, bottom: 8, top: 15),
+            child: Text(
+              "Send me a direct message.",
+              textAlign: TextAlign.start,
+              style:
+                  GoogleFonts.roboto(fontSize: 22, fontWeight: FontWeight.w500),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8),
+            child: Text(
+              "Have something special to share, then write to me directly an share your thoughts",
+              maxLines: 2,
+              textAlign: TextAlign.start,
+              style: GoogleFonts.roboto(
+                color: Colors.white38,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              margin: const EdgeInsets.only(left: 2, right: 8),
+              height: 50,
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.grey.shade900,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0, bottom: 15),
+                    child: TextField(
+                      controller: messageController,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Your message',
+                      ),
+                    ),
+                  )),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: const Color.fromARGB(255, 21, 21, 21),
+                      ),
+                      alignment: Alignment.center,
+                      child: const Padding(
+                        padding: EdgeInsets.only(left: 8.0, right: 8),
+                        child: Text("Submit"),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -136,7 +220,7 @@ class _HomePageViewState extends State<HomePageView> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          "Featured Creations",
+          "Featured Projects",
           style: GoogleFonts.lora(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
@@ -199,7 +283,7 @@ class _HomePageViewState extends State<HomePageView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Current Repositories",
+              "Open Source Projects",
               style:
                   GoogleFonts.lora(fontSize: 25, fontWeight: FontWeight.bold),
             ),
@@ -293,92 +377,6 @@ class _HomePageViewState extends State<HomePageView> {
           ),
         ),
       ],
-    );
-  }
-
-  _directMail() {
-    // double boxSize =
-    //     MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
-    //         ? MediaQuery.of(context).size.width / 2
-    //         : MediaQuery.of(context).size.height / 2.5;
-    return Container(
-      width: double.maxFinite - 50,
-      //height: boxSize - 80,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: const Color.fromARGB(255, 21, 21, 21),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 8.0, right: 8, bottom: 8, top: 15),
-            child: Text(
-              "Send me a direct message.",
-              textAlign: TextAlign.start,
-              style:
-                  GoogleFonts.roboto(fontSize: 22, fontWeight: FontWeight.w500),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8),
-            child: Text(
-              "Have something special to share, then write to me directly an share your thoughts",
-              maxLines: 2,
-              textAlign: TextAlign.start,
-              style: GoogleFonts.roboto(
-                color: Colors.white38,
-                fontSize: 16,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              margin: const EdgeInsets.only(left: 2, right: 8),
-              height: 50,
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.grey.shade900,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Expanded(
-                      child: Padding(
-                    padding: EdgeInsets.only(left: 8.0, bottom: 15),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Your message',
-                      ),
-                    ),
-                  )),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: const Color.fromARGB(255, 21, 21, 21),
-                      ),
-                      alignment: Alignment.center,
-                      child: const Padding(
-                        padding: EdgeInsets.only(left: 8.0, right: 8),
-                        child: Text("Submit"),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
     );
   }
 
