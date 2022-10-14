@@ -4,7 +4,6 @@ import 'package:flutter_portfolio/pages/home.dart';
 import 'package:flutter_portfolio/pages/web/about_webpage.dart';
 import 'package:flutter_portfolio/pages/web/dashboard_webpage.dart';
 import 'package:flutter_portfolio/pages/web/guestbook.dart';
-import 'package:flutter_portfolio/pages/web/snippet_webpage.dart';
 import 'package:flutter_portfolio/theme/app_theme.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'firebase_options.dart';
@@ -29,7 +28,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: <String, WidgetBuilder>{
         '/dashboard': (_) => const WebDashBoard(),
-        '/snippets': (_) => const WebSnippetPage(),
         '/about': (_) => const WebAboutPage(),
         '/guestbook': (_) => const GuestBook(),
       },
