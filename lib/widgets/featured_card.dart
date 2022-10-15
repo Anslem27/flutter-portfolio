@@ -116,7 +116,7 @@ class MobileFeatureCard extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             width: MediaQuery.of(context).size.width / 1.1,
             borderRadius: 8,
-            height: MediaQuery.of(context).size.height / 4.5,
+            height: MediaQuery.of(context).size.height / 4.2,
             blur: 20,
             border: 2,
             linearGradient: LinearGradient(
@@ -160,7 +160,7 @@ class MobileFeatureCard extends StatelessWidget {
                       textAlign: TextAlign.start,
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.robotoSlab(
+                      style: GoogleFonts.nunitoSans(
                         fontWeight: FontWeight.w400,
                         fontSize: 16,
                       ),

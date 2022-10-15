@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/widgets/loader.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../utils/footer.dart';
+import 'package:intl/intl.dart';
 import '../../widgets/reusable/chip_container.dart';
 
 class GuestBook extends StatefulWidget {
@@ -16,6 +18,7 @@ class GuestBook extends StatefulWidget {
 class _GuestBookState extends State<GuestBook> {
   final guestmessageController = TextEditingController();
   final nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +83,7 @@ class _GuestBookState extends State<GuestBook> {
                   children: [
                     Text(
                       "GuestBook",
-                      style: GoogleFonts.lora(
+                      style: GoogleFonts.nunitoSans(
                         fontWeight: FontWeight.bold,
                         fontSize: 45,
                       ),
@@ -98,9 +101,9 @@ class _GuestBookState extends State<GuestBook> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Text(
-                    "This is where you can leave a message for future visitors, it could be anything,an appreciation,suggestion, make it memorable.",
+                    "This is where you can leave a message for future visitors, it could be anything,an appreciation,suggestion, make it memorable. Database courtesy of Firebase.",
                     textAlign: TextAlign.start,
-                    style: GoogleFonts.lora(
+                    style: GoogleFonts.nunitoSans(
                       color: Colors.white38,
                       fontSize: 17,
                     ),
@@ -114,8 +117,16 @@ class _GuestBookState extends State<GuestBook> {
     );
   }
 
-  _logBookSection(
-      TextEditingController guestmessageController, nameController) {
+  _logBookSection(TextEditingController guestmessageController,
+      TextEditingController nameController) {
+    //date variables
+    DateTime now = DateTime.now();
+    String date = DateFormat('dd').format(now);
+    String moyear = DateFormat('MMM yyyy').format(now);
+    String time = DateFormat('kk:mm a').format(now);
+    String formattedDate = "${date}th $moyear at $time";
+    //
+    bool showSuccess = false;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,7 +172,7 @@ class _GuestBookState extends State<GuestBook> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "Sign in,to access Guestbook.",
+                      "Create memory,with Guestbook.",
                       style: GoogleFonts.roboto(fontSize: 25),
                     ),
                   ),
@@ -192,6 +203,7 @@ class _GuestBookState extends State<GuestBook> {
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: TextField(
                                   controller: guestmessageController,
+                                  keyboardType: TextInputType.multiline,
                                   decoration: const InputDecoration(
                                     border: InputBorder.none,
                                     hintText: 'Your message',
@@ -228,20 +240,58 @@ class _GuestBookState extends State<GuestBook> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0, bottom: 8),
-                    child: Container(
-                      height: 40,
-                      width: 150,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.black,
-                      ),
-                      alignment: Alignment.center,
-                      child: const Padding(
-                        padding: EdgeInsets.only(left: 8.0, right: 8),
-                        child: Text("Submit"),
+                    child: InkWell(
+                      splashColor: Colors.deepPurple,
+                      onTap: () async {
+                        FirebaseFirestore.instance
+                            .collection("Guests")
+                            .add({
+                              "message": guestmessageController.text,
+                              "user_name": nameController.text,
+                              "creation_date": formattedDate
+                            })
+                            .then((value) {})
+                            .catchError(
+                              (onError) {
+                                throw Exception();
+                              },
+                            );
+
+                        setState(() {
+                          showSuccess = true;
+                          nameController.clear();
+                          guestmessageController.clear();
+                        });
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.black,
+                        ),
+                        alignment: Alignment.center,
+                        child: const Padding(
+                          padding: EdgeInsets.only(left: 8.0, right: 8),
+                          child: Text("Submit"),
+                        ),
                       ),
                     ),
                   ),
+                  showSuccess == true
+                      ? Row(
+                          children: [
+                            const Icon(Icons.done_rounded,
+                                color: Color(0xff7fffd4)),
+                            Text(
+                              "Awesome, thats for checkin' my Guestbook.",
+                              style: GoogleFonts.roboto(
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ],
+                        )
+                      : const SizedBox(),
                 ],
               ),
             ),
@@ -252,15 +302,31 @@ class _GuestBookState extends State<GuestBook> {
           stream: FirebaseFirestore.instance.collection("Guests").snapshots(),
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return const SizedBox(
+                height: 30,
+                child: Loader(),
               );
             } else {
               return ListView.builder(
                 shrinkWrap: true,
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (_, index) {
-                  return _guestDataListTile(() {}, snapshot.data!.docs[index]);
+                  return _guestDataListTile(
+                    () {},
+                    () {
+                      //? TODO: Activate to delete something
+
+                      // await FirebaseFirestore.instance
+                      //     .runTransaction((Transaction myTransaction) async {
+                      //   myTransaction.delete(
+                      //     snapshot.data!.docs[index].reference,
+                      //   );
+                      // });
+                    },
+                    snapshot.data!.docs[index],
+                    //
+                    index,
+                  );
                 },
               );
             }
@@ -270,15 +336,18 @@ class _GuestBookState extends State<GuestBook> {
     );
   }
 
-  _guestDataListTile(Function()? onTap, QueryDocumentSnapshot doc) {
+  _guestDataListTile(Function()? onTap, Function()? delete,
+      QueryDocumentSnapshot doc, int index) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
-          leading: const Icon(
-            Iconsax.book,
-            color: Colors.deepPurple,
+          leading: IconButton(
+            splashRadius: 24,
+            onPressed: delete,
+            color: index.isEven ? Colors.deepPurple : const Color(0xff1DB954),
+            icon: const Icon(Iconsax.book),
           ),
           title: Text(doc["message"]),
           subtitle: Padding(

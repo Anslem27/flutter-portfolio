@@ -115,7 +115,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
       children: [
         Text(
           "Featured Creations",
-          style: GoogleFonts.lora(fontSize: 25, fontWeight: FontWeight.bold),
+          style: GoogleFonts.nunitoSans(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
         ListView.builder(
@@ -174,7 +174,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
             Text(
               "Current Repositories",
               style:
-                  GoogleFonts.lora(fontSize: 25, fontWeight: FontWeight.bold),
+                  GoogleFonts.nunitoSans(fontSize: 25, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 5),
             const ChipContainer(
@@ -448,8 +448,8 @@ class _MobileHomePageState extends State<MobileHomePage> {
                   builder: (_, snapshot) {
                     if (snapshot.hasData) {
                       return ChipText(
-                        text: "${snapshot.data.toString()} (username)",
-                        color: const Color.fromARGB(255, 166, 237, 33),
+                        text: snapshot.data.toString(),
+                        color: const Color(0xff1DB954),
                       );
                     } else {
                       return const ChipText(

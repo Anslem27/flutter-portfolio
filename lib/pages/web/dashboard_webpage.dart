@@ -5,7 +5,6 @@ import 'package:flutter_portfolio/services/spotify_service.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:flutter_portfolio/widgets/loader.dart';
 import 'package:flutter_portfolio/widgets/responsive_layout.dart';
-// import 'package:flutter_portfolio/widgets/reusable/chip_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
 import '../../services/github_service.dart';
@@ -123,7 +122,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
               children: [
                 Text(
                   "DashBoard",
-                  style: GoogleFonts.lora(
+                  style: GoogleFonts.nunitoSans(
                     fontWeight: FontWeight.bold,
                     fontSize: 45,
                   ),
@@ -134,7 +133,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
                   child: Text(
                     "This is a personal dashboard, built with Flutter. Design inspired by 'leerob', basically for keeping track on my different social platforms, such as my Spotify account, ie fetching my favourite playlist and songs. And preaty much anything else i can think about.",
                     textAlign: TextAlign.start,
-                    style: GoogleFonts.lora(
+                    style: GoogleFonts.nunitoSans(
                       color: Colors.white38,
                       fontSize: 17,
                     ),
@@ -426,7 +425,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
                 const Padding(
                   padding: EdgeInsets.only(left: 5.0),
                   child: ChipContainer(
-                    text: "Updated Weekly",
+                    text: "Updated Daily",
                     color: Colors.greenAccent,
                   ),
                 ),
@@ -438,7 +437,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: Text(
-            "Want to check out what am jamming to, here are my daily tracks, updated according to my mood.",
+            "Want to check out what am jamming to, here are my daily tracks, fetched directly using the spotify API.",
             maxLines: 2,
             textAlign: TextAlign.start,
             style: GoogleFonts.roboto(
@@ -518,7 +517,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
             "⚡ Mobile App frontEnd development, very interactive to say the very least. IOS & Android. As well as web Apps.",
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.start,
-            style: GoogleFonts.lora(
+            style: GoogleFonts.nunitoSans(
               fontSize: 16,
               color: Colors.white38,
             ),
@@ -529,7 +528,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
           child: Text(
             "⚡ Integration of third party services in apps, such as API's.",
             textAlign: TextAlign.start,
-            style: GoogleFonts.lora(
+            style: GoogleFonts.nunitoSans(
               fontSize: 16,
               color: Colors.white38,
             ),
@@ -540,7 +539,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
           child: Text(
             "⚡ Quick learner, problem solver. The list is quite infinite. An one last thing am a redditor",
             textAlign: TextAlign.start,
-            style: GoogleFonts.lora(
+            style: GoogleFonts.nunitoSans(
               fontSize: 16,
               color: Colors.white38,
             ),
@@ -590,19 +589,20 @@ class _WebDashBoardState extends State<WebDashBoard> {
                         (index) {
                       return Image.asset(
                         Constants.proficiencyIcons1[index],
-                        height: 50,
+                        height: 40,
                       );
                     }),
                   ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: List.generate(Constants.proficiencyIcons2.length, (index) {
+                  children: List.generate(Constants.proficiencyIcons2.length,
+                      (index) {
                     return Padding(
                       padding: const EdgeInsets.all(3.0),
                       child: Image.asset(
                         Constants.proficiencyIcons2[index],
-                        height: 50,
+                        height: 30,
                       ),
                     );
                   }),

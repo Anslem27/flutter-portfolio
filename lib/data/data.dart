@@ -1,13 +1,13 @@
-//your creation's titles
+//your project titles
 import 'package:flutter/material.dart';
 
 List<String> creations = ["Gem Music", "Drink Up", "Websites"];
 
-//your creation's descriptions
+//your project descriptions
 List<String> creationDescription = [
   "A modern designed music player, writen in pure dart code with multiple capabilties.",
   "An app to keep track of water intake,never finished it fully though.",
-  "A collection of websites to bring out the designer 😏 in me."
+  "A collection of usefull websites and templates free for use."
 ];
 
 //creation gradient colors

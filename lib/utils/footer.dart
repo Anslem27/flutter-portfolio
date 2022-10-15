@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/widgets/reusable/chip_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
 
@@ -36,6 +37,13 @@ class Footer extends StatelessWidget {
               js.context.callMethod('open', ["https://github.com/Anslem27"]);
             }),
           ],
+        ),
+        const Padding(
+          padding: EdgeInsets.only(top: 4.0, bottom: 4),
+          child: ChipText(
+            text: "Dont Forget to sign in to Guestbook.",
+            color: Colors.deepPurple,
+          ),
         ),
         SizedBox(
           child: Column(

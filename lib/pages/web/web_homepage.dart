@@ -168,7 +168,7 @@ class _HomePageViewState extends State<HomePageView> {
                 //individual text widgets for full control over text
                 Text(
                   Constants.name,
-                  style: GoogleFonts.lora(
+                  style: GoogleFonts.nunitoSans(
                     fontWeight: FontWeight.bold,
                     fontSize: 45,
                   ),
@@ -180,7 +180,7 @@ class _HomePageViewState extends State<HomePageView> {
                     Constants.description,
                     maxLines: 2,
                     textAlign: TextAlign.start,
-                    style: GoogleFonts.lora(
+                    style: GoogleFonts.nunitoSans(
                       color: Colors.white38,
                       fontSize: 17,
                     ),
@@ -190,7 +190,7 @@ class _HomePageViewState extends State<HomePageView> {
                   Constants.moreDescription,
                   textAlign: TextAlign.start,
                   maxLines: 2,
-                  style: GoogleFonts.lora(
+                  style: GoogleFonts.nunitoSans(
                     color: Colors.grey,
                   ),
                 ),
@@ -292,7 +292,7 @@ class _HomePageViewState extends State<HomePageView> {
             const Spacer(),
             const ChipText(
               text: "Up to date",
-              color: Color.fromARGB(255, 2, 98, 63),
+              color: Color(0xff1DB954),
             ),
           ],
         ),
@@ -332,6 +332,7 @@ class _HomePageViewState extends State<HomePageView> {
                                 e.description.toString() == "null"
                                     ? "No description"
                                     : e.description.toString(),
+                                style: GoogleFonts.nunitoSans(),
                               ),
                               onTap: () {},
                               trailing: OnHover(
@@ -469,8 +470,8 @@ class _HomePageViewState extends State<HomePageView> {
                   builder: (_, snapshot) {
                     if (snapshot.hasData) {
                       return ChipText(
-                        text: "${snapshot.data.toString()} (username)",
-                        color: const Color.fromARGB(255, 166, 237, 33),
+                        text: snapshot.data.toString(),
+                        color: const Color(0xff1DB954),
                       );
                     } else {
                       return const ChipText(
