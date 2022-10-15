@@ -6,7 +6,6 @@ import 'package:flutter_portfolio/widgets/reusable/about_bullet.dart';
 import 'package:flutter_portfolio/widgets/reusable/shot_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
-
 import '../../utils/footer.dart';
 import '../../widgets/reusable/chip_container.dart';
 
@@ -100,7 +99,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
                   children: [
                     Text(
                       "About Me",
-                      style: GoogleFonts.lora(
+                      style: GoogleFonts.nunitoSans(
                         fontWeight: FontWeight.bold,
                         fontSize: 45,
                       ),
@@ -145,7 +144,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
         ),
         AboutBullet(
           linkTo: "Reddit: ",
-          textColor: const Color(0xffff5700),
+          textColor: Colors.deepPurple,
           userName: Constants.redditUserName,
           onTap: () {
             js.context.callMethod('open', [Constants.reditLink]);
@@ -184,7 +183,8 @@ class _WebAboutPageState extends State<WebAboutPage> {
           "Work Status",
           style: GoogleFonts.roboto(
             fontWeight: FontWeight.w500,
-            fontSize: 20,
+            fontSize: 26,
+            color: Colors.deepPurple,
           ),
         ),
         Padding(
@@ -193,7 +193,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
             Constants.workDescription,
             maxLines: 2,
             textAlign: TextAlign.start,
-            style: GoogleFonts.lora(
+            style: GoogleFonts.roboto(
               color: Colors.white38,
               fontSize: 15,
             ),
@@ -204,7 +204,8 @@ class _WebAboutPageState extends State<WebAboutPage> {
           "Long, Intro",
           style: GoogleFonts.roboto(
             fontWeight: FontWeight.w500,
-            fontSize: 20,
+            fontSize: 26,
+            color:Colors.deepPurple,
           ),
         ),
         Padding(
@@ -223,7 +224,8 @@ class _WebAboutPageState extends State<WebAboutPage> {
           "Short, Intro",
           style: GoogleFonts.roboto(
             fontWeight: FontWeight.w500,
-            fontSize: 20,
+            fontSize: 26,
+            color:Colors.deepPurple,
           ),
         ),
         Padding(
@@ -243,7 +245,8 @@ class _WebAboutPageState extends State<WebAboutPage> {
           "Education",
           style: GoogleFonts.roboto(
             fontWeight: FontWeight.w500,
-            fontSize: 20,
+            fontSize: 26,
+            color: Colors.deepPurple,
           ),
         ),
         Padding(
@@ -263,7 +266,8 @@ class _WebAboutPageState extends State<WebAboutPage> {
           "Shots.",
           style: GoogleFonts.roboto(
             fontWeight: FontWeight.w500,
-            fontSize: 24,
+            fontSize: 26,
+            color: Colors.deepPurple,
           ),
         ),
         const SizedBox(height: 20),

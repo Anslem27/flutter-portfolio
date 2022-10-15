@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/widgets/reusable/chip_container.dart';
 import '../pages/mobile/mobile_homepage.dart';
 import '../widgets/reusable/drawer_item.dart';
 
@@ -26,13 +27,9 @@ class _MobileViewState extends State<MobileView> {
               child: Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
-                child: IconButton(
-                  splashRadius: 24,
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.light_mode_outlined,
-                    size: 20,
-                  ),
+                child: const ChipContainer(
+                  color: Colors.deepPurple,
+                  text: "📌 Use web for full experience",
                 ),
               ),
             ),
@@ -87,12 +84,12 @@ class _MobileViewState extends State<MobileView> {
                 ),
               ),
               DrawerItem(
-                title: "Snippets",
+                title: "GuestBook",
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (_) => const Switchpage(
-                      route: '/snippets',
+                      route: '/guestbook',
                     ),
                   ),
                 ),

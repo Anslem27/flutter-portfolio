@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_portfolio/animations/wavy_button.dart';
+import 'package:flutter_portfolio/pages/web/guestbook.dart';
+import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 import '../pages/web/about_webpage.dart';
 import '../pages/web/dashboard_webpage.dart';
-import '../pages/web/snippet_webpage.dart';
 import '../pages/web/web_homepage.dart';
 
 class WebView extends StatefulWidget {
@@ -33,11 +34,11 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
                 SizedBox(width: MediaQuery.of(context).size.width / 5),
                 Card(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: IconButton(
-                    splashRadius: 24,
-                    onPressed: () {},
-                    icon: const Icon(Icons.light_mode_outlined),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: PlayButton(onPressed: () {}),
                   ),
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width / 4.8),
@@ -57,7 +58,16 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
     return Expanded(
       child: TabBar(
         enableFeedback: true,
-        indicator: BoxDecoration(borderRadius: BorderRadius.circular(14)),
+        indicator: RectangularIndicator(
+          color: Colors.grey.shade900,
+          bottomRightRadius: 8,
+          bottomLeftRadius: 8,
+          topLeftRadius: 8,
+          topRightRadius: 8,
+          horizontalPadding: 5,
+          verticalPadding: 5,
+          paintingStyle: PaintingStyle.fill,
+        ),
         tabs: const [
           Tab(
             text: "Home",
@@ -66,8 +76,11 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
             text: "DashBoard",
           ),
           Tab(
-            text: "Snippets",
+            text: "GuestBook",
           ),
+          // Tab(
+          //   text: "Snippets",
+          // ),
           Tab(
             text: "About",
           )
@@ -80,6 +93,7 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
 List<Widget> body = [
   const HomePageView(),
   const WebDashBoard(),
-  const WebSnippetPage(),
+  const GuestBook(),
+  // const WebSnippetPage(),
   const WebAboutPage()
 ];

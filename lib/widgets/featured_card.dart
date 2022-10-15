@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glassmorphism/glassmorphism.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../animations/on_hover.dart';
@@ -108,33 +109,32 @@ class MobileFeatureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double boxSize =
-        MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
-            ? MediaQuery.of(context).size.width / 2
-            : MediaQuery.of(context).size.height / 2.5;
     return OnHover(builder: (isHovered) {
       return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-           height: boxSize - 80,
-          width: boxSize - 80,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-            gradient: LinearGradient(
+          padding: const EdgeInsets.all(8.0),
+          child: GlassmorphicContainer(
+            padding: const EdgeInsets.all(8),
+            width: MediaQuery.of(context).size.width / 1.1,
+            borderRadius: 8,
+            height: MediaQuery.of(context).size.height / 4.2,
+            blur: 20,
+            border: 2,
+            linearGradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  const Color(0xFFffffff).withOpacity(0.1),
+                  const Color(0xFFFFFFFF).withOpacity(0.05),
+                ],
+                stops: const [
+                  0.1,
+                  1
+                ]),
+            borderGradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: gradient,
             ),
-          ),
-          child: Container(
-            width: boxSize + 180,
-             height: boxSize - 85,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-              color: Colors.black,
-            ),
-            alignment: Alignment.topCenter,
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Column(
@@ -160,7 +160,7 @@ class MobileFeatureCard extends StatelessWidget {
                       textAlign: TextAlign.start,
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.robotoSlab(
+                      style: GoogleFonts.nunitoSans(
                         fontWeight: FontWeight.w400,
                         fontSize: 16,
                       ),
@@ -182,9 +182,7 @@ class MobileFeatureCard extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ),
-      );
+          ));
     });
   }
 }
