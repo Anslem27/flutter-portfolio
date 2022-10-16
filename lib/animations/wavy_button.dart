@@ -5,7 +5,7 @@ import 'dart:math' show pi;
 
 class PlayButton extends StatefulWidget {
   final bool initialIsPlaying;
-  final Icon firstIcon;
+  final String firstIcon;
   final Icon secondIcon;
   final VoidCallback onPressed;
 
@@ -13,10 +13,9 @@ class PlayButton extends StatefulWidget {
     super.key,
     required this.onPressed,
     this.initialIsPlaying = false,
-    this.firstIcon =
-        const Icon(Icons.dark_mode_outlined, color: Colors.deepPurple),
+    this.firstIcon = "assets/images/avatar.jpg",
     this.secondIcon =
-        const Icon(Icons.dark_mode_outlined, color: Colors.deepOrange),
+        const Icon(Icons.dark_mode_outlined, color: Colors.deepPurple),
   }) : assert(onPressed != null);
 
   @override
@@ -70,10 +69,20 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
   Widget _buildIcon(bool isPlaying) {
     return SizedBox.expand(
       key: ValueKey<bool>(isPlaying),
-      child: IconButton(
-        icon: isPlaying ? widget.secondIcon : widget.firstIcon,
-        onPressed: _onToggle,
-      ),
+      child: isPlaying
+          ? InkWell(
+              onTap: _onToggle,
+              child: CircleAvatar(
+                radius: 50,
+                backgroundImage: AssetImage(
+                  widget.firstIcon,
+                ),
+              ),
+            )
+          : IconButton(
+              icon: widget.secondIcon,
+              onPressed: _onToggle,
+            ),
     );
   }
 
