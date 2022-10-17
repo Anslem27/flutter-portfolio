@@ -114,7 +114,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          "Featured Creations",
+          "Featured Projects",
           style: GoogleFonts.nunitoSans(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
@@ -172,7 +172,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Current Repositories",
+              "OpenSource Projects",
               style:
                   GoogleFonts.nunitoSans(fontSize: 25, fontWeight: FontWeight.bold),
             ),
@@ -273,7 +273,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
             : MediaQuery.of(context).size.height / 2.5;
     return Container(
       width: double.maxFinite - 50,
-      height: boxSize - 80,
+      height: boxSize - 50,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: const Color.fromARGB(255, 21, 21, 21),

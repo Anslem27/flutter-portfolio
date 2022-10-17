@@ -351,19 +351,19 @@ class _GuestBookState extends State<GuestBook> {
           ),
           title: Text(doc["message"]),
           subtitle: Padding(
-            padding: const EdgeInsets.only(top: 3.0,bottom: 5),
+            padding: const EdgeInsets.only(top: 3.0, bottom: 5),
             child: Text(
-              doc["user_name"],
+              doc["creation_date"],
               style: const TextStyle(
                 color: Colors.grey,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),
           trailing: Text(
-            doc["creation_date"],
+            doc["user_name"],
             style: const TextStyle(
               color: Colors.grey,
-              overflow: TextOverflow.ellipsis,
             ),
           ),
           onTap: onTap,

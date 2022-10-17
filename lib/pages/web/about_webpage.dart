@@ -30,7 +30,9 @@ class _WebAboutPageState extends State<WebAboutPage> {
             //     width: MediaQuery.of(context).size.width - 100,
             //     height: MediaQuery.of(context).size.width - 100,
             //     child: Image.asset(
-            //       'assets/images/mascot.png',
+            //       'assets/images/avatar.jpg',
+            //       colorBlendMode: BlendMode.modulate,
+            //       color: Colors.white.withOpacity(0.8),
             //     ),
             //   ),
             // ),
@@ -205,7 +207,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
           style: GoogleFonts.roboto(
             fontWeight: FontWeight.w500,
             fontSize: 26,
-            color:Colors.deepPurple,
+            color: Colors.deepPurple,
           ),
         ),
         Padding(
@@ -225,7 +227,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
           style: GoogleFonts.roboto(
             fontWeight: FontWeight.w500,
             fontSize: 26,
-            color:Colors.deepPurple,
+            color: Colors.deepPurple,
           ),
         ),
         Padding(
