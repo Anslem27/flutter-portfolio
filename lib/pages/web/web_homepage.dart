@@ -13,6 +13,7 @@ import '../../data/data.dart';
 import '../../models/git_models.dart';
 import '../../services/github_service.dart';
 import '../../utils/footer.dart';
+import '../../utils/newsletter_card.dart';
 import '../../widgets/featured_card.dart';
 import '../../widgets/loader.dart';
 
@@ -60,95 +61,12 @@ class _HomePageViewState extends State<HomePageView> {
           const SizedBox(height: 20),
           _currentWorks(),
           const SizedBox(height: 20),
-          messageSection(messageController),
+          const NewsLetterCard(),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.09,
             child: const Divider(),
           ),
           _footerSection(),
-        ],
-      ),
-    );
-  }
-
-  messageSection(TextEditingController messageController) {
-    return Container(
-      width: double.maxFinite - 50,
-      //height: boxSize - 80,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: const Color.fromARGB(255, 21, 21, 21),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 8.0, right: 8, bottom: 8, top: 15),
-            child: Text(
-              "Send me a direct message.",
-              textAlign: TextAlign.start,
-              style:
-                  GoogleFonts.roboto(fontSize: 22, fontWeight: FontWeight.w500),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8),
-            child: Text(
-              "Have something special to share, then write to me directly an share your thoughts",
-              maxLines: 2,
-              textAlign: TextAlign.start,
-              style: GoogleFonts.roboto(
-                color: Colors.white38,
-                fontSize: 16,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              margin: const EdgeInsets.only(left: 2, right: 8),
-              height: 50,
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.grey.shade900,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, bottom: 15),
-                    child: TextField(
-                      controller: messageController,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Your message',
-                      ),
-                    ),
-                  )),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: const Color.fromARGB(255, 21, 21, 21),
-                      ),
-                      alignment: Alignment.center,
-                      child: const Padding(
-                        padding: EdgeInsets.only(left: 8.0, right: 8),
-                        child: Text("Submit"),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
         ],
       ),
     );
@@ -194,6 +112,8 @@ class _HomePageViewState extends State<HomePageView> {
                     color: Colors.grey,
                   ),
                 ),
+                const SizedBox(height: 5),
+                _locationRow()
               ],
             ),
           ),
@@ -204,6 +124,28 @@ class _HomePageViewState extends State<HomePageView> {
           child: CircleAvatar(
             radius: 55,
             backgroundImage: NetworkImage(Constants.image),
+          ),
+        ),
+      ],
+    );
+  }
+
+  _locationRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Icon(Iconsax.location, color: Colors.deepPurple),
+        const SizedBox(width: 4),
+        Padding(
+          padding: const EdgeInsets.only(top: 5.0),
+          child: Text(
+            Constants.location,
+            textAlign: TextAlign.start,
+            maxLines: 2,
+            style: GoogleFonts.nunitoSans(
+              color: Colors.white70,
+            ),
           ),
         ),
       ],

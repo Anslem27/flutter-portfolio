@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/widgets/loader.dart';
@@ -7,6 +9,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../utils/footer.dart';
 import 'package:intl/intl.dart';
 import '../../widgets/reusable/chip_container.dart';
+import '../../widgets/snackbars.dart';
 
 class GuestBook extends StatefulWidget {
   const GuestBook({super.key});
@@ -18,6 +21,11 @@ class GuestBook extends StatefulWidget {
 class _GuestBookState extends State<GuestBook> {
   final guestmessageController = TextEditingController();
   final nameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +103,32 @@ class _GuestBookState extends State<GuestBook> {
                         color: Colors.deepPurple,
                       ),
                     ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
+                            content: InfoToast(
+                              title: "GuestBook Message",
+                              body:
+                                  "GuestBook is somewhat moderated, so try to keep it clean",
+                              widget: Icon(
+                                Iconsax.eye,
+                                size: 16,
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      splashRadius: 24,
+                      icon: const Icon(
+                        Icons.info_outline,
+                        color: Colors.deepPurple,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 10),
@@ -126,6 +160,7 @@ class _GuestBookState extends State<GuestBook> {
     String time = DateFormat('kk:mm a').format(now);
     String formattedDate = "${date}th $moyear at $time";
     //
+    // ignore: unused_local_variable
     bool showSuccess = false;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -243,25 +278,60 @@ class _GuestBookState extends State<GuestBook> {
                     child: InkWell(
                       splashColor: Colors.deepPurple,
                       onTap: () async {
-                        FirebaseFirestore.instance
-                            .collection("Guests")
-                            .add({
-                              "message": guestmessageController.text,
-                              "user_name": nameController.text,
-                              "creation_date": formattedDate
-                            })
-                            .then((value) {})
-                            .catchError(
-                              (onError) {
-                                throw Exception();
-                              },
-                            );
+                        if (guestmessageController.text.isEmpty ||
+                            nameController.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              backgroundColor: Colors.transparent,
+                              elevation: 0,
+                              content: FancySnackBar(
+                                title: "Error",
+                                body: "Please fill in all fields",
+                                widget: Icon(
+                                  Icons.error_outline,
+                                  size: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          );
+                        } else {
+                          FirebaseFirestore.instance
+                              .collection("Guests")
+                              .add({
+                                "message": guestmessageController.text,
+                                "user_name": nameController.text,
+                                "creation_date": formattedDate
+                              })
+                              .then((value) {})
+                              .catchError(
+                                (onError) {
+                                  throw Exception();
+                                },
+                              );
 
-                        setState(() {
-                          showSuccess = true;
-                          nameController.clear();
-                          guestmessageController.clear();
-                        });
+                          setState(() {
+                            showSuccess = true;
+                            nameController.clear();
+                            guestmessageController.clear();
+                          });
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              backgroundColor: Colors.transparent,
+                              elevation: 0,
+                              content: InfoToast(
+                                title: "Hooray!!",
+                                body: "Thanks for signing my guestbook.",
+                                widget: Icon(
+                                  Icons.favorite_border,
+                                  size: 16,
+                                  color: Colors.greenAccent,
+                                ),
+                              ),
+                            ),
+                          );
+                        }
                       },
                       child: Container(
                         height: 40,
@@ -278,20 +348,20 @@ class _GuestBookState extends State<GuestBook> {
                       ),
                     ),
                   ),
-                  showSuccess == true
-                      ? Row(
-                          children: [
-                            const Icon(Icons.done_rounded,
-                                color: Color(0xff7fffd4)),
-                            Text(
-                              "Awesome, thats for checkin' my Guestbook.",
-                              style: GoogleFonts.roboto(
-                                color: Colors.deepPurple,
-                              ),
-                            ),
-                          ],
-                        )
-                      : const SizedBox(),
+                  // showSuccess == true
+                  //     ? Row(
+                  //         children: [
+                  //           const Icon(Icons.done_rounded,
+                  //               color: Color(0xff7fffd4)),
+                  //           Text(
+                  //             "Awesome, thats for checkin' my Guestbook.",
+                  //             style: GoogleFonts.roboto(
+                  //               color: Colors.deepPurple,
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       )
+                  //     : const SizedBox(),
                 ],
               ),
             ),
@@ -313,9 +383,8 @@ class _GuestBookState extends State<GuestBook> {
                 itemBuilder: (_, index) {
                   return _guestDataListTile(
                     () {},
-                    () {
-                      //? TODO: Activate to delete something
-
+                    // TODO: Activate to delete something as a means of moderation
+                    () async {
                       // await FirebaseFirestore.instance
                       //     .runTransaction((Transaction myTransaction) async {
                       //   myTransaction.delete(
@@ -351,18 +420,19 @@ class _GuestBookState extends State<GuestBook> {
           ),
           title: Text(doc["message"]),
           subtitle: Padding(
-            padding: const EdgeInsets.only(top: 3.0),
+            padding: const EdgeInsets.only(top: 3.0, bottom: 5),
             child: Text(
-              doc["user_name"],
+              doc["creation_date"],
               style: const TextStyle(
                 color: Colors.grey,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),
           trailing: Text(
-            doc["creation_date"],
+            doc["user_name"],
             style: const TextStyle(
-              color: Colors.white30,
+              color: Colors.grey,
             ),
           ),
           onTap: onTap,

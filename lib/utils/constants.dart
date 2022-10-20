@@ -7,7 +7,10 @@ class Constants {
 
   static var moreDescription =
       "I have about 2 years of experience in mobile app development, particularly using cross platform frameworks.";
+//location
+  static var location = "Kampala Uganda";
 
+  //profile image
   static var image =
       "https://raw.githubusercontent.com/Anslem27/Anslem27.github.io/main/assets/assets/images/me.jpg";
 

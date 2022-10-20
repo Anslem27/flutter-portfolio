@@ -21,9 +21,9 @@ class WebDashBoard extends StatefulWidget {
 }
 
 class _WebDashBoardState extends State<WebDashBoard> {
-  List<String> tracks = <String>[];
-  List<String> artists = <String>[];
-  List<String> songLinks = <String>[];
+  List<String> tracks = [];
+  List<String> artists = [];
+  List<String> songLinks = [];
 
   _fetchTracksList() async {
     var returned = await SpotifyService()
@@ -316,6 +316,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
         });
   }
 
+  // ignore: unused_element
   _githubSection() {
     return FutureBuilder(
         future: fetchGitUser(),
