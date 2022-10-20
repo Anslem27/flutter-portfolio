@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/widgets/loader.dart';
@@ -7,6 +9,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../utils/footer.dart';
 import 'package:intl/intl.dart';
 import '../../widgets/reusable/chip_container.dart';
+import '../../widgets/snackbars.dart';
 
 class GuestBook extends StatefulWidget {
   const GuestBook({super.key});
@@ -18,6 +21,11 @@ class GuestBook extends StatefulWidget {
 class _GuestBookState extends State<GuestBook> {
   final guestmessageController = TextEditingController();
   final nameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +100,32 @@ class _GuestBookState extends State<GuestBook> {
                     const Flexible(
                       child: ChipContainer(
                         text: "Beta",
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
+                            content: InfoToast(
+                              title: "GuestBook Message",
+                              body:
+                                  "GuestBook is somewhat moderated, so try to keep it clean",
+                              widget: Icon(
+                                Iconsax.eye,
+                                size: 16,
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      splashRadius: 24,
+                      icon: const Icon(
+                        Icons.info_outline,
                         color: Colors.deepPurple,
                       ),
                     ),
@@ -313,8 +347,8 @@ class _GuestBookState extends State<GuestBook> {
                 itemBuilder: (_, index) {
                   return _guestDataListTile(
                     () {},
-                    () {
-                      //? TODO: Activate to delete something
+                    () async {
+                      //? TODO: Activate to delete something as a means of moderation
 
                       // await FirebaseFirestore.instance
                       //     .runTransaction((Transaction myTransaction) async {

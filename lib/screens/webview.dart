@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/animations/wavy_button.dart';
 import 'package:flutter_portfolio/pages/web/guestbook.dart';
+import 'package:flutter_portfolio/pages/web/social_tab.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 import '../pages/web/about_webpage.dart';
 import '../pages/web/dashboard_webpage.dart';
@@ -17,7 +18,7 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0, bottom: 8),
         child: Column(
@@ -78,9 +79,9 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
           Tab(
             text: "GuestBook",
           ),
-          // Tab(
-          //   text: "Snippets",
-          // ),
+          Tab(
+            text: "Social",
+          ),
           Tab(
             text: "About",
           )
@@ -94,6 +95,6 @@ List<Widget> body = [
   const HomePageView(),
   const WebDashBoard(),
   const GuestBook(),
-  // const WebSnippetPage(),
+  const SocialTab(),
   const WebAboutPage()
 ];

@@ -316,6 +316,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
         });
   }
 
+  // ignore: unused_element
   _githubSection() {
     return FutureBuilder(
         future: fetchGitUser(),
