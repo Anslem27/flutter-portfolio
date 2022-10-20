@@ -112,6 +112,8 @@ class _HomePageViewState extends State<HomePageView> {
                     color: Colors.grey,
                   ),
                 ),
+                const SizedBox(height: 5),
+                _locationRow()
               ],
             ),
           ),
@@ -122,6 +124,28 @@ class _HomePageViewState extends State<HomePageView> {
           child: CircleAvatar(
             radius: 55,
             backgroundImage: NetworkImage(Constants.image),
+          ),
+        ),
+      ],
+    );
+  }
+
+  _locationRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Icon(Iconsax.location, color: Colors.deepPurple),
+        const SizedBox(width: 4),
+        Padding(
+          padding: const EdgeInsets.only(top: 5.0),
+          child: Text(
+            Constants.location,
+            textAlign: TextAlign.start,
+            maxLines: 2,
+            style: GoogleFonts.nunitoSans(
+              color: Colors.white70,
+            ),
           ),
         ),
       ],
