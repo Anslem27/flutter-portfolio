@@ -1,9 +1,10 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
-import 'package:flutter_portfolio/widgets/reusable/about_bullet.dart';
-import 'package:flutter_portfolio/widgets/reusable/shot_card.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:glassmorphism/glassmorphism.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
 import '../../utils/footer.dart';
@@ -24,18 +25,6 @@ class _WebAboutPageState extends State<WebAboutPage> {
         physics: const ClampingScrollPhysics(),
         child: Stack(
           children: [
-            // Positioned(
-            //   left: MediaQuery.of(context).size.width / 2.55,
-            //   child: SizedBox(
-            //     width: MediaQuery.of(context).size.width - 100,
-            //     height: MediaQuery.of(context).size.width - 100,
-            //     child: Image.asset(
-            //       'assets/images/avatar.jpg',
-            //       colorBlendMode: BlendMode.modulate,
-            //       color: Colors.white.withOpacity(0.8),
-            //     ),
-            //   ),
-            // ),
             LayoutBuilder(
               builder: (_, constraints) {
                 if (constraints.maxWidth < 600) {
@@ -74,10 +63,10 @@ class _WebAboutPageState extends State<WebAboutPage> {
           SizedBox(height: MediaQuery.of(context).size.height * 0.11),
           _topText(),
           const SizedBox(height: 30),
-          _links(),
+          _topImage(),
           const SizedBox(height: 20),
           _bio(),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.11),
+          const SizedBox(height: 20),
           const Footer()
         ],
       ),
@@ -123,52 +112,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
     );
   }
 
-  _links() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Text(
-          "Links",
-          style: GoogleFonts.roboto(
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-          ),
-        ),
-        const SizedBox(height: 40),
-        AboutBullet(
-          linkTo: "Twitter: ",
-          textColor: const Color(0xff00acee),
-          userName: Constants.twitterUserName,
-          onTap: () {
-            js.context.callMethod('open', [Constants.twitterLink]);
-          },
-        ),
-        AboutBullet(
-          linkTo: "Reddit: ",
-          textColor: Colors.deepPurple,
-          userName: Constants.redditUserName,
-          onTap: () {
-            js.context.callMethod('open', [Constants.reditLink]);
-          },
-        ),
-        AboutBullet(
-          linkTo: "Github: ",
-          textColor: const Color(0xff00acee),
-          userName: Constants.githubUserName,
-          onTap: () {
-            js.context.callMethod('open', [Constants.githubLink]);
-          },
-        ),
-      ],
-    );
-  }
-
   _bio() {
-    double boxSize =
-        MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
-            ? MediaQuery.of(context).size.width / 2
-            : MediaQuery.of(context).size.height / 2.5;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -177,121 +121,196 @@ class _WebAboutPageState extends State<WebAboutPage> {
           "Bio",
           style: GoogleFonts.roboto(
             fontWeight: FontWeight.bold,
-            fontSize: 25,
+            fontSize: 30,
           ),
         ),
-        const SizedBox(height: 35),
-        Text(
-          "Work Status",
-          style: GoogleFonts.roboto(
-            fontWeight: FontWeight.w500,
-            fontSize: 26,
-            color: Colors.deepPurple,
+        const SizedBox(height: 20),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8.0, top: 5),
+          child: RichText(
+            text: TextSpan(
+              text: 'Anslem Seguya ',
+              style: GoogleFonts.roboto(
+                color: Colors.white38,
+                fontSize: 22,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text:
+                      'is a self taught junior developer with a desire for frontend development. ',
+                  style: GoogleFonts.roboto(color: Colors.blue, fontSize: 16),
+                  // recognizer: TapGestureRecognizer()
+                  //   ..onTap = () {
+                  //     // navigate to desired screen
+                  //   },
+                ),
+              ],
+            ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0, top: 5),
-          child: Text(
-            Constants.workDescription,
-            maxLines: 2,
-            textAlign: TextAlign.start,
-            style: GoogleFonts.roboto(
-              color: Colors.white38,
-              fontSize: 15,
+          child: RichText(
+            text: TextSpan(
+              text:
+                  'Anslem Seguya is still a student at Kyamboggo University pursuing a bachelors degree in Information Technology and Computing',
+              style: GoogleFonts.roboto(
+                color: Colors.white38,
+                fontSize: 16,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text:
+                      '\nWhile programming is my true desire and reason to exist,my ',
+                  style:
+                      GoogleFonts.roboto(color: Colors.white54, fontSize: 16),
+                ),
+                TextSpan(
+                  text: 'family ',
+                  style: GoogleFonts.roboto(
+                      color: Colors.deepPurple, fontSize: 16),
+                ),
+                TextSpan(
+                  text: 'and ',
+                  style:
+                      GoogleFonts.roboto(color: Colors.white54, fontSize: 16),
+                ),
+                TextSpan(
+                  text: 'will to please my creator ',
+                  style: GoogleFonts.roboto(
+                      color: Colors.deepPurple, fontSize: 16),
+                ),
+                TextSpan(
+                  text: 'are the true foundations of my life.',
+                  style:
+                      GoogleFonts.roboto(color: Colors.white54, fontSize: 16),
+                ),
+              ],
             ),
-          ),
-        ),
-        const SizedBox(height: 20),
-        Text(
-          "Long, Intro",
-          style: GoogleFonts.roboto(
-            fontWeight: FontWeight.w500,
-            fontSize: 26,
-            color: Colors.deepPurple,
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0, top: 5),
-          child: Text(
-            Constants.aboutMe,
-            textAlign: TextAlign.start,
-            style: GoogleFonts.roboto(
-              color: Colors.white38,
-              fontSize: 15,
+          child: RichText(
+            text: TextSpan(
+              text: 'Want to say hi ',
+              style: GoogleFonts.roboto(
+                color: Colors.white38,
+                fontSize: 16,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: 'Email me 👋',
+                  style: GoogleFonts.roboto(color: Colors.blue, fontSize: 16),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      js.context
+                          .callMethod('open', ['mailto:anslembarn@gmail.com']);
+                    },
+                ),
+              ],
             ),
           ),
         ),
-        const SizedBox(height: 20),
-        Text(
-          "Short, Intro",
-          style: GoogleFonts.roboto(
-            fontWeight: FontWeight.w500,
-            fontSize: 26,
-            color: Colors.deepPurple,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 8.0, top: 5),
-          child: Text(
-            Constants.shortIntro,
-            maxLines: 2,
-            textAlign: TextAlign.start,
-            style: GoogleFonts.roboto(
-              color: Colors.white38,
-              fontSize: 15,
-            ),
-          ),
-        ),
-        const SizedBox(height: 20),
-        Text(
-          "Education",
-          style: GoogleFonts.roboto(
-            fontWeight: FontWeight.w500,
-            fontSize: 26,
-            color: Colors.deepPurple,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 8.0, top: 5),
-          child: Text(
-            Constants.education,
-            maxLines: 2,
-            textAlign: TextAlign.start,
-            style: GoogleFonts.roboto(
-              color: Colors.white38,
-              fontSize: 15,
-            ),
-          ),
-        ),
-        const SizedBox(height: 20),
-        Text(
-          "Shots.",
-          style: GoogleFonts.roboto(
-            fontWeight: FontWeight.w500,
-            fontSize: 26,
-            color: Colors.deepPurple,
-          ),
-        ),
-        const SizedBox(height: 20),
-        SizedBox(
-          height: boxSize - 30,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 8.0, top: 5),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              itemCount: Constants.shotImages.length,
-              itemBuilder: (_, index) {
-                return Padding(
-                  padding:
-                      EdgeInsets.only(right: 8.0, left: index == 0 ? 0 : 8),
-                  child: ShotCard(image: Constants.shotImages[index]),
-                );
+        const SizedBox(height: 15),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _bioConnectItem(
+              FontAwesomeIcons.github,
+              "Github",
+              () {
+                js.context.callMethod('open', [Constants.githubLink]);
               },
+              Colors.deepPurple,
             ),
-          ),
-        ),
+            _bioConnectItem(
+              FontAwesomeIcons.reddit,
+              "Reddit",
+              () {
+                js.context.callMethod('open', [Constants.reditLink]);
+              },
+              Colors.orange,
+            ),
+          ],
+        )
       ],
     );
+  }
+
+  _bioConnectItem(IconData icon, String text, Function()? onTap, Color color) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: InkWell(
+          splashColor: Colors.deepPurple,
+          onTap: onTap,
+          child: Row(
+            children: [
+              Icon(
+                icon,
+                color: color,
+                size: 20,
+              ),
+              const SizedBox(width: 5),
+              Text(
+                text,
+                style: GoogleFonts.roboto(fontSize: 19),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  _topImage() {
+    return LayoutBuilder(builder: (_, constraints) {
+      return GlassmorphicContainer(
+        padding: const EdgeInsets.all(8),
+        height: MediaQuery.of(context).size.height / 1.3,
+        width: constraints.maxWidth < 600
+            ? double.maxFinite
+            : MediaQuery.of(context).size.width * 0.48,
+        borderRadius: 8,
+        blur: 20,
+        border: 5,
+        linearGradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color(0xFFffffff).withOpacity(0.1),
+              const Color(0xFFFFFFFF).withOpacity(0.05),
+            ],
+            stops: const [
+              0.1,
+              1
+            ]),
+        borderGradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xff7fffd4), Colors.blue, Colors.purple],
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            image: DecorationImage(
+              image: const AssetImage("assets/images/1.jpg"),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.8),
+                BlendMode.dstATop,
+              ),
+            ),
+          ),
+        ),
+      );
+    });
   }
 }
