@@ -103,32 +103,6 @@ class _GuestBookState extends State<GuestBook> {
                         color: Colors.deepPurple,
                       ),
                     ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            backgroundColor: Colors.transparent,
-                            elevation: 0,
-                            content: InfoToast(
-                              title: "GuestBook Message",
-                              body:
-                                  "GuestBook is somewhat moderated, so try to keep it clean",
-                              widget: Icon(
-                                Iconsax.eye,
-                                size: 16,
-                                color: Colors.deepPurple,
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                      splashRadius: 24,
-                      icon: const Icon(
-                        Icons.info_outline,
-                        color: Colors.deepPurple,
-                      ),
-                    ),
                   ],
                 ),
                 const SizedBox(height: 10),
@@ -141,6 +115,31 @@ class _GuestBookState extends State<GuestBook> {
                       color: Colors.white38,
                       fontSize: 17,
                     ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        content: InfoToast(
+                          title: "GuestBook Message",
+                          body:
+                              "GuestBook is somewhat moderated, so try to keep it clean",
+                          widget: Icon(
+                            Iconsax.eye,
+                            size: 16,
+                            color: Colors.deepPurple,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  splashRadius: 24,
+                  icon: const Icon(
+                    Icons.info_outline,
+                    color: Colors.deepPurple,
                   ),
                 ),
               ],
@@ -173,8 +172,8 @@ class _GuestBookState extends State<GuestBook> {
                 ? MediaQuery.of(context).size.width / 1.3
                 : MediaQuery.of(context).size.width / 1.8,
             borderRadius: 8,
-            height: constraints.maxWidth < 800
-                ? MediaQuery.of(context).size.height / 3
+            height: constraints.maxWidth < 600
+                ? MediaQuery.of(context).size.height / 2.8
                 : MediaQuery.of(context).size.height / 3.2,
             blur: 20,
             border: 2,
@@ -348,20 +347,6 @@ class _GuestBookState extends State<GuestBook> {
                       ),
                     ),
                   ),
-                  // showSuccess == true
-                  //     ? Row(
-                  //         children: [
-                  //           const Icon(Icons.done_rounded,
-                  //               color: Color(0xff7fffd4)),
-                  //           Text(
-                  //             "Awesome, thats for checkin' my Guestbook.",
-                  //             style: GoogleFonts.roboto(
-                  //               color: Colors.deepPurple,
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       )
-                  //     : const SizedBox(),
                 ],
               ),
             ),

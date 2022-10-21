@@ -4,7 +4,6 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui' as ui;
-
 import '../../utils/footer.dart';
 import '../../widgets/reusable/chip_container.dart';
 
@@ -25,6 +24,8 @@ class _SocialTabState extends State<SocialTab> {
       'twitter',
       (int uid) => IFrameElement()
         ..src = "web/twitter.html"
+        ..width = '640'
+        ..height = '360'
         ..style.border = "none",
     );
     return Scaffold(
@@ -117,15 +118,14 @@ class _SocialTabState extends State<SocialTab> {
   }
 
   _twitterView() {
-    return Column(
-      children: const [
-        SizedBox(
-          height: 900,
-          child: HtmlElementView(
-            viewType: 'twitter',
-          ),
+    return Column(children: const [
+      SizedBox(
+        width: 640,
+        height: 360,
+        child: HtmlElementView(
+          viewType: 'twitter',
         ),
-      ],
-    );
+      ),
+    ]);
   }
 }

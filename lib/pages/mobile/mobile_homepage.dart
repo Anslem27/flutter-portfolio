@@ -12,6 +12,7 @@ import '../../services/github_service.dart';
 import '../../services/spotify_service.dart';
 import '../../utils/constants.dart';
 import '../../utils/footer.dart';
+import '../../utils/newsletter_card.dart';
 import '../../widgets/featured_card.dart';
 import '../../widgets/loader.dart';
 import '../../widgets/reusable/chip_container.dart';
@@ -54,7 +55,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
         const SizedBox(height: 20),
         _currentWorks(),
         const SizedBox(height: 20),
-        _directMail(),
+        const NewsLetterCard(),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.09,
           child: const Divider(),
@@ -115,7 +116,8 @@ class _MobileHomePageState extends State<MobileHomePage> {
       children: [
         Text(
           "Featured Projects",
-          style: GoogleFonts.nunitoSans(fontSize: 25, fontWeight: FontWeight.bold),
+          style:
+              GoogleFonts.nunitoSans(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
         ListView.builder(
@@ -151,7 +153,10 @@ class _MobileHomePageState extends State<MobileHomePage> {
             ),
             IconButton(
               splashRadius: 24,
-              onPressed: () {},
+              onPressed: () {
+                js.context.callMethod(
+                    'open', ["https://github.com/Anslem27?tab=repositories"]);
+              },
               icon: const Icon(
                 Icons.arrow_forward_outlined,
               ),
@@ -173,8 +178,8 @@ class _MobileHomePageState extends State<MobileHomePage> {
           children: [
             Text(
               "OpenSource Projects",
-              style:
-                  GoogleFonts.nunitoSans(fontSize: 25, fontWeight: FontWeight.bold),
+              style: GoogleFonts.nunitoSans(
+                  fontSize: 25, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 5),
             const ChipContainer(
@@ -266,92 +271,6 @@ class _MobileHomePageState extends State<MobileHomePage> {
     );
   }
 
-  _directMail() {
-    double boxSize =
-        MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
-            ? MediaQuery.of(context).size.width / 2
-            : MediaQuery.of(context).size.height / 2.5;
-    return Container(
-      width: double.maxFinite - 50,
-      height: boxSize - 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: const Color.fromARGB(255, 21, 21, 21),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 8.0, right: 8, bottom: 8, top: 15),
-            child: Text(
-              "Send me a direct message.",
-              textAlign: TextAlign.start,
-              style:
-                  GoogleFonts.roboto(fontSize: 22, fontWeight: FontWeight.w500),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8),
-            child: Text(
-              "Have something special to share, then write to me directly an share your thoughts",
-              maxLines: 2,
-              textAlign: TextAlign.start,
-              style: GoogleFonts.roboto(
-                color: Colors.white38,
-                fontSize: 16,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              margin: const EdgeInsets.only(left: 2, right: 8),
-              height: 50,
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.grey.shade900,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Expanded(
-                      child: Padding(
-                    padding: EdgeInsets.only(left: 8.0, bottom: 15),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Your message',
-                      ),
-                    ),
-                  )),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: const Color.fromARGB(255, 21, 21, 21),
-                      ),
-                      alignment: Alignment.center,
-                      child: const Padding(
-                        padding: EdgeInsets.only(left: 8.0, right: 8),
-                        child: Text("Submit"),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
   _footerSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -390,9 +309,16 @@ class _MobileHomePageState extends State<MobileHomePage> {
                     width: 25,
                   ),
                   const SizedBox(width: 4),
-                  ChipText(
-                    text: Constants.redditUserName,
-                    color: const Color(0xffff5700),
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    onTap: () {
+                      js.context.callMethod('open',
+                          ["https://www.reddit.com/user/Infamous-Date-355"]);
+                    },
+                    child: ChipText(
+                      text: Constants.redditUserName,
+                      color: const Color(0xffff5700),
+                    ),
                   ),
                 ],
               ),
@@ -413,9 +339,16 @@ class _MobileHomePageState extends State<MobileHomePage> {
                     width: 25,
                   ),
                   const SizedBox(width: 4),
-                  ChipText(
-                    text: Constants.twitterUserName,
-                    color: const Color(0xff00acee),
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    onTap: () {
+                      js.context.callMethod(
+                          'open', ["https://twitter.com/anslemAnsy"]);
+                    },
+                    child: ChipText(
+                      text: Constants.twitterUserName,
+                      color: const Color(0xff00acee),
+                    ),
                   ),
                 ],
               ),
@@ -425,14 +358,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
-            onTap: () async {
-              // var url =
-              //     Uri.parse(SpotifyService().getSpotifyUri().toString());
-              // print(url);
-              // if (!await launchUrl(url)) {
-              //   throw 'Could not launch $url';
-              // }
-            },
+            onTap: () async {},
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -443,21 +369,28 @@ class _MobileHomePageState extends State<MobileHomePage> {
                   width: 25,
                 ),
                 const SizedBox(width: 4),
-                FutureBuilder(
-                  future: SpotifyService().getUsername(),
-                  builder: (_, snapshot) {
-                    if (snapshot.hasData) {
-                      return ChipText(
-                        text: snapshot.data.toString(),
-                        color: const Color(0xff1DB954),
-                      );
-                    } else {
-                      return const ChipText(
-                        text: "Check out what am listening to...",
-                        color: Color(0xffffffff),
-                      );
-                    }
+                InkWell(
+                  onTap: () {
+                    js.context.callMethod('open', [
+                      "https://open.spotify.com/user/316mcic43djzxxpavdtc5ckm7eiu"
+                    ]);
                   },
+                  child: FutureBuilder(
+                    future: SpotifyService().getUsername(),
+                    builder: (_, snapshot) {
+                      if (snapshot.hasData) {
+                        return ChipText(
+                          text: snapshot.data.toString(),
+                          color: const Color(0xff1DB954),
+                        );
+                      } else {
+                        return const ChipText(
+                          text: "Check out what am listening to...",
+                          color: Color(0xffffffff),
+                        );
+                      }
+                    },
+                  ),
                 ),
               ],
             ),

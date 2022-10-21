@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/widgets/reusable/chip_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
-
 import '../pages/web/social_tab.dart';
 
-//TODO: Change text color onhover on footer items, plus format code to reduce redundancy
 class Footer extends StatelessWidget {
   const Footer({
     Key? key,
