@@ -21,7 +21,7 @@ class FancySnackBar extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.all(20.0),
-              height: 85,
+              height: 90,
               decoration: BoxDecoration(
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(20),
@@ -115,7 +115,7 @@ class InfoToast extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.all(20.0),
-              height: 85,
+              height: 90,
               decoration: BoxDecoration(
                 color: Colors.blue,
                 gradient: const LinearGradient(

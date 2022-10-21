@@ -418,21 +418,21 @@ class _GuestBookState extends State<GuestBook> {
             color: index.isEven ? Colors.deepPurple : const Color(0xff1DB954),
             icon: const Icon(Iconsax.book),
           ),
-          title: Text(doc["message"]),
+          title: Text(
+            doc["message"],
+            style: const TextStyle(color: Colors.white70),
+          ),
           subtitle: Padding(
             padding: const EdgeInsets.only(top: 3.0, bottom: 5),
-            child: Text(
-              doc["creation_date"],
-              style: const TextStyle(
-                color: Colors.grey,
-                overflow: TextOverflow.ellipsis,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5.0),
+              child: Text(
+                '${doc["user_name"]}  /  ${doc["creation_date"]}',
+                style: const TextStyle(
+                  color: Colors.white30,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-            ),
-          ),
-          trailing: Text(
-            doc["user_name"],
-            style: const TextStyle(
-              color: Colors.grey,
             ),
           ),
           onTap: onTap,

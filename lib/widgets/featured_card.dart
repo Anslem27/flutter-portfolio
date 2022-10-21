@@ -109,8 +109,9 @@ class MobileFeatureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OnHover(builder: (isHovered) {
-      return Padding(
+    return OnHover(
+      builder: (isHovered) {
+        return Padding(
           padding: const EdgeInsets.all(8.0),
           child: GlassmorphicContainer(
             padding: const EdgeInsets.all(8),
@@ -182,7 +183,9 @@ class MobileFeatureCard extends StatelessWidget {
                 ],
               ),
             ),
-          ));
-    });
+          ),
+        );
+      },
+    );
   }
 }

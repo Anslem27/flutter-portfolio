@@ -1,6 +1,10 @@
 // import 'dart:convert';
 // import 'package:http/http.dart' as http;
+// ignore_for_file: avoid_web_libraries_in_flutter
+
 import 'package:flutter/material.dart';
+import 'dart:js' as js;
+import 'package:glassmorphism/glassmorphism.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NewsLetterCard extends StatefulWidget {
@@ -16,85 +20,102 @@ class _NewsLetterCardState extends State<NewsLetterCard> {
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.maxFinite - 50,
-      //height: boxSize - 80,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: const Color.fromARGB(255, 21, 21, 21),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GlassmorphicContainer(
+        padding: const EdgeInsets.all(8),
+        width: MediaQuery.of(context).size.width / 1.1,
+        borderRadius: 8,
+        height: MediaQuery.of(context).size.height / 4.2,
+        blur: 20,
+        border: 2,
+        linearGradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color(0xFFffffff).withOpacity(0.1),
+              const Color(0xFFFFFFFF).withOpacity(0.05),
+            ],
+            stops: const [
+              0.1,
+              1
+            ]),
+        borderGradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xff7fffd4), Colors.blue, Colors.purple],
+        ),
+        child: _cardBody(),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 8.0, right: 8, bottom: 8, top: 15),
-            child: Text(
-              "Send me a direct message.",
-              textAlign: TextAlign.start,
-              style:
-                  GoogleFonts.roboto(fontSize: 22, fontWeight: FontWeight.w500),
+    );
+  }
+
+  _cardBody() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding:
+              const EdgeInsets.only(left: 8.0, right: 8, bottom: 8, top: 15),
+          child: Text(
+            "Send me a direct message.",
+            textAlign: TextAlign.start,
+            style:
+                GoogleFonts.roboto(fontSize: 22, fontWeight: FontWeight.w500),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8),
+          child: Text(
+            "Have something special to share, then write to me directly an share your thoughts",
+            maxLines: 2,
+            textAlign: TextAlign.start,
+            style: GoogleFonts.roboto(
+              color: Colors.white38,
+              fontSize: 16,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8),
-            child: Text(
-              "Have something special to share, then write to me directly an share your thoughts",
-              maxLines: 2,
-              textAlign: TextAlign.start,
-              style: GoogleFonts.roboto(
-                color: Colors.white38,
-                fontSize: 16,
-              ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            margin: const EdgeInsets.only(left: 2, right: 8),
+            height: 50,
+            width: double.maxFinite,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Colors.grey.shade900,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              margin: const EdgeInsets.only(left: 2, right: 8),
-              height: 50,
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.grey.shade900,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, bottom: 15),
-                    child: TextField(
-                      controller: messageController,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Your message',
-                      ),
-                    ),
-                  )),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: const Color.fromARGB(255, 21, 21, 21),
-                      ),
-                      alignment: Alignment.center,
-                      child: const Padding(
-                        padding: EdgeInsets.only(left: 8.0, right: 8),
-                        child: Text("Submit"),
-                      ),
-                    ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                splashColor: Colors.deepPurple,
+                onTap: () {
+                  js.context
+                      .callMethod('open', ["mailto:anslembarn@gmail.com"]);
+                },
+                child: Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: const Color.fromARGB(255, 21, 21, 21),
+                      gradient: const LinearGradient(colors: [
+                        Color(0xff7fffd4),
+                        Colors.blue,
+                        Colors.purple
+                      ])),
+                  alignment: Alignment.center,
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 8.0, right: 8),
+                    child: Text("Open Mail App"),
                   ),
-                ],
+                ),
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 
