@@ -361,9 +361,16 @@ class _HomePageViewState extends State<HomePageView> {
                     width: 25,
                   ),
                   const SizedBox(width: 4),
-                  ChipText(
-                    text: Constants.redditUserName,
-                    color: const Color(0xffff5700),
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    onTap: () {
+                      js.context.callMethod('open',
+                          ["https://www.reddit.com/user/Infamous-Date-355"]);
+                    },
+                    child: ChipText(
+                      text: Constants.redditUserName,
+                      color: const Color(0xffff5700),
+                    ),
                   ),
                 ],
               ),
@@ -384,9 +391,16 @@ class _HomePageViewState extends State<HomePageView> {
                     width: 25,
                   ),
                   const SizedBox(width: 4),
-                  ChipText(
-                    text: Constants.twitterUserName,
-                    color: const Color(0xff00acee),
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    onTap: () {
+                      js.context.callMethod(
+                          'open', ["https://twitter.com/anslemAnsy"]);
+                    },
+                    child: ChipText(
+                      text: Constants.twitterUserName,
+                      color: const Color(0xff00acee),
+                    ),
                   ),
                 ],
               ),
@@ -407,21 +421,28 @@ class _HomePageViewState extends State<HomePageView> {
                   width: 25,
                 ),
                 const SizedBox(width: 4),
-                FutureBuilder(
-                  future: SpotifyService().getUsername(),
-                  builder: (_, snapshot) {
-                    if (snapshot.hasData) {
-                      return ChipText(
-                        text: snapshot.data.toString(),
-                        color: const Color(0xff1DB954),
-                      );
-                    } else {
-                      return const ChipText(
-                        text: "Check out what am listening to...",
-                        color: Color(0xffffffff),
-                      );
-                    }
+                InkWell(
+                  onTap: () {
+                    js.context.callMethod('open', [
+                      "https://open.spotify.com/user/316mcic43djzxxpavdtc5ckm7eiu"
+                    ]);
                   },
+                  child: FutureBuilder(
+                    future: SpotifyService().getUsername(),
+                    builder: (_, snapshot) {
+                      if (snapshot.hasData) {
+                        return ChipText(
+                          text: snapshot.data.toString(),
+                          color: const Color(0xff1DB954),
+                        );
+                      } else {
+                        return const ChipText(
+                          text: "Check out what am listening to...",
+                          color: Color(0xffffffff),
+                        );
+                      }
+                    },
+                  ),
                 ),
               ],
             ),
