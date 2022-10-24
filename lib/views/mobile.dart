@@ -124,6 +124,8 @@ class _MobileViewState extends State<MobileView> {
   }
 }
 
+//page transion for mobile
+
 class Switchpage extends StatefulWidget {
   final String route;
   const Switchpage({super.key, required this.route});

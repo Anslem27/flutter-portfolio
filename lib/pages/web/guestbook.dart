@@ -368,7 +368,8 @@ class _GuestBookState extends State<GuestBook> {
                 itemBuilder: (_, index) {
                   return _guestDataListTile(
                     () {},
-                    // TODO: Activate to delete something as a means of moderation
+                    // TODO: Activate to delete something as a means of moderation.
+                    // Make firebase function to moderate
                     () async {
                       // await FirebaseFirestore.instance
                       //     .runTransaction((Transaction myTransaction) async {

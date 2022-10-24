@@ -2,6 +2,8 @@
 
 ### Personal developer portfolio WebApp wih [Flutter](https://flutter.dev)
 
+<img src="doc/show_case.png" alt="ShowCase Image">
+
 **Note**
 
 - Running with html renderer runs with multiple errors.

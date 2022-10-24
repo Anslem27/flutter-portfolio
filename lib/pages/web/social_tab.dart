@@ -7,6 +7,7 @@ import 'dart:ui' as ui;
 import '../../utils/footer.dart';
 import '../../widgets/reusable/chip_container.dart';
 
+//TODO: Fix Tweets View as it doesnt work ofter compiling a web release.
 class SocialTab extends StatefulWidget {
   const SocialTab({super.key});
 
@@ -18,6 +19,7 @@ class _SocialTabState extends State<SocialTab> {
   @override
   Widget build(BuildContext context) {
     //if you intend to switch twitter user, just configure the 'twitter.html' file.
+    // .web/twitter.html
 
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(

@@ -12,7 +12,7 @@ import '../../services/github_service.dart';
 import '../../services/spotify_service.dart';
 import '../../utils/constants.dart';
 import '../../utils/footer.dart';
-import '../../utils/newsletter_card.dart';
+import '../../utils/openMail_card.dart';
 import '../../widgets/featured_card.dart';
 import '../../widgets/loader.dart';
 import '../../widgets/reusable/chip_container.dart';
