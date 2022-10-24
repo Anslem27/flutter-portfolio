@@ -1,39 +1,84 @@
-# Anslem.io website written in [Flutter](https://flutter.dev)
-__Very Uustable__
-Running using html renderer
+# Anslem.io portfolio website.
 
-__Design inspired ♥ by [Leerob](https://github.com/leerob)__
+### Portfolio WebApp wih [Flutter](https://flutter.dev).
+
+**Note**
+
+- Running with html renderer runs with multiple errors.
+- MobileView may still have afew responsive issues.
+
+## **Design inspired ♥ by [Leerob](https://github.com/leerob)**
 
 ## Getting Started
 
+- Clone repo [here](https://github.com/)
+
+- [Guide](https://firebase.google.com/docs/flutter/setup)
+  `Setup new firebase app. `
+
+- SetUp Variables in constants file
+  `lib/utils/constants.dart`
+
+- SetUp spotify service [Setup personal api keys here](https://developer.spotify.com/)
+  `lib/services/`
+
 #### Running Locally
 
-__Clone repo [here](https://github.com/)__
-
 ```
+# Fetch packages
 flutter pub get
 
+# Run app on chrome
 flutter run -d chrome --web-renderer canvaskit
 
+# Build for deployment
 flutter build web --web-renderer canvaskit
 ```
 
-__Used Fonts__
+## Stack and Tools
 
-- Roboto
-- NunitoSans
+- [Flutter](https://flutter.dev/) - A Dart framework for cross-platform development.
+- [Responsive Framework](https://pub.dev/packages/responsive_framework) - A simple and easy to use responsive framework for flutter apps.
 
-### To Add
+<a href="https://github.com/Codelessly/ResponsiveFramework">
+  <img alt="Built Responsive"
+       src="https://raw.githubusercontent.com/Codelessly/ResponsiveFramework/master/packages/Built%20Responsive%20Badge.png"/>
+</a>
 
-- Add Snippets tab (basically carryig reusable code snippets used to  make the website)
-Courtesy of [The google fonts package](https://pub.dev/packages/google_fonts)
-<!-- Creative Portfolio https://github.com/iRaul/creative-portfolios -->
-<!-- Loading gif https://youtu.be/gxdOJv_RiHg -->
-<!-- Firebase hosting https://youtu.be/xJo7Mqse960 -->
-##### Build `flutter build web`
+## Project structure
 
-__flutter run -d chrome --web-renderer canvaskit__ or html renderer
+```
+$PROJECT_ROOT
+│   # App Animations
+├── lib/animations/
+│   # Data
+├── lib/data/
+│   # Models
+├── lib/models/
+│   # Pages
+├── lib/pages/
+│   # Screen View
+├── lib/screens/
+│   # Services
+├── lib/services/
+│   # Theme
+├── lib/theme/
+│   # Utils
+├── lib/utils/
+│   # Widgets
+|__ lib/widgets/
+```
 
-__WebSite View Count__
+## License
+
+### MIT License.
+
+You can create your own portfolio for free without notifying me by forking this project under the following condition:
+
+- Add a link to my [this portfolio.](https://anslem27.github.io/)
+
+### **WebSite View Count**
 
 <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fanslem27.github.io&count_bg=%23BB1313&title_bg=%23000000&icon=flutter.svg&icon_color=%235785DD&title=Viewer+Count&edge_flat=false"/></a>
+
+<p align="center">Contributions highly needed and appreciated.</p>
