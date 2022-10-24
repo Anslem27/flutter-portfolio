@@ -1,10 +1,9 @@
 Ensure that you reset the firebase settings within the app, before deploying your version.
-<!-- ///// -->
-You can't reuse it on your website.
+You can't my config on your website.
 
 You can create your own website for free without notifying me by forking this project under the following condition:
 
-- Attribution: You must give appropriate credit, provide a link to my homepage (https://www.craftz.dog/).
+- Attribution: You must give appropriate credit, provide a link to my homepage (https://anslem27.github.io/).
 - For example: This website is built based on the <a href='https://anslem27.github.io/' target='_blank'>Anslem Seguya's website</a>.
 
 ## Otherwise, the following license is applied to the source code:
