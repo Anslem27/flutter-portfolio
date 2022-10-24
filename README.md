@@ -1,6 +1,6 @@
-# Anslem.io portfolio website.
+# Anslem.io developer portfolio website
 
-### Portfolio WebApp wih [Flutter](https://flutter.dev).
+### Personal developer portfolio WebApp wih [Flutter](https://flutter.dev)
 
 **Note**
 
@@ -21,6 +21,8 @@
 
 - SetUp spotify service [Setup personal api keys here](https://developer.spotify.com/)
   `lib/services/`
+
+- Edit files respectively.
 
 #### Running Locally
 
