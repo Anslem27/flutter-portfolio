@@ -85,4 +85,4 @@ You can create your own portfolio for free without notifying me by forking this 
 
 <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fanslem27.github.io&count_bg=%23BB1313&title_bg=%23000000&icon=flutter.svg&icon_color=%235785DD&title=Viewer+Count&edge_flat=false"/></a>
 
-<p align="center">Contributions highly needed and appreciated.</p>
+<p align="center"> **Contributions highly needed and appreciated.** </p>
