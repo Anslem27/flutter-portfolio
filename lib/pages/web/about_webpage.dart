@@ -54,7 +54,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
     );
   }
 
-  _aboutbody() {
+   _aboutbody() {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

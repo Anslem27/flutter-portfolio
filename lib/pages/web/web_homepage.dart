@@ -13,7 +13,7 @@ import '../../data/data.dart';
 import '../../models/git_models.dart';
 import '../../services/github_service.dart';
 import '../../utils/footer.dart';
-import '../../utils/newsletter_card.dart';
+import '../../utils/openMail_card.dart';
 import '../../widgets/featured_card.dart';
 import '../../widgets/loader.dart';
 

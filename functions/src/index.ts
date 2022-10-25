@@ -17,14 +17,14 @@ var cors = require("cors");
 
 const corsHandler = cors({ origin: true });
 
-const _mailChimpId = "MY_MAIL_CHIMP_ID";  //audience id  //890fa8f697
-const _apiKey = "MY_API_KEY"; // 08d7810009197278501325c8d2a22349-us21
+const _mailChimpId = "MY_MAIL_CHIMP_ID";  
+const _apiKey = "MY_API_KEY"; 
 
 */
 var cors = require('cors');
 const corsHandler = cors({ origin: true });
-const _mailChimpId = "MY_MAIL_CHIMP_ID";  //audience id  //890fa8f697
-const _apiKey = "MY_API_KEY"; // 08d7810009197278501325c8d2a22349-us21
+const _mailChimpId = "MY_MAIL_CHIMP_ID";
+const _apiKey = "MY_API_KEY";
 let mailchimp: Mailchimp;
 try {
     mailchimp = new Mailchimp(_apiKey);
