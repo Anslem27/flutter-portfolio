@@ -88,9 +88,9 @@ class _SocialTabState extends State<SocialTab> {
             children: [
               Text(
                 "Twitter",
-                style: GoogleFonts.nunitoSans(
+                style: GoogleFonts.ubuntu(
                   fontWeight: FontWeight.bold,
-                  fontSize: 45,
+                  fontSize: 35,
                 ),
               ),
               const SizedBox(width: 4),

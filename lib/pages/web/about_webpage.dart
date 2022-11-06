@@ -2,6 +2,7 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/theme/colors.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:glassmorphism/glassmorphism.dart';
@@ -54,7 +55,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
     );
   }
 
-   _aboutbody() {
+  _aboutbody() {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,9 +91,9 @@ class _WebAboutPageState extends State<WebAboutPage> {
                   children: [
                     Text(
                       "About Me",
-                      style: GoogleFonts.nunitoSans(
+                      style: GoogleFonts.ubuntu(
                         fontWeight: FontWeight.bold,
-                        fontSize: 45,
+                        fontSize: 35,
                       ),
                     ),
                     const SizedBox(width: 4),
@@ -119,7 +120,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
       children: [
         Text(
           "Bio",
-          style: GoogleFonts.roboto(
+          style: GoogleFonts.ubuntu(
             fontWeight: FontWeight.bold,
             fontSize: 30,
           ),
@@ -130,7 +131,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
           child: RichText(
             text: TextSpan(
               text: 'Anslem Seguya ',
-              style: GoogleFonts.roboto(
+              style: GoogleFonts.ubuntu(
                 color: Colors.white38,
                 fontSize: 22,
               ),
@@ -153,37 +154,37 @@ class _WebAboutPageState extends State<WebAboutPage> {
           child: RichText(
             text: TextSpan(
               text:
-                  'Anslem Seguya is still a student at Kyamboggo University pursuing a bachelors degree in Information Technology and Computing',
-              style: GoogleFonts.roboto(
+                  'Anslem Seguya is still a student at Kyamboggo University pursuing a bachelors degree in Information Technology and Computing.',
+              style: GoogleFonts.ubuntu(
                 color: Colors.white38,
-                fontSize: 16,
+                fontSize: 15,
               ),
               children: <TextSpan>[
                 TextSpan(
                   text:
                       '\nWhile programming is my true desire and reason to exist,my ',
                   style:
-                      GoogleFonts.roboto(color: Colors.white54, fontSize: 16),
+                      GoogleFonts.ubuntu(color: Colors.white38, fontSize: 15),
                 ),
                 TextSpan(
                   text: 'family ',
-                  style: GoogleFonts.roboto(
-                      color: Colors.deepPurple, fontSize: 16),
+                  style: GoogleFonts.ubuntu(
+                      color: Colors.deepPurple, fontSize: 15),
                 ),
                 TextSpan(
                   text: 'and ',
                   style:
-                      GoogleFonts.roboto(color: Colors.white54, fontSize: 16),
+                      GoogleFonts.ubuntu(color: Colors.white38, fontSize: 15),
                 ),
                 TextSpan(
                   text: 'will to please my creator ',
-                  style: GoogleFonts.roboto(
+                  style: GoogleFonts.ubuntu(
                       color: Colors.deepPurple, fontSize: 16),
                 ),
                 TextSpan(
                   text: 'are the true foundations of my life.',
                   style:
-                      GoogleFonts.roboto(color: Colors.white54, fontSize: 16),
+                      GoogleFonts.roboto(color: Colors.white38, fontSize: 15),
                 ),
               ],
             ),
@@ -205,7 +206,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       js.context
-                          .callMethod('open', ['mailto:anslembarn@gmail.com']);
+                          .callMethod('open', ['mailto:${Constants.email}']);
                     },
                 ),
               ],
@@ -245,7 +246,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
         alignment: Alignment.center,
         padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
+          color: colors["primary"],
           borderRadius: BorderRadius.circular(5),
         ),
         child: InkWell(
@@ -261,7 +262,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
               const SizedBox(width: 5),
               Text(
                 text,
-                style: GoogleFonts.roboto(fontSize: 19),
+                style: GoogleFonts.roboto(fontSize: 19, color: Colors.black),
               )
             ],
           ),

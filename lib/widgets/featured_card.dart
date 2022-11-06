@@ -55,7 +55,7 @@ class FeatureCard extends StatelessWidget {
                     child: Text(
                       title,
                       overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.roboto(
+                      style: GoogleFonts.ubuntu(
                         fontWeight: FontWeight.bold,
                         fontSize: 22,
                       ),
@@ -67,9 +67,9 @@ class FeatureCard extends StatelessWidget {
                     textAlign: TextAlign.start,
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.roboto(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 18,
+                    style: GoogleFonts.ubuntu(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 16,
                     ),
                   ),
                   const Spacer(),
@@ -80,9 +80,9 @@ class FeatureCard extends StatelessWidget {
                     onPressed: onTap,
                     icon: const Icon(Icons.remove_red_eye_outlined,
                         color: Colors.white),
-                    label: const Text(
+                    label: Text(
                       "Read more",
-                      style: TextStyle(color: Colors.white),
+                      style: GoogleFonts.ubuntu(color: Colors.white),
                     ),
                   ),
                 ],

@@ -91,9 +91,9 @@ class _GuestBookState extends State<GuestBook> {
                   children: [
                     Text(
                       "GuestBook",
-                      style: GoogleFonts.nunitoSans(
+                      style: GoogleFonts.ubuntu(
                         fontWeight: FontWeight.bold,
-                        fontSize: 45,
+                        fontSize: 35,
                       ),
                     ),
                     const SizedBox(width: 4),
@@ -111,7 +111,7 @@ class _GuestBookState extends State<GuestBook> {
                   child: Text(
                     "This is where you can leave a message for future visitors, it could be anything,an appreciation,suggestion, make it memorable. Database courtesy of Firebase.",
                     textAlign: TextAlign.start,
-                    style: GoogleFonts.nunitoSans(
+                    style: GoogleFonts.ubuntu(
                       color: Colors.white38,
                       fontSize: 17,
                     ),
@@ -207,7 +207,7 @@ class _GuestBookState extends State<GuestBook> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Create memory,with Guestbook.",
-                      style: GoogleFonts.roboto(fontSize: 25),
+                      style: GoogleFonts.ubuntu(fontSize: 25),
                     ),
                   ),
                   Padding(

@@ -83,7 +83,7 @@ class Footer extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Text(
           title,
-          style: GoogleFonts.roboto(color: Colors.grey.shade800, fontSize: 16),
+          style: GoogleFonts.ubuntu(color: Colors.grey.shade800, fontSize: 16),
         ),
       ),
     );

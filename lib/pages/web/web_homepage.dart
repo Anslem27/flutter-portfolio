@@ -1,10 +1,12 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/services/spotify_service.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:flutter_portfolio/widgets/reusable/chip_container.dart';
 import 'package:flutter_portfolio/widgets/reusable/chip_text.dart';
+import 'package:glassmorphism/glassmorphism.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'dart:js' as js;
@@ -12,10 +14,12 @@ import '../../animations/on_hover.dart';
 import '../../data/data.dart';
 import '../../models/git_models.dart';
 import '../../services/github_service.dart';
+import '../../theme/colors.dart';
 import '../../utils/footer.dart';
 import '../../utils/openMail_card.dart';
 import '../../widgets/featured_card.dart';
 import '../../widgets/loader.dart';
+import '../../widgets/snackbars.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
@@ -57,6 +61,8 @@ class _HomePageViewState extends State<HomePageView> {
           SizedBox(height: MediaQuery.of(context).size.height * 0.11),
           _initialDescription(),
           SizedBox(height: MediaQuery.of(context).size.height * 0.09),
+          _checkOtherPortfolio(),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.09),
           _featuredCreations(),
           const SizedBox(height: 20),
           _currentWorks(),
@@ -68,6 +74,73 @@ class _HomePageViewState extends State<HomePageView> {
           ),
           _footerSection(),
         ],
+      ),
+    );
+  }
+
+  _checkOtherPortfolio() {
+    return Container(
+      margin: const EdgeInsets.only(left: 20, right: 20),
+      child: GlassmorphicContainer(
+        width: double.maxFinite,
+        height: 50,
+        borderRadius: 8,
+        alignment: Alignment.center,
+        linearGradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color(0xFFffffff).withOpacity(0.1),
+              const Color(0xFFFFFFFF).withOpacity(0.1),
+            ],
+            stops: const [
+              0.1,
+              1,
+            ]),
+        borderGradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Colors.transparent, Colors.transparent],
+        ),
+        border: 2,
+        blur: 20,
+        child: RichText(
+          text: TextSpan(
+            text: 'While you are here, why not take a tour of ',
+            style: GoogleFonts.ubuntu(
+              color: Colors.white,
+            ),
+            children: <TextSpan>[
+              TextSpan(
+                text: 'ansy.io',
+                style: GoogleFonts.ubuntu(color: Colors.blue),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    //js.context.callMethod('open', ["/"]);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        content: InfoToast(
+                          title: "ansy.io",
+                          body: "Soon to be released",
+                          widget: Icon(
+                            Iconsax.forbidden,
+                            size: 16,
+                            color: Colors.deepPurple,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+              ),
+              TextSpan(
+                text: " as well, plus sign my guestbook",
+                style: GoogleFonts.ubuntu(),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -86,9 +159,9 @@ class _HomePageViewState extends State<HomePageView> {
                 //individual text widgets for full control over text
                 Text(
                   Constants.name,
-                  style: GoogleFonts.nunitoSans(
+                  style: GoogleFonts.ubuntu(
                     fontWeight: FontWeight.bold,
-                    fontSize: 45,
+                    fontSize: 35,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -98,7 +171,7 @@ class _HomePageViewState extends State<HomePageView> {
                     Constants.description,
                     maxLines: 2,
                     textAlign: TextAlign.start,
-                    style: GoogleFonts.nunitoSans(
+                    style: GoogleFonts.ubuntu(
                       color: Colors.white38,
                       fontSize: 17,
                     ),
@@ -108,8 +181,9 @@ class _HomePageViewState extends State<HomePageView> {
                   Constants.moreDescription,
                   textAlign: TextAlign.start,
                   maxLines: 2,
-                  style: GoogleFonts.nunitoSans(
-                    color: Colors.grey,
+                  style: GoogleFonts.ubuntu(
+                    color: Colors.white38,
+                    fontSize: 17,
                   ),
                 ),
                 const SizedBox(height: 5),
@@ -135,10 +209,13 @@ class _HomePageViewState extends State<HomePageView> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Icon(Iconsax.location, color: Colors.deepPurple),
+        const Padding(
+          padding: EdgeInsets.only(top: 5.0),
+          child: Icon(Iconsax.location, color: Colors.deepPurple),
+        ),
         const SizedBox(width: 4),
         Padding(
-          padding: const EdgeInsets.only(top: 5.0),
+          padding: const EdgeInsets.only(top: 10.0),
           child: Text(
             Constants.location,
             textAlign: TextAlign.start,
@@ -227,14 +304,14 @@ class _HomePageViewState extends State<HomePageView> {
             Text(
               "Open Source Projects",
               style:
-                  GoogleFonts.lora(fontSize: 25, fontWeight: FontWeight.bold),
+                  GoogleFonts.ubuntu(fontSize: 25, fontWeight: FontWeight.bold),
             ),
             const SizedBox(width: 5),
             const ChipContainer(color: Colors.deepOrangeAccent, text: "Github"),
             const Spacer(),
-            const ChipText(
+            ChipText(
               text: "Up to date",
-              color: Color(0xff1DB954),
+              color: colors["primary"] as Color,
             ),
           ],
         ),
@@ -328,9 +405,9 @@ class _HomePageViewState extends State<HomePageView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "Social",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: GoogleFonts.ubuntu(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
         _socials(),
@@ -364,8 +441,9 @@ class _HomePageViewState extends State<HomePageView> {
                   InkWell(
                     splashColor: Colors.transparent,
                     onTap: () {
-                      js.context.callMethod('open',
-                          ["https://www.reddit.com/user/Infamous-Date-355"]);
+                      js.context.callMethod('open', [
+                        "https://www.reddit.com/user/${Constants.redditUserName}"
+                      ]);
                     },
                     child: ChipText(
                       text: Constants.redditUserName,
@@ -394,8 +472,8 @@ class _HomePageViewState extends State<HomePageView> {
                   InkWell(
                     splashColor: Colors.transparent,
                     onTap: () {
-                      js.context.callMethod(
-                          'open', ["https://twitter.com/anslemAnsy"]);
+                      js.context.callMethod('open',
+                          ["https://twitter.com/${Constants.twitterUserName}"]);
                     },
                     child: ChipText(
                       text: Constants.twitterUserName,
@@ -423,9 +501,7 @@ class _HomePageViewState extends State<HomePageView> {
                 const SizedBox(width: 4),
                 InkWell(
                   onTap: () {
-                    js.context.callMethod('open', [
-                      "https://open.spotify.com/user/316mcic43djzxxpavdtc5ckm7eiu"
-                    ]);
+                    js.context.callMethod('open', [Constants.spotifyUserLink]);
                   },
                   child: FutureBuilder(
                     future: SpotifyService().getUsername(),

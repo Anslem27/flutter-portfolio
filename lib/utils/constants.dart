@@ -4,6 +4,9 @@ class Constants {
   // name
   static var name = "Anslem Seguya";
 
+//email
+  static var email = "anslembarn@gmail.com";
+
 // intro description
   static var description =
       "I am a self taught software developer, with a special thing for the frontend.";
@@ -13,7 +16,7 @@ class Constants {
       "I have about 2 years of experience in mobile app development, particularly using cross platform frameworks.";
 
 //location
-  static var location = "Kampala Uganda";
+  static var location = "Kampala, Uganda";
 
   //profile image
   static var image =
@@ -36,6 +39,10 @@ class Constants {
 
   //git link
   static var githubLink = "https://github.com/$githubUserName";
+
+  //spotify user address
+  static var spotifyUserLink =
+      "https://open.spotify.com/user/316mcic43djzxxpavdtc5ckm7eiu";
 
 // work description
   static var workDescription =

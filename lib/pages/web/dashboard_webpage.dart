@@ -124,7 +124,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
                   "DashBoard",
                   style: GoogleFonts.nunitoSans(
                     fontWeight: FontWeight.bold,
-                    fontSize: 45,
+                    fontSize: 35,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -441,7 +441,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
             "Want to check out what am jamming to, here are my daily tracks, fetched directly using the spotify API.",
             maxLines: 2,
             textAlign: TextAlign.start,
-            style: GoogleFonts.roboto(
+            style: GoogleFonts.ubuntu(
               color: Colors.white38,
               fontSize: 16,
             ),
@@ -614,7 +614,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
                     "⚡ Mobile App frontEnd development, very interactive to say the very least. IOS & Android. As well as web Apps.",
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,
-                    style: GoogleFonts.roboto(
+                    style: GoogleFonts.ubuntu(
                       fontSize: 16,
                       color: Colors.white38,
                     ),
@@ -625,7 +625,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
                   child: Text(
                     "⚡ Integration of third party services in apps, such as API's.",
                     textAlign: TextAlign.start,
-                    style: GoogleFonts.roboto(
+                    style: GoogleFonts.ubuntu(
                       fontSize: 16,
                       color: Colors.white38,
                     ),
@@ -636,7 +636,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
                   child: Text(
                     "⚡ Quick learner, problem solver. The list is quite infinite. An one last thing am a redditor",
                     textAlign: TextAlign.start,
-                    style: GoogleFonts.roboto(
+                    style: GoogleFonts.ubuntu(
                       fontSize: 16,
                       color: Colors.white38,
                     ),

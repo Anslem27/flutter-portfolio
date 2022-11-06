@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ChipText extends StatelessWidget {
   final String text;
@@ -11,7 +12,7 @@ class ChipText extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8.0),
       child: Text(
         text,
-        style: TextStyle(color: color),
+        style: GoogleFonts.ubuntu(color: color),
       ),
     );
   }

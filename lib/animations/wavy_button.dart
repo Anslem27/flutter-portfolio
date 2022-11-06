@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' show pi;
 
+import '../theme/colors.dart';
+
 class PlayButton extends StatefulWidget {
   final bool initialIsPlaying;
   final String firstIcon;
@@ -15,7 +17,7 @@ class PlayButton extends StatefulWidget {
     this.initialIsPlaying = false,
     this.firstIcon = "assets/images/avatar.jpg",
     this.secondIcon =
-        const Icon(Icons.dark_mode_outlined, color: Colors.deepPurple),
+        const Icon(Icons.light_mode_outlined, color: Colors.black),
   }) : assert(onPressed != null);
 
   @override
@@ -115,7 +117,7 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
             ),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Theme.of(context).cardColor,
+              color: colors["primary"],
             ),
           ),
         ],
