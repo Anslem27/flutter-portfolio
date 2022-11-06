@@ -2,7 +2,7 @@
 
 ### Personal developer portfolio WebApp wih [Flutter](https://flutter.dev)
 
-<img src="doc/show_case.png" alt="ShowCase Image">
+<img src="doc/Screenshot 2022-11-06 230437.png" alt="ShowCase Image">
 
 **Note**
 
