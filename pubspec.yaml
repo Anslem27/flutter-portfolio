@@ -21,6 +21,7 @@ dependencies:
   spotify: ^0.8.0
   # UI
   loading_indicator: ^3.1.0
+  flip_card: ^0.6.0
   tab_indicator_styler: ^2.0.0
   glassmorphism: ^3.0.0
   iconsax: ^0.0.8

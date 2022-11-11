@@ -116,22 +116,8 @@ class _HomePageViewState extends State<HomePageView> {
                 style: GoogleFonts.ubuntu(color: Colors.blue),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    //js.context.callMethod('open', ["/"]);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        content: InfoToast(
-                          title: "ansy.io",
-                          body: "Soon to be released",
-                          widget: Icon(
-                            Iconsax.forbidden,
-                            size: 16,
-                            color: Colors.deepPurple,
-                          ),
-                        ),
-                      ),
-                    );
+                    js.context
+                        .callMethod('open', ["https://ansy-io.vercel.app/"]);
                   },
               ),
               TextSpan(

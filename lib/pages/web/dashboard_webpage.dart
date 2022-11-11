@@ -267,7 +267,6 @@ class _WebDashBoardState extends State<WebDashBoard> {
           if (snapshot.hasData) {
             var redditUserName = snapshot.data!.name;
             var karma = snapshot.data!.totalKarma;
-            //todo: make image load faster maybe use a cached network image
             var avatarImage = snapshot.data!.snoovatarImg;
 
             return Column(
