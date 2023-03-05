@@ -9,23 +9,6 @@
 - Running with html renderer runs with multiple errors.
 - MobileView may still have afew responsive issues.
 
-## **Design inspired ♥ by [Leerob](https://github.com/leerob)**
-
-## Getting Started
-
-- Clone repo [here](https://github.com/)
-
-- [Guide](https://firebase.google.com/docs/flutter/setup)
-  `Setup new firebase app. `
-
-- SetUp Variables in constants file
-  `lib/utils/constants.dart`
-
-- SetUp spotify service [Setup personal api keys here](https://developer.spotify.com/)
-  `lib/services/`
-
-- Edit files respectively.
-
 #### Running Locally
 
 ```

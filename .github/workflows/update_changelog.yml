@@ -1,0 +1,27 @@
+name: Update Changelog
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update_changelog:
+    runs-on: ubuntu-latest
+    steps:
+      # Check if the changelog file exists
+      - name: Check if changelog file exists
+        run: |
+          if [ ! -f CHANGELOG.md ]; then
+            touch CHANGELOG.md
+          fi
+      # Add a new entry to the changelog file
+      - name: Add new entry to changelog
+        run: |
+          # Extract the version from the pubspec.yaml file
+          version=$(grep "version" pubspec.yaml | awk '{print $2}' | tr -d '\n')
+          echo "## [$version] - $GITHUB_ACTOR" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "### Changes" >> CHANGELOG.md
+          git diff --name-only $GITHUB_BASE_REF $GITHUB_SHA | xargs -I{} sh -c "echo '- {}' >> CHANGELOG.md"
+          echo "" >> CHANGELOG.md

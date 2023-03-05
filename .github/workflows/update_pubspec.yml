@@ -1,0 +1,34 @@
+name: Update pubspec version
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update_version:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the repository
+      - uses: actions/checkout@v2
+
+      # Update the version in pubspec.yaml
+      - name: Update version
+        run: |
+          # Get the current version from pubspec.yaml
+          CURRENT_VERSION=$(grep version pubspec.yaml | awk '{print $2}')
+
+          # Increment the patch version
+          NEW_VERSION=$(echo $CURRENT_VERSION | awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{if(length($NF+1)>length($NF))$(NF-1)++; $NF=sprintf("%0*d", length($NF), ($NF+1)%(10^length($NF))); print}')
+
+          # Replace the version in pubspec.yaml with the new version
+          sed -i "s/$CURRENT_VERSION/$NEW_VERSION/g" pubspec.yaml
+
+      # Commit and push the changes
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add pubspec.yaml
+          git commit -m "Update version to $NEW_VERSION"
+          git push
