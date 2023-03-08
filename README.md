@@ -1,8 +1,4 @@
-# Anslem.io developer portfolio website
-
-### Personal developer portfolio WebApp wih [Flutter](https://flutter.dev)
-
-<img src="doc/show_case.png" alt="ShowCase Image">
+# Flutter portfolio website
 
 **Note**
 
@@ -56,13 +52,11 @@ $PROJECT_ROOT
 |__ lib/widgets/
 ```
 
-## License
-
 ### MIT License.
 
 You can create your own portfolio for free without notifying me by forking this project under the following condition:
 
-- Add a link to my [this portfolio.](https://anslem27.github.io/)
+- Add a link to this project.
 
 ### **WebSite View Count**
 
