@@ -1,32 +1,7 @@
-# Anslem.io
-
-### Personal developer portfolio WebApp wih [Flutter](https://flutter.dev)
-
-<img src="doc/Screenshot 2022-11-06 230437.png" alt="ShowCase Image">
-
 **Note**
 
 - Running with html renderer runs with multiple errors.
 - MobileView may still have afew responsive issues.
-
-## **Design inspired ♥ by [Leerob](https://github.com/leerob)**
-
-## Getting Started
-
-- Clone repo [here](https://github.com/Anslem27/Anslem.io)
-
-**If you wish to contribute to this particular repository, switch to `production branch` and make a pull request**
-
-- [Guide](https://firebase.google.com/docs/flutter/setup)
-  `Setup new firebase app. `
-
-- SetUp Variables in constants file
-  `lib/utils/constants.dart`
-
-- SetUp spotify service [Setup personal api keys here](https://developer.spotify.com/)
-  `lib/services/`
-
-- Edit files respectively.
 
 #### Running Locally
 
