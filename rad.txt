@@ -1,0 +1,10 @@
+Anslem Io callback Url
+
+https://anslem-io.firebaseapp.com/__/auth/handler
+
+DataBase variables
+message
+creation_date
+user_name
+
+https://youtu.be/fL8Ujzh5DQc

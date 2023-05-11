@@ -2,13 +2,17 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/theme/colors.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
+import '../../services/reddit_service.dart';
 import '../../utils/footer.dart';
+import '../../widgets/loader.dart';
 import '../../widgets/reusable/chip_container.dart';
+import 'package:flip_card/flip_card.dart';
 
 class WebAboutPage extends StatefulWidget {
   const WebAboutPage({super.key});
@@ -54,7 +58,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
     );
   }
 
-   _aboutbody() {
+  _aboutbody() {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,15 +94,15 @@ class _WebAboutPageState extends State<WebAboutPage> {
                   children: [
                     Text(
                       "About Me",
-                      style: GoogleFonts.nunitoSans(
+                      style: GoogleFonts.ubuntu(
                         fontWeight: FontWeight.bold,
-                        fontSize: 45,
+                        fontSize: 35,
                       ),
                     ),
                     const SizedBox(width: 4),
                     const Flexible(
                       child: ChipContainer(
-                        text: "Bio",
+                        text: "Tap Image for Easter Egg",
                         color: Colors.deepPurple,
                       ),
                     ),
@@ -119,7 +123,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
       children: [
         Text(
           "Bio",
-          style: GoogleFonts.roboto(
+          style: GoogleFonts.ubuntu(
             fontWeight: FontWeight.bold,
             fontSize: 30,
           ),
@@ -130,7 +134,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
           child: RichText(
             text: TextSpan(
               text: 'Anslem Seguya ',
-              style: GoogleFonts.roboto(
+              style: GoogleFonts.ubuntu(
                 color: Colors.white38,
                 fontSize: 22,
               ),
@@ -153,37 +157,37 @@ class _WebAboutPageState extends State<WebAboutPage> {
           child: RichText(
             text: TextSpan(
               text:
-                  'Anslem Seguya is still a student at Kyamboggo University pursuing a bachelors degree in Information Technology and Computing',
-              style: GoogleFonts.roboto(
+                  'Anslem Seguya is still a student at Kyamboggo University pursuing a bachelors degree in Information Technology and Computing.',
+              style: GoogleFonts.ubuntu(
                 color: Colors.white38,
-                fontSize: 16,
+                fontSize: 15,
               ),
               children: <TextSpan>[
                 TextSpan(
                   text:
                       '\nWhile programming is my true desire and reason to exist,my ',
                   style:
-                      GoogleFonts.roboto(color: Colors.white54, fontSize: 16),
+                      GoogleFonts.ubuntu(color: Colors.white38, fontSize: 15),
                 ),
                 TextSpan(
                   text: 'family ',
-                  style: GoogleFonts.roboto(
-                      color: Colors.deepPurple, fontSize: 16),
+                  style: GoogleFonts.ubuntu(
+                      color: Colors.deepPurple, fontSize: 15),
                 ),
                 TextSpan(
                   text: 'and ',
                   style:
-                      GoogleFonts.roboto(color: Colors.white54, fontSize: 16),
+                      GoogleFonts.ubuntu(color: Colors.white38, fontSize: 15),
                 ),
                 TextSpan(
                   text: 'will to please my creator ',
-                  style: GoogleFonts.roboto(
+                  style: GoogleFonts.ubuntu(
                       color: Colors.deepPurple, fontSize: 16),
                 ),
                 TextSpan(
                   text: 'are the true foundations of my life.',
                   style:
-                      GoogleFonts.roboto(color: Colors.white54, fontSize: 16),
+                      GoogleFonts.roboto(color: Colors.white38, fontSize: 15),
                 ),
               ],
             ),
@@ -205,7 +209,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       js.context
-                          .callMethod('open', ['mailto:anslembarn@gmail.com']);
+                          .callMethod('open', ['mailto:${Constants.email}']);
                     },
                 ),
               ],
@@ -245,7 +249,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
         alignment: Alignment.center,
         padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
+          color: colors["primary"],
           borderRadius: BorderRadius.circular(5),
         ),
         child: InkWell(
@@ -261,7 +265,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
               const SizedBox(width: 5),
               Text(
                 text,
-                style: GoogleFonts.roboto(fontSize: 19),
+                style: GoogleFonts.roboto(fontSize: 19, color: Colors.black),
               )
             ],
           ),
@@ -272,45 +276,94 @@ class _WebAboutPageState extends State<WebAboutPage> {
 
   _topImage() {
     return LayoutBuilder(builder: (_, constraints) {
-      return GlassmorphicContainer(
-        padding: const EdgeInsets.all(8),
-        height: MediaQuery.of(context).size.height / 1.3,
-        width: constraints.maxWidth < 600
-            ? double.maxFinite
-            : MediaQuery.of(context).size.width * 0.48,
-        borderRadius: 8,
-        blur: 20,
-        border: 5,
-        linearGradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              const Color(0xFFffffff).withOpacity(0.1),
-              const Color(0xFFFFFFFF).withOpacity(0.05),
-            ],
-            stops: const [
-              0.1,
-              1
-            ]),
-        borderGradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xff7fffd4), Colors.blue, Colors.purple],
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            image: DecorationImage(
-              image: const AssetImage("assets/images/1.jpg"),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.8),
-                BlendMode.dstATop,
+      return FlipCard(
+          fill: Fill
+              .fillBack, // Fill the back side of the card to make in the same size as the front.
+          direction: FlipDirection.HORIZONTAL, // default
+          front: GlassmorphicContainer(
+            padding: const EdgeInsets.all(8),
+            height: MediaQuery.of(context).size.height / 1.3,
+            width: constraints.maxWidth < 600
+                ? double.maxFinite
+                : MediaQuery.of(context).size.width * 0.48,
+            borderRadius: 8,
+            blur: 20,
+            border: 5,
+            linearGradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  const Color(0xFFffffff).withOpacity(0.1),
+                  const Color(0xFFFFFFFF).withOpacity(0.05),
+                ],
+                stops: const [
+                  0.1,
+                  1
+                ]),
+            borderGradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xff7fffd4), Colors.blue, Colors.purple],
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(
+                  image: const AssetImage("assets/images/1.jpg"),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.8),
+                    BlendMode.dstATop,
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      );
+          back: FutureBuilder(
+              future: fetchRedditInfo(),
+              builder: (_, snapshot) {
+                if (snapshot.hasData) {
+                  var avatarImage = snapshot.data!.snoovatarImg;
+
+                  return GlassmorphicContainer(
+                    padding: const EdgeInsets.all(8),
+                    height: MediaQuery.of(context).size.height / 1.3,
+                    width: constraints.maxWidth < 600
+                        ? double.maxFinite
+                        : MediaQuery.of(context).size.width * 0.48,
+                    borderRadius: 8,
+                    blur: 20,
+                    border: 5,
+                    linearGradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          const Color(0xFFffffff).withOpacity(0.1),
+                          const Color(0xFFFFFFFF).withOpacity(0.05),
+                        ],
+                        stops: const [
+                          0.1,
+                          1
+                        ]),
+                    borderGradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Color(0xff7fffd4), Colors.blue, Colors.purple],
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        image: DecorationImage(
+                          image: NetworkImage(avatarImage as String),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  );
+                } else {
+                  return const SizedBox(height: 25, child: Loader());
+                }
+              }));
     });
   }
 }

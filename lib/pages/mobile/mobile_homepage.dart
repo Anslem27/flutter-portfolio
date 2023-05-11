@@ -79,7 +79,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
         ),
         Text(
           Constants.name,
-          style: GoogleFonts.roboto(
+          style: GoogleFonts.ubuntu(
             fontWeight: FontWeight.bold,
             fontSize: 32,
           ),
@@ -91,7 +91,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
             Constants.description,
             maxLines: 2,
             textAlign: TextAlign.start,
-            style: GoogleFonts.roboto(
+            style: GoogleFonts.ubuntu(
               fontSize: 16,
             ),
           ),
@@ -102,7 +102,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
             Constants.moreDescription,
             textAlign: TextAlign.start,
             maxLines: 2,
-            style: GoogleFonts.roboto(color: Colors.grey, fontSize: 15),
+            style: GoogleFonts.ubuntu(color: Colors.grey, fontSize: 15),
           ),
         ),
       ],
@@ -178,8 +178,8 @@ class _MobileHomePageState extends State<MobileHomePage> {
           children: [
             Text(
               "OpenSource Projects",
-              style: GoogleFonts.nunitoSans(
-                  fontSize: 25, fontWeight: FontWeight.bold),
+              style:
+                  GoogleFonts.ubuntu(fontSize: 25, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 5),
             const ChipContainer(
@@ -312,8 +312,9 @@ class _MobileHomePageState extends State<MobileHomePage> {
                   InkWell(
                     splashColor: Colors.transparent,
                     onTap: () {
-                      js.context.callMethod('open',
-                          ["https://www.reddit.com/user/Infamous-Date-355"]);
+                      js.context.callMethod('open', [
+                        "https://www.reddit.com/user/${Constants.redditUserName}"
+                      ]);
                     },
                     child: ChipText(
                       text: Constants.redditUserName,
@@ -342,8 +343,8 @@ class _MobileHomePageState extends State<MobileHomePage> {
                   InkWell(
                     splashColor: Colors.transparent,
                     onTap: () {
-                      js.context.callMethod(
-                          'open', ["https://twitter.com/anslemAnsy"]);
+                      js.context.callMethod('open',
+                          ["https://twitter.com/${Constants.twitterUserName}"]);
                     },
                     child: ChipText(
                       text: Constants.twitterUserName,
@@ -371,9 +372,8 @@ class _MobileHomePageState extends State<MobileHomePage> {
                 const SizedBox(width: 4),
                 InkWell(
                   onTap: () {
-                    js.context.callMethod('open', [
-                      "https://open.spotify.com/user/316mcic43djzxxpavdtc5ckm7eiu"
-                    ]);
+                    js.context
+                        .callMethod('open', [(Constants.spotifyUserLink)]);
                   },
                   child: FutureBuilder(
                     future: SpotifyService().getUsername(),

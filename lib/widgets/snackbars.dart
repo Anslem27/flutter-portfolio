@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,7 +37,7 @@ class FancySnackBar extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: GoogleFonts.roboto(
+                          style: GoogleFonts.ubuntu(
                             fontSize: constraints.maxWidth < 600 ? 19 : 22,
                             color: Colors.black,
                           ),
@@ -46,7 +48,7 @@ class FancySnackBar extends StatelessWidget {
                             textAlign: TextAlign.center,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: GoogleFonts.ubuntu(
                               color: Colors.black,
                               fontSize: constraints.maxWidth < 600 ? 12 : 16,
                             ),
@@ -131,7 +133,7 @@ class InfoToast extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: GoogleFonts.roboto(
+                          style: GoogleFonts.ubuntu(
                             fontSize: constraints.maxWidth < 600 ? 19 : 22,
                             color: Colors.black,
                           ),
@@ -142,7 +144,7 @@ class InfoToast extends StatelessWidget {
                             textAlign: TextAlign.center,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: GoogleFonts.ubuntu(
                               color: Colors.black,
                               fontSize: constraints.maxWidth < 600 ? 12 : 16,
                             ),

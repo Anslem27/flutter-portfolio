@@ -1,6 +1,4 @@
-// import 'dart:convert';
-// import 'package:http/http.dart' as http;
-// ignore_for_file: avoid_web_libraries_in_flutter
+// ignore_for_file: avoid_web_libraries_in_flutter, file_names
 
 import 'package:flutter/material.dart';
 import 'dart:js' as js;
@@ -24,7 +22,7 @@ class _NewsLetterCardState extends State<NewsLetterCard> {
       padding: const EdgeInsets.all(8.0),
       child: GlassmorphicContainer(
         padding: const EdgeInsets.all(8),
-        width: MediaQuery.of(context).size.width / 1.1,
+        width: MediaQuery.of(context).size.width / 1.5,
         borderRadius: 8,
         height: MediaQuery.of(context).size.height / 4.2,
         blur: 20,
@@ -34,7 +32,7 @@ class _NewsLetterCardState extends State<NewsLetterCard> {
             end: Alignment.bottomRight,
             colors: [
               const Color(0xFFffffff).withOpacity(0.1),
-              const Color(0xFFFFFFFF).withOpacity(0.05),
+              const Color(0xFFffffff).withOpacity(0.1),
             ],
             stops: const [
               0.1,
@@ -55,66 +53,77 @@ class _NewsLetterCardState extends State<NewsLetterCard> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding:
-              const EdgeInsets.only(left: 8.0, right: 8, bottom: 8, top: 15),
-          child: Text(
-            "Send me a direct message.",
-            textAlign: TextAlign.start,
-            style:
-                GoogleFonts.roboto(fontSize: 22, fontWeight: FontWeight.w500),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0, right: 8),
-          child: Text(
-            "Have something special to share, then write to me directly an share your thoughts",
-            maxLines: 2,
-            textAlign: TextAlign.start,
-            style: GoogleFonts.roboto(
-              color: Colors.white38,
-              fontSize: 16,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            margin: const EdgeInsets.only(left: 2, right: 8),
-            height: 50,
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Colors.grey.shade900,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                splashColor: Colors.deepPurple,
-                onTap: () {
-                  js.context
-                      .callMethod('open', ["mailto:anslembarn@gmail.com"]);
-                },
-                child: Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: const Color.fromARGB(255, 21, 21, 21),
-                      gradient: const LinearGradient(colors: [
-                        Color(0xff7fffd4),
-                        Colors.blue,
-                        Colors.purple
-                      ])),
-                  alignment: Alignment.center,
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 8.0, right: 8),
-                    child: Text("Open Mail App"),
+        Container(
+          margin: const EdgeInsets.only(left: 10, right: 10),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 8.0, right: 8, bottom: 8, top: 15),
+                child: Text(
+                  "Send me a direct message.",
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.ubuntu(
+                      fontSize: 18, fontWeight: FontWeight.w500),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8),
+                child: Text(
+                  "Have something special to share, then write to me directly an share your thoughts.",
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.roboto(
+                    color: Colors.white38,
+                    fontSize: 14,
                   ),
                 ),
               ),
-            ),
+              Container(
+                margin: const EdgeInsets.only(left: 25, right: 25),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 2, right: 8),
+                    height: 50,
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.grey.shade900,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        splashColor: Colors.deepPurple,
+                        onTap: () {
+                          js.context.callMethod(
+                              'open', ["mailto:anslembarn@gmail.com"]);
+                        },
+                        child: Container(
+                          height: 40,
+                          width: MediaQuery.of(context).size.width / 4.5,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: const Color.fromARGB(255, 21, 21, 21),
+                              gradient: const LinearGradient(colors: [
+                                Color(0xff7fffd4),
+                                Colors.blue,
+                                Colors.purple
+                              ])),
+                          alignment: Alignment.center,
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 8.0, right: 8),
+                            child: Text("Open Mail App"),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
-        )
+        ),
       ],
     );
   }

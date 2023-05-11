@@ -189,10 +189,9 @@ packages:
     dependency: transitive
     description:
       name: firebase_storage_web
-      sha256: bd89a28c58d4f18ff5d9b4e3358520a5540800d933709bb2c1ff36b83e396f09
-      url: "https://pub.dev"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.5.0"
+    version: "3.3.9"
   flutter:
     dependency: "direct main"
     description: flutter
