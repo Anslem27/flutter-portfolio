@@ -17,7 +17,7 @@ class PlayButton extends StatefulWidget {
     this.initialIsPlaying = false,
     this.firstIcon = "assets/images/avatar.jpg",
     this.secondIcon =
-        const Icon(Icons.light_mode_outlined, color: Colors.black),
+        const Icon(Icons.light_mode_outlined, color: Colors.black,size: 20),
   }) : assert(onPressed != null);
 
   @override
@@ -75,7 +75,7 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
           ? InkWell(
               onTap: _onToggle,
               child: CircleAvatar(
-                radius: 50,
+                radius: 45,
                 backgroundImage: AssetImage(
                   widget.firstIcon,
                 ),

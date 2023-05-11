@@ -19,7 +19,6 @@ import '../../utils/footer.dart';
 import '../../utils/openMail_card.dart';
 import '../../widgets/featured_card.dart';
 import '../../widgets/loader.dart';
-import '../../widgets/snackbars.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
