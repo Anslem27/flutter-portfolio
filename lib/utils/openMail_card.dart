@@ -22,7 +22,7 @@ class _NewsLetterCardState extends State<NewsLetterCard> {
       padding: const EdgeInsets.all(8.0),
       child: GlassmorphicContainer(
         padding: const EdgeInsets.all(8),
-        width: MediaQuery.of(context).size.width / 1.1,
+        width: MediaQuery.of(context).size.width / 1.5,
         borderRadius: 8,
         height: MediaQuery.of(context).size.height / 4.2,
         blur: 20,
@@ -64,7 +64,7 @@ class _NewsLetterCardState extends State<NewsLetterCard> {
                   "Send me a direct message.",
                   textAlign: TextAlign.start,
                   style: GoogleFonts.ubuntu(
-                      fontSize: 22, fontWeight: FontWeight.w500),
+                      fontSize: 18, fontWeight: FontWeight.w500),
                 ),
               ),
               Padding(
@@ -75,7 +75,7 @@ class _NewsLetterCardState extends State<NewsLetterCard> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(
                     color: Colors.white38,
-                    fontSize: 16,
+                    fontSize: 14,
                   ),
                 ),
               ),
@@ -101,6 +101,7 @@ class _NewsLetterCardState extends State<NewsLetterCard> {
                         },
                         child: Container(
                           height: 40,
+                          width: MediaQuery.of(context).size.width / 4.5,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: const Color.fromARGB(255, 21, 21, 21),
