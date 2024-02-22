@@ -69,7 +69,7 @@ class _WebViewState extends State<WebView> with TickerProviderStateMixin {
     return Expanded(
       child: GlassmorphicContainer(
         width: double.maxFinite,
-        height: 50,
+        height: 45,
         borderRadius: 8,
         alignment: Alignment.center,
         linearGradient: LinearGradient(

@@ -1,4 +1,5 @@
 /// base class for constant variables
+library;
 
 class Constants {
   /// name
@@ -20,7 +21,7 @@ class Constants {
 
   /// profile image
   static var image =
-      "https://raw.githubusercontent.com/Anslem27/Anslem27.github.io/main/assets/assets/images/me.jpg";
+      "https://raw.githubusercontent.com/Anslem27/Anslem27.github.io/main/assets/assets/images/me.jpeg";
 
   /// reditUserName
   static var redditUserName = "Infamous-Date-355";

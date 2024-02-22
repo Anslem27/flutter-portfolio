@@ -6,8 +6,8 @@ import 'dart:js' as js;
 
 class Footer extends StatelessWidget {
   const Footer({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class Footer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _footerItem("Twitter", () {
-              js.context.callMethod('open', ["https://twitter.com/anslemAnsy"]);
+              js.context.callMethod('open', ["https://twitter.com/"]);
             }),
             _footerItem("Github", () {
               js.context.callMethod('open', ["https://github.com/Anslem27"]);
@@ -45,10 +45,10 @@ class Footer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Divider(),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   Text("Made with 🤟♥ in Flutter"),
                 ],
               ),

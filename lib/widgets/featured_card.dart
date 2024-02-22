@@ -81,7 +81,7 @@ class FeatureCard extends StatelessWidget {
                     icon: const Icon(Icons.remove_red_eye_outlined,
                         color: Colors.white),
                     label: Text(
-                      "Read more",
+                      "Check it out",
                       style: GoogleFonts.ubuntu(color: Colors.white),
                     ),
                   ),
@@ -176,7 +176,7 @@ class MobileFeatureCard extends StatelessWidget {
                     icon: const Icon(Icons.remove_red_eye_outlined,
                         color: Colors.white),
                     label: const Text(
-                      "Read more",
+                      "Check it out",
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

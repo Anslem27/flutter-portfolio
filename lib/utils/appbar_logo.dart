@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
 
 class NavBarLogo extends StatelessWidget {
-  const NavBarLogo({Key? key}) : super(key: key);
+  const NavBarLogo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,14 @@ class NavBarLogo extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset("./assets/icons/rabbit.png"),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Image.asset(
+                "./assets/images/me.jpeg",
+                height: 25,
+              ),
+            ),
+            const SizedBox(width: 3),
             Text("Anslem", style: GoogleFonts.poorStory(fontSize: 22)),
           ],
         ),

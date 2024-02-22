@@ -3,9 +3,9 @@ import 'package:spotify/spotify.dart';
 // Play More with the Spotify API here
 // to fetch prefered playlists
 
-//TODO: Fetch recently played from personal account, rather than setting up const variables
+//Fetch recently played from personal account, rather than setting up const variables
 class SpotifyService {
-  //TODO: Add client secret and id here
+  //Add client secret and id here
   static var credentials = SpotifyApiCredentials(
       '6ac6511f2ed1432e9917624fc7a67bef', 'd6331f83644e4d93b27f63bd97da3f3c');
   //static var credentials = SpotifyApiCredentials('CLIENT_ID', 'CLIENT_SECRET');
@@ -22,7 +22,7 @@ class SpotifyService {
   }
 
 // Get Spotify UserUrl
-//TODO: Add Spotify(personal) User ID.
+// Add Spotify(personal) User ID.
   getUserSpotifyUri() async {
     var userAccount = await spotify.users.get('316mcic43djzxxpavdtc5ckm7eiu');
     var spotifyUri = userAccount.uri;

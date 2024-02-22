@@ -113,11 +113,11 @@ class _MobileViewState extends State<MobileView> {
   }
 
   _mobileBody() {
-    return Column(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      children: const [
+      children: [
         Expanded(child: MobileHomePage()),
       ],
     );

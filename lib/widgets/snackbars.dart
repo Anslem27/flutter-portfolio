@@ -8,8 +8,7 @@ class FancySnackBar extends StatelessWidget {
   final String title, body;
   final Widget widget;
   const FancySnackBar(
-      {Key? key, required this.body, required this.title, required this.widget})
-      : super(key: key);
+      {super.key, required this.body, required this.title, required this.widget});
 
   @override
   Widget build(BuildContext context) {
@@ -102,8 +101,7 @@ class InfoToast extends StatelessWidget {
   final String title, body;
   final Widget widget;
   const InfoToast(
-      {Key? key, required this.body, required this.title, required this.widget})
-      : super(key: key);
+      {super.key, required this.body, required this.title, required this.widget});
 
   @override
   Widget build(BuildContext context) {

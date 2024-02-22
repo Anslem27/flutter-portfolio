@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/widgets/loader.dart';
 import 'package:glassmorphism/glassmorphism.dart';
@@ -10,6 +11,7 @@ import '../../utils/footer.dart';
 import 'package:intl/intl.dart';
 import '../../widgets/reusable/chip_container.dart';
 import '../../widgets/snackbars.dart';
+import 'package:email_validator/email_validator.dart';
 
 class GuestBook extends StatefulWidget {
   const GuestBook({super.key});
@@ -21,6 +23,9 @@ class GuestBook extends StatefulWidget {
 class _GuestBookState extends State<GuestBook> {
   final guestmessageController = TextEditingController();
   final nameController = TextEditingController();
+  final guestEmailController = TextEditingController();
+
+  final detailsForm = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -66,7 +71,8 @@ class _GuestBookState extends State<GuestBook> {
           SizedBox(height: MediaQuery.of(context).size.height * 0.11),
           _topText(),
           const SizedBox(height: 20),
-          _logBookSection(guestmessageController, nameController),
+          _logBookSection(
+              guestmessageController, nameController, guestEmailController),
           SizedBox(height: MediaQuery.of(context).size.height * 0.11),
           const Footer()
         ],
@@ -150,8 +156,10 @@ class _GuestBookState extends State<GuestBook> {
     );
   }
 
-  _logBookSection(TextEditingController guestmessageController,
-      TextEditingController nameController) {
+  _logBookSection(
+      TextEditingController guestmessageController,
+      TextEditingController nameController,
+      TextEditingController emailController) {
     //date variables
     DateTime now = DateTime.now();
     String date = DateFormat('dd').format(now);
@@ -161,197 +169,254 @@ class _GuestBookState extends State<GuestBook> {
     //
     // ignore: unused_local_variable
     bool showSuccess = false;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        LayoutBuilder(builder: (_, constraints) {
-          return GlassmorphicContainer(
-            padding: const EdgeInsets.all(8),
-            width: constraints.maxWidth < 800
-                ? MediaQuery.of(context).size.width / 1.3
-                : MediaQuery.of(context).size.width / 1.8,
-            borderRadius: 8,
-            height: constraints.maxWidth < 600
-                ? MediaQuery.of(context).size.height / 2.8
-                : MediaQuery.of(context).size.height / 3.2,
-            blur: 20,
-            border: 2,
-            linearGradient: LinearGradient(
+        Form(
+          key: detailsForm,
+          child: LayoutBuilder(builder: (_, constraints) {
+            return GlassmorphicContainer(
+              padding: const EdgeInsets.all(8),
+              width: constraints.maxWidth < 800
+                  ? MediaQuery.of(context).size.width / 1.3
+                  : MediaQuery.of(context).size.width / 1.8,
+              borderRadius: 8,
+              height: constraints.maxWidth < 600
+                  ? MediaQuery.of(context).size.height / 2.1
+                  : MediaQuery.of(context).size.height / 2.5,
+              blur: 20,
+              border: 2,
+              linearGradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    const Color(0xFFffffff).withOpacity(0.1),
+                    const Color(0xFFFFFFFF).withOpacity(0.05),
+                  ],
+                  stops: const [
+                    0.1,
+                    1
+                  ]),
+              borderGradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  const Color(0xFFffffff).withOpacity(0.1),
-                  const Color(0xFFFFFFFF).withOpacity(0.05),
+                  Color(0xff7fffd4),
+                  Colors.blue,
+                  Colors.purple,
                 ],
-                stops: const [
-                  0.1,
-                  1
-                ]),
-            borderGradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xff7fffd4),
-                Colors.blue,
-                Colors.purple,
-              ],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 8),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Create memory,with Guestbook.",
-                      style: GoogleFonts.ubuntu(fontSize: 25),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 8),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Create memory,with Guestbook.",
+                        style: GoogleFonts.ubuntu(fontSize: 25),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
-                    child: Text(
-                      "Share a message for future visitors to the website.",
-                      style: GoogleFonts.roboto(),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+                      child: Text(
+                        "Share a message for future visitors to the website.",
+                        style: GoogleFonts.roboto(),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Container(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Colors.black,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: TextField(
-                                  controller: guestmessageController,
-                                  keyboardType: TextInputType.multiline,
-                                  decoration: const InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Your message',
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: Colors.black,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: TextFormField(
+                                    controller: guestmessageController,
+                                    keyboardType: TextInputType.multiline,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please provide a message';
+                                      } else if (!RegExp(r'^[a-zA-Z0-9\s]+$')
+                                          .hasMatch(value)) {
+                                        return 'Please provide a valid message';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: const InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: 'Your message',
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Container(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Colors.black,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: TextField(
-                                  controller: nameController,
-                                  decoration: const InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Your name',
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: Colors.black,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: TextFormField(
+                                    controller: nameController,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter your name';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: const InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: 'Your name',
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, bottom: 8),
-                    child: InkWell(
-                      splashColor: Colors.deepPurple,
-                      onTap: () async {
-                        if (guestmessageController.text.isEmpty ||
-                            nameController.text.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              backgroundColor: Colors.transparent,
-                              elevation: 0,
-                              content: FancySnackBar(
-                                title: "Error",
-                                body: "Please fill in all fields",
-                                widget: Icon(
-                                  Icons.error_outline,
-                                  size: 16,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          );
-                        } else {
-                          FirebaseFirestore.instance
-                              .collection("Guests")
-                              .add({
-                                "message": guestmessageController.text,
-                                "user_name": nameController.text,
-                                "creation_date": formattedDate
-                              })
-                              .then((value) {})
-                              .catchError(
-                                (onError) {
-                                  throw Exception();
-                                },
-                              );
-
-                          setState(() {
-                            showSuccess = true;
-                            nameController.clear();
-                            guestmessageController.clear();
-                          });
-
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              backgroundColor: Colors.transparent,
-                              elevation: 0,
-                              content: InfoToast(
-                                title: "Hooray!!",
-                                body: "Thanks for signing my guestbook.",
-                                widget: Icon(
-                                  Icons.favorite_border,
-                                  size: 16,
-                                  color: Colors.greenAccent,
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                      },
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
                       child: Container(
-                        height: 40,
-                        width: 150,
+                        padding: const EdgeInsets.only(bottom: 8),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.black,
                         ),
-                        alignment: Alignment.center,
-                        child: const Padding(
-                          padding: EdgeInsets.only(left: 8.0, right: 8),
-                          child: Text("Submit"),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: TextFormField(
+                            controller: emailController,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Your email please, if you dont mind.',
+                            ),
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter your email';
+                              }
+                              if (!EmailValidator.validate(value)) {
+                                return 'Please enter a valid email';
+                              }
+                              return null;
+                            },
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, bottom: 8),
+                      child: InkWell(
+                        splashColor: Colors.deepPurple,
+                        onTap: () async {
+                          // validate form
+                          if (detailsForm.currentState!.validate()) {
+                            try {
+                              FirebaseFirestore.instance
+                                  .collection("Guests")
+                                  .add({
+                                    "message": guestmessageController.text,
+                                    "user_name": nameController.text,
+                                    "creation_date": formattedDate,
+                                    "guestEmail":
+                                        guestEmailController.text.trim(),
+                                  })
+                                  .then((value) {})
+                                  .catchError(
+                                    (onError) {
+                                      throw Exception();
+                                    },
+                                  );
+
+                              setState(() {
+                                showSuccess = true;
+                                nameController.clear();
+                                guestmessageController.clear();
+                                guestEmailController.clear();
+                              });
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 0,
+                                  content: InfoToast(
+                                    title: "Hooray!!",
+                                    body: "Thanks for signing my guestbook.",
+                                    widget: Icon(
+                                      Icons.favorite_border,
+                                      size: 16,
+                                      color: Colors.greenAccent,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            } on Exception catch (e) {
+                              if (kDebugMode) {
+                                print(e);
+                              }
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 0,
+                                  content: FancySnackBar(
+                                    title: "Yikes!!",
+                                    body: "Something unexpected happened",
+                                    widget: Icon(
+                                      Icons.close,
+                                      size: 16,
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                          }
+                        },
+                        child: Container(
+                          height: 40,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.black,
+                          ),
+                          alignment: Alignment.center,
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 8.0, right: 8),
+                            child: Text("Submit"),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        }),
+            );
+          }),
+        ),
         SizedBox(height: MediaQuery.of(context).size.height * 0.11),
         StreamBuilder(
           stream: FirebaseFirestore.instance.collection("Guests").snapshots(),
@@ -367,10 +432,10 @@ class _GuestBookState extends State<GuestBook> {
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (_, index) {
                   return _guestDataListTile(
-                    () {},
-                    // TODO: Activate to delete something as a means of moderation.
-                    // Make firebase function to moderate
-                    () async {
+                    doc: snapshot.data!.docs[index],
+                    index: index,
+                    onTap: () {},
+                    delete: () {
                       // await FirebaseFirestore.instance
                       //     .runTransaction((Transaction myTransaction) async {
                       //   myTransaction.delete(
@@ -378,9 +443,6 @@ class _GuestBookState extends State<GuestBook> {
                       //   );
                       // });
                     },
-                    snapshot.data!.docs[index],
-                    //
-                    index,
                   );
                 },
               );
@@ -391,8 +453,11 @@ class _GuestBookState extends State<GuestBook> {
     );
   }
 
-  _guestDataListTile(Function()? onTap, Function()? delete,
-      QueryDocumentSnapshot doc, int index) {
+  _guestDataListTile(
+      {required Function()? onTap,
+      required Function()? delete,
+      required QueryDocumentSnapshot? doc,
+      required int? index}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -401,11 +466,11 @@ class _GuestBookState extends State<GuestBook> {
           leading: IconButton(
             splashRadius: 24,
             onPressed: delete,
-            color: index.isEven ? Colors.deepPurple : const Color(0xff1DB954),
+            color: index!.isEven ? Colors.deepPurple : const Color(0xff1DB954),
             icon: const Icon(Iconsax.book),
           ),
           title: Text(
-            doc["message"],
+            "${doc!["message"]}",
             style: const TextStyle(color: Colors.white70),
           ),
           subtitle: Padding(

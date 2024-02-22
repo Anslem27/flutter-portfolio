@@ -356,7 +356,7 @@ class _HomePageViewState extends State<HomePageView> {
                                     icon: const Icon(Iconsax.folder_open,
                                         color: Colors.white),
                                     label: const Text(
-                                      "Read more",
+                                      "Check it out",
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(color: Colors.white),
                                     ),

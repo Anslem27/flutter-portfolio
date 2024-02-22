@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/services/spotify_service.dart';
 import 'package:flutter_portfolio/utils/constants.dart';
 import 'package:flutter_portfolio/widgets/loader.dart';
-import 'package:flutter_portfolio/widgets/responsive_layout.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
 import '../../services/github_service.dart';
@@ -96,8 +95,8 @@ class _WebDashBoardState extends State<WebDashBoard> {
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.11),
           _topText(),
-          const SizedBox(height: 20),
-          _socialsSection(),
+          // const SizedBox(height: 20),
+          // _socialsSection(),
           const SizedBox(height: 30),
           _skills(),
           const SizedBox(height: 30),
@@ -147,75 +146,75 @@ class _WebDashBoardState extends State<WebDashBoard> {
     );
   }
 
-  _socialsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              "Social",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(width: 4),
-            Flexible(
-              child: ChipContainer(
-                text: "More on the way",
-                color: Colors.redAccent,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 15),
-        ResponsiveWidget(
-          mobile: _socialMobileView(),
-          webview: _webMobileView(),
-        ),
-      ],
-    );
-  }
+  // _socialsSection() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     mainAxisAlignment: MainAxisAlignment.start,
+  //     children: [
+  //       const Row(
+  //         mainAxisAlignment: MainAxisAlignment.start,
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         children: [
+  //           Text(
+  //             "Social",
+  //             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+  //           ),
+  //           SizedBox(width: 4),
+  //           Flexible(
+  //             child: ChipContainer(
+  //               text: "More on the way",
+  //               color: Colors.redAccent,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //       const SizedBox(height: 15),
+  //       ResponsiveWidget(
+  //         mobile: _socialMobileView(),
+  //         webview: _webMobileView(),
+  //       ),
+  //     ],
+  //   );
+  // }
 
-  _socialMobileView() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Flexible(
-              child: redditSection(),
-            ),
-            // Flexible(
-            //   child: _githubSection(),
-            // ),
-          ],
-        ),
-      ],
-    );
-  }
+  // _socialMobileView() {
+  //   return Column(
+  //     mainAxisAlignment: MainAxisAlignment.start,
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Row(
+  //         mainAxisAlignment: MainAxisAlignment.start,
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         children: [
+  //           Flexible(
+  //             child: redditSection(),
+  //           ),
+  //           // Flexible(
+  //           //   child: _githubSection(),
+  //           // ),
+  //         ],
+  //       ),
+  //     ],
+  //   );
+  // }
 
-  _webMobileView() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Flexible(
-          child: redditSection(),
-        ),
-        // Flexible(
-        //   child: _githubSection(),
-        // ),
-        // Flexible(
-        //   child: _deviceSection(),
-        // ),
-      ],
-    );
-  }
+  // _webMobileView() {
+  //   return Row(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     mainAxisAlignment: MainAxisAlignment.start,
+  //     children: [
+  //       Flexible(
+  //         child: redditSection(),
+  //       ),
+  //       // Flexible(
+  //       //   child: _githubSection(),
+  //       // ),
+  //       // Flexible(
+  //       //   child: _deviceSection(),
+  //       // ),
+  //     ],
+  //   );
+  // }
 
   // _deviceSection() {
   //   return Column(
@@ -322,7 +321,6 @@ class _WebDashBoardState extends State<WebDashBoard> {
         builder: (_, snapshot) {
           if (snapshot.hasData) {
             //lateinitializererror with avatarUrl
-            //TODO: Update manualy
             //var avatarUrl = snapshot.data!.avatarUrl;
 
             var githubUserName = snapshot.data!.name;
@@ -434,6 +432,7 @@ class _WebDashBoardState extends State<WebDashBoard> {
           ],
         ),
         const SizedBox(height: 10),
+
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: Text(
@@ -562,10 +561,10 @@ class _WebDashBoardState extends State<WebDashBoard> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       "Proficiency",
                       style:

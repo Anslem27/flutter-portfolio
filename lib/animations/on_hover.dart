@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class OnHover extends StatefulWidget {
   final Widget Function(bool isHovered) builder;
 
-  const OnHover({Key? key, required this.builder}) : super(key: key);
+  const OnHover({super.key, required this.builder});
 
   @override
   _OnHoverState createState() => _OnHoverState();

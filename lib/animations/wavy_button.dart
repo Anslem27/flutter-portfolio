@@ -15,7 +15,7 @@ class PlayButton extends StatefulWidget {
     super.key,
     required this.onPressed,
     this.initialIsPlaying = false,
-    this.firstIcon = "assets/images/avatar.jpg",
+    this.firstIcon = "assets/images/me.jpeg",
     this.secondIcon =
         const Icon(Icons.light_mode_outlined, color: Colors.black,size: 20),
   }) : assert(onPressed != null);
@@ -105,7 +105,7 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
                 scale: _scale,
                 rotation: _rotation * 2 - 30),
             Blob(
-                color: const Color(0xffa4a6f6),
+                color: Colors.teal,
                 scale: _scale,
                 rotation: _rotation * 3 - 45),
           ],

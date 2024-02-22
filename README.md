@@ -1,8 +1,5 @@
 # flutter portfolio website
 
-
-
-
 **Note**
 
 - Running with html renderer runs with multiple errors.
@@ -54,10 +51,6 @@ $PROJECT_ROOT
 │   # Widgets
 |__ lib/widgets/
 ```
-
-
-
-
 
 ### **WebSite View Count**
 

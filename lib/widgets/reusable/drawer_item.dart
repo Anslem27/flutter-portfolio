@@ -5,10 +5,10 @@ class DrawerItem extends StatelessWidget {
   final Function()? onTap;
   final String title;
   const DrawerItem({
-    Key? key,
+    super.key,
     this.onTap,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

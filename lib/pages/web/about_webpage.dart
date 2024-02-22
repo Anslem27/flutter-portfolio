@@ -102,7 +102,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
                     const SizedBox(width: 4),
                     const Flexible(
                       child: ChipContainer(
-                        text: "Tap Image for Easter Egg",
+                        text: "🤔",
                         color: Colors.deepPurple,
                       ),
                     ),
@@ -133,7 +133,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
           padding: const EdgeInsets.only(bottom: 8.0, top: 5),
           child: RichText(
             text: TextSpan(
-              text: 'Anslem Seguya ',
+              text: 'Anslem ',
               style: GoogleFonts.ubuntu(
                 color: Colors.white38,
                 fontSize: 22,
@@ -157,7 +157,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
           child: RichText(
             text: TextSpan(
               text:
-                  'Anslem Seguya is still a student at Kyamboggo University pursuing a bachelors degree in Information Technology and Computing.',
+                  'Anslem Seguya is still a student pursuing a bachelors degree in Information Technology and Computing.',
               style: GoogleFonts.ubuntu(
                 color: Colors.white38,
                 fontSize: 15,
@@ -309,7 +309,7 @@ class _WebAboutPageState extends State<WebAboutPage> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(
-                  image: const AssetImage("assets/images/1.jpg"),
+                  image: const AssetImage("assets/images/me.jpeg"),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
                     Colors.black.withOpacity(0.8),

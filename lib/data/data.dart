@@ -1,13 +1,13 @@
 //your project titles
 import 'package:flutter/material.dart';
 
-List<String> creations = ["Gem Music", "Drink Up", "Web Apps And Templates"];
+List<String> creations = ["Gem Music", "Versify", "Portolio_v2"];
 
 //your project descriptions
 List<String> creationDescription = [
-  "A modern designed music player, writen in pure dart code with multiple capabilties.",
-  "An app to keep track of water intake,never finished it fully though.",
-  "Lots of awesome website and web app templates to quicken your productivity."
+  "A modern designed music player, made with flutter.",
+  "Ebook reader app with lots of cool features. Get it on the google playstore now",
+  "My portfolio made with next.js."
 ];
 
 //creation gradient colors
@@ -19,6 +19,6 @@ List<List<Color>> cardColors = [
 
 List<String> featuredUrls = [
   "https://github.com/Anslem27/Gem-Docs",
-  "https://github.com/Anslem27/Drink-Up",
-  "https://github.com/Anslem27/Blog-Website"
+  "https://play.google.com/store/apps/details?id=com.versify.app",
+  "https://ansy-io.vercel.app/"
 ];
